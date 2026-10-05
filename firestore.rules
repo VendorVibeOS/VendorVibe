@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Each vendor can read and write only their own backup document.
+    match /vendors/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // Everything else is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

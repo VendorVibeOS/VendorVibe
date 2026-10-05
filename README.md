@@ -1,21 +1,30 @@
-# VendorVibe deployment
+# VendorVibe
 
-Upload these files together, keeping the folder layout:
-index.html, sw.js, manifest.webmanifest, icons/icon-192.png, icons/icon-512.png
+Offline-first PWA for micro and small vendors (sales, stock, utang, expenses, payroll, reports, coach, RPG habit sheet).
+Plain static files: no build step.
 
-Host over HTTPS (GitHub Pages, Netlify, Firebase Hosting or Cloudflare Pages). Service workers and install do not work from file://.
+## Files
+- `index.html` — the whole app
+- `manifest.webmanifest`, `sw.js`, `icons/` — installable, offline PWA
+- `firebase.json`, `.firebaserc`, `firestore.rules`, `firestore.indexes.json` — Firebase Hosting + Firestore (project `vendorvibe-96980`)
+- `.github/workflows/firebase-hosting.yml` — auto-deploy on push to `main`
+- `.github/workflows/pages.yml` — optional manual GitHub Pages deploy
 
-## After deploying
-1. Open the site once while online so the app caches itself.
-2. Turn on airplane mode and reload. The app should still open and save records.
-3. Install: Chrome/Android menu > Install app. iPhone Safari: Share > Add to Home Screen.
-4. Updates: after you upload a new version, bump `V` in sw.js (now vendorvibe-v5; use v6 next). Users see "Update ready" and reload.
-5. Make sure sw.js is not cached for a long time by your host (max-age=0 / no-cache).
+## One-time Firebase setup
+1. Console > Authentication > Sign-in method: enable **Email/Password**.
+2. Console > Authentication > Settings > Authorized domains: add your hosting domain (`vendorvibe-96980.web.app` is there by default; add GitHub Pages / custom domains if used).
+3. Console > Firestore Database: create the database (production mode), then deploy the rules: `firebase deploy --only firestore:rules`.
+4. GitHub repo > Settings > Secrets > Actions: add `FIREBASE_SERVICE_ACCOUNT` (JSON key of a service account with Firebase Hosting Admin; `firebase init hosting:github` creates it for you).
 
-## Notes
-- Data is stored on each device (IndexedDB). Tell clients to export a backup weekly (Reports > Data Safety).
-- Cloud sync is hidden from clients. Open the site with ?cloud=1 to show it. Before using it, set Firestore rules so users can only read/write vendors/{their uid}.
-- "Estimated Business Cash" = starting capital + sales - cost of goods - expenses - owner draws. It is an estimate, not a till count.
+## Deploy
+Push to `main`, or manually: `firebase deploy`.
 
-- First launch: store setup, then a guided tour. The ? button replays it. Language (English/Filipino) is in Settings. Coach advice stays in English.
-- Reset: Settings > Fix a mistake. Both options download a backup first; full reset also needs the word RESET.
+## Cloud sync
+Cloud buttons are hidden for regular users. Open the app with `?cloud=1` (e.g. `https://vendorvibe-96980.web.app/?cloud=1`) > More > Cloud + AI, create an account, then Sync Now. The Firebase web config is pre-filled.
+
+## Releasing an update
+Bump `CACHE_VERSION` in `sw.js` so installed apps pick up the new files.
+
+## Security
+- The Firebase web API key is safe to be public; access is enforced by `firestore.rules` (each user can only touch `vendors/{their uid}`).
+- Never put a Gemini or other secret API key in this repo. Use a server-side gateway for AI.
