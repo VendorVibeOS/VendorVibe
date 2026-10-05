@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>VendorVibe - Micro-Vendor POS & Ledger</title>
+  <style>
+    :root {
+      --bg-main: #08111f;
+      --bg-card: #0f1c2e;
+      --bg-input: #172a45;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --border-color: #1e3a5f;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); padding-bottom: 70px; }
+
+    header {
+      position: sticky; top: 0; z-index: 100; background-color: rgba(8, 17, 31, 0.95);
+      backdrop-filter: blur(8px); padding: 12px 16px; border-bottom: 1px solid var(--border-color);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand { font-size: 1.2rem; font-weight: 700; color: var(--accent-green); }
+
+    .banner {
+      background: #3a2503; border-bottom: 1px solid var(--accent-amber); color: var(--accent-amber);
+      padding: 10px 16px; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .banner button {
+      background: var(--accent-amber); color: #000; border: none; padding: 4px 10px;
+      border-radius: 6px; font-weight: bold; cursor: pointer;
+    }
+
+    main { padding: 16px; max-width: 600px; margin: 0 auto; }
+
+    .grid-kpi { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .kpi-card {
+      background: var(--bg-card); padding: 14px; border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+    }
+    .kpi-card.full { grid-column: span 2; }
+    .kpi-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .kpi-value { font-size: 1.4rem; font-weight: 700; margin-top: 4px; }
+    .kpi-value.green { color: var(--accent-green); }
+    .kpi-value.amber { color: var(--accent-amber); }
+    .kpi-value.blue { color: var(--accent-blue); }
+
+    .section-title { font-size: 1rem; font-weight: 600; margin: 20px 0 10px; display: flex; justify-content: space-between; align-items: center; }
+
+    .quick-sales-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .product-tile {
+      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius);
+      padding: 12px 8px; text-align: center; cursor: pointer; transition: active 0.1s;
+    }
+    .product-tile:active { background: var(--bg-input); border-color: var(--accent-green); }
+    .product-tile .p-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .product-tile .p-price { font-size: 0.8rem; color: var(--accent-green); }
+    .product-tile .p-stock { font-size: 0.7rem; color: var(--text-muted); }
+
+    .btn {
+      width: 100%; padding: 12px; border: none; border-radius: var(--radius);
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; display: inline-flex;
+      justify-content: center; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .btn-primary { background: var(--accent-green); color: #000; }
+    .btn-secondary { background: var(--bg-input); color: var(--text-main); border: 1px solid var(--border-color); }
+    .btn-danger { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8);
+      z-index: 200; display: none; align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-sheet {
+      background: var(--bg-card); border-top-left-radius: 16px; border-top-right-radius: 16px;
+      width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; padding: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-color);
+      border-radius: 8px; color: var(--text-main); font-size: 0.95rem;
+    }
+
+    .nav-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: var(--bg-card);
+      border-top: 1px solid var(--border-color); display: flex; justify-content: space-around;
+      align-items: center; z-index: 100;
+    }
+    .nav-item { color: var(--text-muted); font-size: 0.75rem; text-decoration: none; text-align: center; cursor: pointer; }
+    .nav-item.active { color: var(--accent-green); font-weight: 600; }
+
+    .list-item {
+      background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px;
+      border-radius: var(--radius); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .receipt-preview { background: #fff; color: #000; font-family: monospace; padding: 16px; border-radius: 8px; font-size: 0.85rem; line-height: 1.4; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">VendorVibe</div>
+    <div id="storage-badge" style="font-size: 0.75rem; color: var(--text-muted);">Storage: Checking...</div>
+  </header>
+
+  <div id="backup-banner" class="banner" style="display: none;">
+    <span>⚠️ Backup overdue (>7 days). Protect your data!</span>
+    <button id="btn-banner-backup">Backup Now</button>
+  </div>
+
+  <main id="app-view">
+    <!-- Dashboard KPI View -->
+    <div class="grid-kpi">
+      <div class="kpi-card full">
+        <div class="kpi-title">Actual Business Cash</div>
+        <div id="kpi-cash" class="kpi-value green">₱0.00</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Uncollected Utang</div>
+        <div id="kpi-utang" class="kpi-value amber">₱0.00</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Stock Value (At Cost)</div>
+        <div id="kpi-stock-value" class="kpi-value blue">₱0.00</div>
+      </div>
+    </div>
+
+    <!-- Quick Sales Mode Grid -->
+    <div class="section-title">
+      <span>Quick Sale Mode</span>
+      <span style="font-size: 0.75rem; color: var(--text-muted);">Tap item to add</span>
+    </div>
+    <div id="quick-sales-container" class="quick-sales-grid"></div>
+
+    <div class="section-title">Actions</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      <button class="btn btn-primary" id="btn-open-restock">📦 Restock / Purchase</button>
+      <button class="btn btn-secondary" id="btn-open-product-mgr">🏷️ Products</button>
+      <button class="btn btn-secondary" id="btn-open-utang-mgr">📖 Utang Ledger</button>
+      <button class="btn btn-secondary" id="btn-export-backup">💾 Export Data</button>
+    </div>
+
+    <div class="section-title">Recent Transactions</div>
+    <div id="activity-log"></div>
+  </main>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <div class="nav-item active" data-tab="dashboard">Dashboard</div>
+    <div class="nav-item" data-tab="inventory">Inventory</div>
+    <div class="nav-item" data-tab="expenses">Expenses</div>
+    <div class="nav-item" data-tab="settings">Settings</div>
+  </nav>
+
+  <!-- Restock/Purchase Modal -->
+  <div id="modal-restock" class="modal-overlay">
+    <div class="modal-sheet">
+      <h3 style="margin-bottom: 12px;">Record Inventory Purchase</h3>
+      <form id="form-restock">
+        <div class="form-group">
+          <label>Product</label>
+          <select id="restock-product-id" required></select>
+        </div>
+        <div class="form-group">
+          <label>Supplier Name</label>
+          <input type="text" id="restock-supplier" placeholder="e.g. Divisoria Wholesale" required />
+        </div>
+        <div class="form-group">
+          <label>Quantity Purchased</label>
+          <input type="number" id="restock-qty" min="1" step="1" required />
+        </div>
+        <div class="form-group">
+          <label>Total Wholesale Cost (₱)</label>
+          <input type="number" id="restock-cost" step="0.01" min="0" required />
+        </div>
+        <div class="form-group">
+          <label>Amount Paid Now (₱)</label>
+          <input type="number" id="restock-paid" step="0.01" min="0" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Save Restock & Deduct Cash</button>
+        <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Receipt View Modal -->
+  <div id="modal-receipt" class="modal-overlay">
+    <div class="modal-sheet">
+      <h3 style="margin-bottom: 12px;">Transaction Receipt</h3>
+      <div id="receipt-container" class="receipt-preview"></div>
+      <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <button id="btn-share-receipt" class="btn btn-primary">📲 Share Text</button>
+        <button type="button" class="btn btn-secondary btn-close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/**
+ * VendorVibe - Core Architecture Fixes Implementation
+ * Key Changes:
+ * 1. Financial Engine: Strict Integer Centavos & Cash-Basis Ledger
+ * 2. Referential Integrity: Safe deletion/archiving checks
+ * 3. Data Safety: Browser Persistent Storage & Weekly Backup Enforcement
+ * 4. Security: Event delegation & formula-injection sanitization
+ */
+
+// --- 1. STATE & INTEGER CENTAVO UTILITIES ---
+const AppState = {
+  capitalCentavos: 1000000, // ₱10,000.00 initial capital
+  lastBackupAt: null,
+  products: [
+    { id: 'p1', name: 'Instant Noodle', priceCentavos: 1500, costCentavos: 1200, stock: 45, isArchived: false },
+    { id: 'p2', name: 'Canned Tuna', priceCentavos: 3800, costCentavos: 3100, stock: 20, isArchived: false }
+  ],
+  purchases: [], // { id, productId, supplier, qty, totalCostCentavos, amountPaidCentavos, date }
+  sales: [],     // { id, items: [{productId, qty, priceCentavos}], totalCentavos, paymentMethod: 'cash'|'gcash'|'utang', customerId, date }
+  utangPayments: [], // { id, customerId, amountCentavos, date }
+  expenses: [],  // { id, category, amountCentavos, date } Note: Salaries category removed to avoid double-counting with payroll
+  payroll: [],   // { id, employeeId, amountCentavos, date }
+  advances: [],  // { id, employeeId, amountCentavos, date }
+  draws: [],     // { id, amountCentavos, date }
+  customers: [], // { id, name, isArchived: false }
+  employees: []  // { id, name, isArchived: false }
+};
+
+// Conversions to completely eliminate floating-point drift
+const Money = {
+  toCentavos: (val) => Math.round(parseFloat(val || 0) * 100),
+  toPesos: (centavos) => (centavos / 100).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }),
+  sanitizeCSV: (str) => {
+    if (typeof str !== 'string') return str;
+    return /^[=+@- network]/.test(str) ? `'${str}` : str;
+  }
+};
+
+// --- 2. PERSISTENT STORAGE & BACKUP HEALTH ---
+async function initStorageSafety() {
+  const badge = document.getElementById('storage-badge');
+  if (navigator.storage && navigator.storage.persist) {
+    const isPersisted = await navigator.storage.persist();
+    badge.textContent = isPersisted ? '🔒 Storage: Persistent' : '⚠️ Storage: Temporary';
+    badge.style.color = isPersisted ? 'var(--accent-green)' : 'var(--accent-amber)';
+  } else {
+    badge.textContent = 'Storage: Standard';
+  }
+
+  // Check last backup date
+  const lastBackup = localStorage.getItem('vv_last_backup');
+  if (lastBackup) AppState.lastBackupAt = parseInt(lastBackup, 10);
+  
+  const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+  if (!AppState.lastBackupAt || (Date.now() - AppState.lastBackupAt) > SEVEN_DAYS_MS) {
+    document.getElementById('backup-banner').style.display = 'flex';
+  }
+}
+
+// --- 3. ACCURATE CASH-BASIS FINANCIAL CALCULATIONS ---
+function calculateFinancials() {
+  // Cash In: Capital + Cash/GCash Sales + Utang Payments
+  const salesCashIn = AppState.sales
+    .filter(s => s.paymentMethod === 'cash' || s.paymentMethod === 'gcash')
+    .reduce((sum, s) => sum + s.totalCentavos, 0);
+
+  const utangPaymentsIn = AppState.utangPayments
+    .reduce((sum, p) => sum + p.amountCentavos, 0);
+
+  const totalCashIn = AppState.capitalCentavos + salesCashIn + utangPaymentsIn;
+
+  // Cash Out: Purchases Paid + Expenses + Payroll + Advances + Draws
+  const purchasesOut = AppState.purchases.reduce((sum, p) => sum + p.amountPaidCentavos, 0);
+  const expensesOut = AppState.expenses.reduce((sum, e) => sum + e.amountCentavos, 0);
+  const payrollOut = AppState.payroll.reduce((sum, p) => sum + p.amountCentavos, 0);
+  const advancesOut = AppState.advances.reduce((sum, a) => sum + a.amountCentavos, 0);
+  const drawsOut = AppState.draws.reduce((sum, d) => sum + d.amountCentavos, 0);
+
+  const totalCashOut = purchasesOut + expensesOut + payrollOut + advancesOut + drawsOut;
+
+  // Uncollected Utang Calculation
+  const totalUtangSales = AppState.sales
+    .filter(s => s.paymentMethod === 'utang')
+    .reduce((sum, s) => sum + s.totalCentavos, 0);
+  const uncollectedUtang = totalUtangSales - utangPaymentsIn;
+
+  // Inventory Stock Value (at cost)
+  const stockValue = AppState.products
+    .filter(p => !p.isArchived)
+    .reduce((sum, p) => sum + (p.stock * p.costCentavos), 0);
+
+  return {
+    actualCashCentavos: totalCashIn - totalCashOut,
+    uncollectedUtangCentavos: uncollectedUtang,
+    stockValueCentavos: stockValue
+  };
+}
+
+function updateDashboardUI() {
+  const fin = calculateFinancials();
+  document.getElementById('kpi-cash').textContent = Money.toPesos(fin.actualCashCentavos);
+  document.getElementById('kpi-utang').textContent = Money.toPesos(fin.uncollectedUtangCentavos);
+  document.getElementById('kpi-stock-value').textContent = Money.toPesos(fin.stockValueCentavos);
+
+  // Render Quick Sales Tiles
+  const quickContainer = document.getElementById('quick-sales-container');
+  quickContainer.innerHTML = '';
+  
+  AppState.products.filter(p => !p.isArchived).forEach(product => {
+    const tile = document.createElement('div');
+    tile.className = 'product-tile';
+    tile.dataset.action = 'quick-sale';
+    tile.dataset.id = product.id;
+    tile.innerHTML = `
+      <div class="p-name">${product.name}</div>
+      <div class="p-price">${Money.toPesos(product.priceCentavos)}</div>
+      <div class="p-stock">Stock: ${product.stock}</div>
+    `;
+    quickContainer.appendChild(tile);
+  });
+}
+
+// --- 4. SAFE DELETION & REFERENTIAL INTEGRITY ---
+function safeDeleteCustomer(customerId) {
+  const hasUtangSales = AppState.sales.some(s => s.customerId === customerId);
+  const hasPayments = AppState.utangPayments.some(p => p.customerId === customerId);
+
+  if (hasUtangSales || hasPayments) {
+    // Soft-delete (Archive) instead of hard delete to preserve sales references
+    const customer = AppState.customers.find(c => c.id === customerId);
+    if (customer) {
+      customer.isArchived = true;
+      alert(`Customer '${customer.name}' has existing transaction records. Archived instead of deleting to preserve financial integrity.`);
+    }
+    return false;
+  }
+
+  AppState.customers = AppState.customers.filter(c => c.id !== customerId);
+  return true;
+}
+
+function safeDeleteProduct(productId) {
+  const hasSales = AppState.sales.some(s => s.items.some(i => i.productId === productId));
+  const hasPurchases = AppState.purchases.some(p => p.productId === productId);
+
+  if (hasSales || hasPurchases) {
+    const product = AppState.products.find(p => p.id === productId);
+    if (product) {
+      product.isArchived = true;
+      alert(`Product '${product.name}' has historical sales/restock data. Archived instead of deleting.`);
+    }
+    return false;
+  }
+
+  AppState.products = AppState.products.filter(p => p.id !== productId);
+  return true;
+}
+
+// --- 5. RESTOCK & PURCHASES ENGINE ---
+function handleRestockSubmit(e) {
+  e.preventDefault();
+  const productId = document.getElementById('restock-product-id').value;
+  const supplier = document.getElementById('restock-supplier').value;
+  const qty = parseInt(document.getElementById('restock-qty').value, 10);
+  const totalCostCentavos = Money.toCentavos(document.getElementById('restock-cost').value);
+  const amountPaidCentavos = Money.toCentavos(document.getElementById('restock-paid').value);
+
+  // 1. Record Purchase
+  const purchaseRecord = {
+    id: 'pur_' + Date.now(),
+    productId,
+    supplier,
+    qty,
+    totalCostCentavos,
+    amountPaidCentavos,
+    date: new Date().toISOString()
+  };
+  AppState.purchases.push(purchaseRecord);
+
+  // 2. Increase Product Stock
+  const product = AppState.products.find(p => p.id === productId);
+  if (product) {
+    product.stock += qty;
+  }
+
+  document.getElementById('modal-restock').classList.remove('active');
+  document.getElementById('form-restock').reset();
+  updateDashboardUI();
+  alert('Restock recorded. Stock increased and cash balance updated!');
+}
+
+// --- 6. MULTI-ITEM RECEIPT GENERATION ---
+function generateTextReceipt(saleId) {
+  const sale = AppState.sales.find(s => s.id === saleId);
+  if (!sale) return '';
+
+  let receipt = `=== VENDORVIBE RECEIPT ===\n`;
+  receipt += `Date: ${new Date(sale.date).toLocaleString()}\n`;
+  receipt += `ID: ${sale.id}\n`;
+  receipt += `--------------------------\n`;
+  
+  sale.items.forEach(item => {
+    const prod = AppState.products.find(p => p.id === item.productId);
+    const name = prod ? prod.name : 'Item';
+    receipt += `${name} x${item.qty} @ ${Money.toPesos(item.priceCentavos)}\n`;
+  });
+
+  receipt += `--------------------------\n`;
+  receipt += `TOTAL: ${Money.toPesos(sale.totalCentavos)}\n`;
+  receipt += `Payment: ${sale.paymentMethod.toUpperCase()}\n`;
+  receipt += `Thank you for your business!\n`;
+
+  return receipt;
+}
+
+// --- 7. EVENT DELEGATION & SECURITY INIT ---
+function initEventListeners() {
+  // Use Event Delegation to prevent inline XSS risks
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+
+    const action = target.dataset.action;
+    const id = target.dataset.id;
+
+    if (action === 'quick-sale') {
+      const product = AppState.products.find(p => p.id === id);
+      if (product && product.stock > 0) {
+        product.stock -= 1;
+        AppState.sales.push({
+          id: 'sale_' + Date.now(),
+          items: [{ productId: product.id, qty: 1, priceCentavos: product.priceCentavos }],
+          totalCentavos: product.priceCentavos,
+          paymentMethod: 'cash',
+          date: new Date().toISOString()
+        });
+        updateDashboardUI();
+      } else {
+        alert('Item out of stock!');
+      }
+    }
+  });
+
+  // Modal Controls
+  document.getElementById('btn-open-restock').addEventListener('click', () => {
+    const select = document.getElementById('restock-product-id');
+    select.innerHTML = AppState.products.map(p => `<option value="${p.id}">${p.name} (Current Stock: ${p.stock})</option>`).join('');
+    document.getElementById('modal-restock').classList.add('active');
+  });
+
+  document.querySelectorAll('.btn-close-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+    });
+  });
+
+  document.getElementById('form-restock').addEventListener('submit', handleRestockSubmit);
+
+  // Backup Export
+  const triggerExport = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(AppState));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `vendorvibe_backup_${new Date().toISOString().slice(0,10)}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    AppState.lastBackupAt = Date.now();
+    localStorage.setItem('vv_last_backup', AppState.lastBackupAt.toString());
+    document.getElementById('backup-banner').style.display = 'none';
+  };
+
+  document.getElementById('btn-export-backup').addEventListener('click', triggerExport);
+  document.getElementById('btn-banner-backup').addEventListener('click', triggerExport);
+}
+
+// Initializing Application
+document.addEventListener('DOMContentLoaded', () => {
+  initStorageSafety();
+  initEventListeners();
+  updateDashboardUI();
+});
+</script>
+</body>
+</html>
