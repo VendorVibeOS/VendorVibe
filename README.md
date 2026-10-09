@@ -1,30 +1,68 @@
-# VendorVibe
+# VendorVibe OS
 
-Offline-first PWA for micro and small vendors (sales, stock, utang, expenses, payroll, reports, coach, RPG habit sheet).
-Plain static files: no build step.
+> **Creator & Sole Developer:** Francis Alfred Luz  
+> **Project Type:** Independent Full-Stack Web Application  
+> **Live Demo:** [vendorvibe-96980.web.app](https://vendorvibe-96980.web.app) | **Repository:** [VendorVibeOS/VendorVibe](https://github.com/VendorVibeOS/VendorVibe)
 
-## Files
-- `index.html` — the whole app
-- `manifest.webmanifest`, `sw.js`, `icons/` — installable, offline PWA
-- `firebase.json`, `.firebaserc`, `firestore.rules`, `firestore.indexes.json` — Firebase Hosting + Firestore (project `vendorvibe-96980`)
-- `.github/workflows/firebase-hosting.yml` — auto-deploy on push to `main`
-- `.github/workflows/pages.yml` — optional manual GitHub Pages deploy
+---
 
-## One-time Firebase setup
-1. Console > Authentication > Sign-in method: enable **Email/Password**.
-2. Console > Authentication > Settings > Authorized domains: add your hosting domain (`vendorvibe-96980.web.app` is there by default; add GitHub Pages / custom domains if used).
-3. Console > Firestore Database: create the database (production mode), then deploy the rules: `firebase deploy --only firestore:rules`.
-4. GitHub repo > Settings > Secrets > Actions: add `FIREBASE_SERVICE_ACCOUNT` (JSON key of a service account with Firebase Hosting Admin; `firebase init hosting:github` creates it for you).
+## 1. Executive Summary
 
-## Deploy
-Push to `main`, or manually: `firebase deploy`.
+**VendorVibe OS** is an offline-first Progressive Web Application engineered for micro, small, and medium enterprises (MSMEs) to track sales, manage inventory, and maintain business records seamlessly. Built with vanilla JavaScript, IndexedDB, LocalStorage, and Service Workers, it eliminates dependency on continuous internet access, guaranteeing **100% operational uptime** and zero-latency transaction updates.
 
-## Cloud sync
-Cloud buttons are hidden for regular users. Open the app with `?cloud=1` (e.g. `https://vendorvibe-96980.web.app/?cloud=1`) > More > Cloud + AI, create an account, then Sync Now. The Firebase web config is pre-filled.
+---
 
-## Releasing an update
-Bump `CACHE_VERSION` in `sw.js` so installed apps pick up the new files.
+## 2. Problem Statement
 
-## Security
-- The Firebase web API key is safe to be public; access is enforced by `firestore.rules` (each user can only touch `vendors/{their uid}`).
-- Never put a Gemini or other secret API key in this repo. Use a server-side gateway for AI.
+Small retailers, pop-up vendors, and local business owners frequently encounter operational bottlenecks when using cloud-dependent point-of-sale (POS) and inventory systems:
+
+* **Unreliable Connectivity:** Network drops or poor signal lead to interrupted checkouts, lost transaction records, and delayed operations.
+* **UI Latency:** Cloud API round-trips create noticeable input lag during high-volume sales periods.
+* **High System Overhead:** Complex heavy frameworks and subscription-based software impose steep hardware and operational costs on micro-merchants.
+
+---
+
+## 3. The Solution
+
+VendorVibe OS adopts a **local-first architecture** that handles all data reads and writes directly on the client device:
+
+* **Offline Independence:** Service Workers pre-cache the entire application shell, enabling instant load times and complete offline execution.
+* **Client-Side Persistence:** Transactions and inventory adjustments save immediately to **IndexedDB**, ensuring zero UI latency.
+* **Progressive Web App Standard:** Installable directly on desktop, tablet, and mobile devices without requiring app store installation.
+
+---
+
+## 4. Technical Stack
+
+| Category | Technology / Tool | Purpose |
+| :--- | :--- | :--- |
+| **Frontend Core** | HTML5, CSS3, JavaScript (ES6+) | Semantic UI structure, custom styling, and asynchronous event handling. |
+| **Local Database** | IndexedDB | Asynchronous, transactional storage for relational sales and inventory records. |
+| **Local State** | LocalStorage | Synchronous key-value storage for user configurations and app preferences. |
+| **PWA APIs** | Service Workers & App Manifest | Offline caching strategy, background execution, and native installability. |
+| **Hosting & CI/CD** | Firebase Hosting & GitHub Workflows | Automated continuous deployment pipeline from version control to global CDN. |
+
+---
+
+## 5. System Architecture & Data Flow
+
+```mermaid
+graph TD
+    subgraph Client ["Client Browser / Mobile PWA Environment"]
+        UI["User Interface (HTML5 / CSS3 / ES6+ JS)"]
+        SW["Service Worker (sw.js)"]
+        IDB[("IndexedDB Database")]
+        LS[("LocalStorage")]
+    end
+
+    subgraph Cloud ["Cloud Infrastructure"]
+        FB["Firebase Hosting"]
+        GH["GitHub Repository"]
+    end
+
+    UI -->|"1. Async Read/Write (Sales/Inventory)"| IDB
+    UI -->|"2. Session & UI State"| LS
+    IDB -->|"3. Instant Reactive Updates"| UI
+    SW -->|"4. Intercepts HTTP Requests & Serves Cached Assets"| UI
+    GH -->|"5. Automated Deployment Pipeline"| FB
+    FB -->|"6. Static Asset Distribution"| SW
