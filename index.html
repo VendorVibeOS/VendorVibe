@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b4a45">
-<link rel="manifest" href="./manifest.webmanifest">
-<meta name="description" content="VendorVibe — offline-first business management app for micro and small vendors.">
+<link rel="manifest" href="./manifest.json">
+<meta name="description" content="VendorVibe - offline vendor OS">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="VendorVibe">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-<link rel="icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" href="./icon-192.png">
 <title>VendorVibe — Offline Vendor OS</title>
 <style>
 :root{--bg:#08111f;--panel:#101b2d;--panel2:#162338;--line:#26364d;--text:#eef4fb;--muted:#91a3ba;--green:#20c997;--amber:#f5b942;--red:#ff6b6b;--blue:#60a5fa;--purple:#a78bfa;--shadow:0 12px 30px rgba(0,0,0,.22)}
@@ -657,18 +657,54 @@ if(unpaid>0)out.push(F?`3) May ${money(unpaid)} na benta na utang pa at hindi pa
 if(t.draw>0&&t.draw>=t.net*0.8)out.push(F?`4) Ang kinuha ng may-ari (${money(t.draw)}) ay halos o higit pa sa net profit. Kaya walang natitira.`:`4) Owner draws (${money(t.draw)}) are close to or above net profit, so nothing is left in the business.`);
 if(out.length===1)out.push(F?'Walang malinaw na butas sa numero ngayon. Itala ang bawat gastos at benta araw-araw para mas malinaw ang makita ko.':'No clear leak in the numbers right now. Keep recording every sale and expense so I can see more.');
 return out.join('\n')}
-function offlineCoach(q){const t=totals(),p=state.personality,F=coachIsFil(q),ql=q.toLowerCase(),has=r=>r.test(ql),low=state.products.filter(lowItem).length;
-if(has(/\bnet\b|natitira|walang.*(kita|tubo|tira)|lugi|bakit.*(kaya|mababa|konti|kaunti)|profit|\bkita\b|\btubo\b|margin/))return diagnoseNet(F);
-if(has(/singil|kolekt|collect|pautang|may utang sa akin|customer.*utang|utang.*customer/))return F?`May ${money(t.ar)} na utang ng mga customer. Tingnan ang Talaan ng Utang (More), singilin ang pinakamatagal, at huwag magpautang sa hindi nagbabayad.`:`Customers owe you ${money(t.ar)}. Open the Utang Ledger (More), collect the oldest first, and stop extending credit to slow payers.`;
-if(has(/price|presyo|magkano|taasan|ibaba/))return F?`Bago magbago ng presyo, tingnan ang tubo kada piraso. Gross profit mo ngayon ay ${money(t.gross)} sa benta na ${money(t.sales)}. ${p.risk==='cautious'?'Huwag munang makipagpaligsahan sa presyo; subukan ang maliit na pagbabago.':'Subukan ang maliit na pagbabago at bantayan ang resulta.'}`:`Before changing price, check the margin per unit. Your gross profit is ${money(t.gross)} on ${money(t.sales)} sales. ${p.risk==='cautious'?'Do not start a price war; test a small change first.':'Test a small change and watch the result.'}`;
-if(has(/loan|utang|hiram|borrow|pautang|puhunan/))return F?`Huwag magdesisyon sa benta lang. Protektahan muna ang puhunan para sa susunod na ikot. Ang tantiyang pera ng negosyo ngayon ay ${money(t.cash)}. ${p.risk==='cautious'?'Iwasan ang malaking utang.':'Kung uutang, siguraduhing may malinaw na pagkukunan ng pambayad.'}`:`Do not decide from sales alone. Protect working capital first. Estimated business cash is ${money(t.cash)}. ${p.risk==='cautious'?'Keep debt low.':'If you borrow, have a clear repayment source and test the downside.'}`;
-if(!biz().inv&&has(/inventory|stock|paninda|restock|ubos/))return F?'Hindi nagbibilang ng stock ang uri ng negosyo mo. Mas mahalaga ang oras, kapasidad at presyo. Tingnan ang pinakamabenta mong serbisyo at taasan ang presyo kung puno na ang iskedyul.':'Your business type does not count stock. Time, capacity and pricing matter more. Review your best-selling service and raise the price if your schedule is full.';
-if(has(/inventory|stock|paninda|restock|ubos/))return F?`Ang halaga ng stock mo ay ${money(t.inv)}. ${low?`May ${low} item na paubos na; mag-restock base sa bilis ng benta at tubo, hindi sa pakiramdam.`:'Walang paubos na item ngayon.'}`:`Inventory at cost is ${money(t.inv)}. ${low?`${low} item(s) are low; reorder based on turnover and margin, not feeling.`:'No low-stock alerts right now.'}`;
-if(has(/gastos|expense|bills|bayarin/)){const c=expByCat().slice(0,3).map(x=>`${x[0]} ${money(x[1])}`).join(', ');return F?`Kabuuang gastos: ${money(t.exp)}.${c?' Pinakamalaki: '+c+'.':''} Alisin o bawasan muna ang hindi kailangan.`:`Total expenses: ${money(t.exp)}.${c?' Biggest: '+c+'.':''} Cut anything that does not help sales.`}
-if(has(/\bcash\b|\bpera\b|kaha|working capital/))return F?`Ang tantiyang pera ng negosyo ay ${money(t.cash)}. Ang kinuha ng may-ari ay ${money(t.draw)} at utang na kokolektahin ay ${money(t.ar)}.`:`Estimated business cash is ${money(t.cash)}. Owner draws are ${money(t.draw)} and utang to collect is ${money(t.ar)}.`;
-if(has(/sweldo|salary|payroll|empleyado|employee|staff/))return F?`Kabuuang bayad sa sweldo: ${money(state.payroll.reduce((a,x)=>a+x.net,0))}. Cash advance na babawiin: ${money(t.adv)}.`:`Salaries paid: ${money(state.payroll.reduce((a,x)=>a+x.net,0))}. Cash advances to recover: ${money(t.adv)}.`;
-return F?`Hindi ako sigurado sa tanong, pero narito ang buod: benta ${money(t.sales)}, net ${money(t.net)}, pera ${money(t.cash)}. ${coachAdvice()}\nSubukan: "Bakit mababa ang net?", "Paano ang presyo?", o "Ano ang gagawin sa stock?"`:`I am not sure what you mean, but here is the summary: sales ${money(t.sales)}, net ${money(t.net)}, cash ${money(t.cash)}. ${coachAdvice()}\nTry: "Why is net low?", "How about pricing?", or "What about stock?"`}
-async function askCoach(){const input=document.getElementById('coachInput'),q=input.value.trim();if(!q)return;state.coachChat.push({who:'user',text:q});input.value='';renderCoach();const online=await askOnlineCoach(q);const a=online||offlineCoach(q);state.coachChat.push({who:'ai',text:a});recordAudit(online?'coach.online':'coach.offline',q.slice(0,120));saveState();renderCoach()}
+function offlineCoach(q) {
+    const currentMetrics = typeof totals === 'function' ? totals() : {};
+    
+    // Siguraduhing naipapadala ang bizType para sa Tutor detection
+    currentMetrics.bizType = (state && (state.bizType || state.profileCategory)) ? (state.bizType || state.profileCategory) : 'Tutor';
+    currentMetrics.role = 'Tutor';
+
+    if (window.coachBrain) {
+        const res = window.coachBrain.evaluate(q, currentMetrics);
+        return res.reply;
+    }
+    return "Naka-initialize ang offline coach. Mangyaring magtanong muli.";
+}
+async function askCoach() {
+    const input = document.getElementById("coachInput");
+    if (!input || !input.value.trim()) return;
+
+    const q = input.value.trim();
+    const metrics = typeof totals === 'function' ? totals() : {};
+    
+    if (window.coachBrain) {
+        const res = window.coachBrain.evaluate(q, metrics);
+        
+        const chatContainer = document.getElementById("coachReply") || 
+                              document.querySelector(".coach-response-area") || 
+                              document.querySelector("[data-coach-response]");
+
+        if (chatContainer) {
+            chatContainer.innerHTML = res.reply.replace(/\n/g, '<br>');
+        } else if (typeof appendCoachReply === 'function') {
+            appendCoachReply(res.reply);
+        } else {
+            const chatBox = document.querySelector(".Usapan-ninyo-ng-Coach") || document.querySelector("textarea")?.parentElement;
+            if (chatBox) {
+                let replyDiv = document.getElementById("dynamicCoachReply");
+                if (!replyDiv) {
+                    replyDiv = document.createElement("div");
+                    replyDiv.id = "dynamicCoachReply";
+                    replyDiv.style.cssText = "background:#f0f4f8; padding:15px; border-radius:8px; margin-top:10px; white-space:pre-line; color:#1a202c;";
+                    chatBox.appendChild(replyDiv);
+                }
+                replyDiv.innerHTML = res.reply;
+            } else {
+                alert(res.reply);
+            }
+        }
+    }
+}
 let LANG='en';
 const FIL={"Home":"Home","Products":"Produkto","Sales":"Benta","Orders":"Mga Order","More":"Iba Pa","Healthy":"Maayos","Needs Attention":"Kailangan ng Pansin","Good business starts with discipline.":"Nagsisimula sa disiplina ang magandang negosyo.","Your business records are stored on this device. Core features work offline.":"Nasa device na ito ang mga record ng negosyo mo. Gumagana kahit offline ang mga pangunahing feature.","Online. Local data remains primary; cloud sync is optional.":"Online. Nasa device pa rin ang pangunahing data; opsyonal ang cloud sync.","Offline. VendorVibe is working from the device database.":"Offline. Gumagana ang VendorVibe gamit ang data sa device.","First steps: 1) add your products, 2) record each sale, 3) record expenses, 4) export a backup every week.":"Unang hakbang: 1) idagdag ang mga produkto, 2) i-record ang bawat benta, 3) i-record ang mga gastos, 4) mag-export ng backup bawat linggo.","● Offline-ready":"● Handa kahit offline","📲 Install":"📲 I-install","Estimated Business Cash":"Tantiyang Pera ng Negosyo","Gross Profit":"Gross Profit (Tubo)","Net Profit":"Net Profit (Tubo)","Inventory Value":"Halaga ng Stock","Pending Orders":"Order na Nakabinbin","Quick Actions":"Mabilisang Gawin","＋ Sale":"＋ Benta","＋ Product":"＋ Produkto","＋ Expense":"＋ Gastos","＋ Order":"＋ Order","＋ Owner Draw":"＋ Kinuha ng May-ari","↕ Stock / Return":"↕ Stock / Balik","Talk to Coach":"Kausapin ang Coach","Business Habits Score":"Iskor ng Gawi sa Negosyo","Just starting":"Nagsisimula pa lang","Getting started":"Nagsisimula na","Building habits":"Nabubuo na ang gawi","Strong habits":"Matibay na gawi","Products & Inventory":"Mga Produkto at Stock","＋ Add":"＋ Idagdag","Search products...":"Maghanap ng produkto...","Search customers...":"Maghanap ng customer...","＋ Record Sale":"＋ Mag-record ng Benta","Total Sales":"Kabuuang Benta","COGS":"Puhunan sa Paninda","＋ New Order":"＋ Bagong Order","All":"Lahat","Pending":"Nakabinbin","Confirmed":"Kumpirmado","Preparing":"Hinahanda","Ready":"Handa na","Completed":"Tapos na","Canceled":"Kinansela","Customers":"Mga Customer","Expenses":"Mga Gastos","Total operating expenses":"Kabuuang gastos sa operasyon","Reports & Business Intelligence":"Mga Ulat","All time":"Lahat ng panahon","Today":"Ngayon","Last 7 days":"Huling 7 araw","Owner Draw":"Kinuha ng May-ari","Net profit (after expenses)":"Net profit (pagkatapos ng gastos)","Left after owner draw":"Natira pagkatapos kumuha ang may-ari","Business Health":"Kalagayan ng Negosyo","Top Products":"Pinakamabentang Produkto","Audit / Transaction Safety":"Talaan ng mga Pagbabago","Data Safety":"Kaligtasan ng Data","⬇️ Export Backup (JSON)":"⬇️ I-export ang Backup (JSON)","📄 Export Records (CSV)":"📄 I-export ang mga Record (CSV)","⬆️ Restore Backup":"⬆️ I-restore ang Backup","Reset all local data":"I-reset ang lahat ng data","Business Discipline":"Disiplina sa Negosyo","Current Profile":"Kasalukuyang Profile","Your Coach Conversation":"Usapan ninyo ng Coach","Ask Coach":"Magtanong sa Coach","Coach profile":"Profile ng Coach","Offline rules + optional AI":"Offline rules + opsyonal na AI","👥 Customers":"👥 Mga Customer","💸 Expenses":"💸 Mga Gastos","📊 Reports":"📊 Mga Ulat","💰 Owner Draw":"💰 Kinuha ng May-ari","⚙️ Settings":"⚙️ Settings","PWA installation":"Pag-install ng App","Add Product":"Magdagdag ng Produkto","Edit Product":"I-edit ang Produkto","Product name":"Pangalan ng produkto","Cost price":"Puhunan (presyong bili)","Selling price":"Presyong benta","Low-stock threshold":"Babala kapag paubos na","Category":"Kategorya","Save Product":"I-save ang Produkto","Record Sale":"Mag-record ng Benta","Product":"Produkto","Quantity":"Dami","Customer (optional)":"Customer (opsyonal)","Walk-in customer":"Walk-in na customer","Payment":"Bayad","Save Sale":"I-save ang Benta","Sale total:":"Kabuuang benta:","Add Expense":"Magdagdag ng Gastos","Expense name":"Pangalan ng gastos","Amount":"Halaga","Date":"Petsa","Notes":"Tala","Save Expense":"I-save ang Gastos","Transportation":"Pamasahe","Electricity":"Kuryente","Water":"Tubig","Rent":"Upa","Packaging":"Balot","Supplies":"Gamit","Salaries":"Sweldo","Other":"Iba pa","Name":"Pangalan","Save Customer":"I-save ang Customer","New Order":"Bagong Order","Total":"Kabuuan","Customer":"Customer","Customer/order notes":"Tala sa customer/order","Business Settings":"Settings ng Negosyo","Welcome! Set up your store":"Maligayang pagdating! I-setup ang tindahan mo","Business name":"Pangalan ng negosyo","Owner name":"Pangalan ng may-ari","Starting business capital":"Panimulang puhunan","Save Settings":"I-save ang Settings","Fix a mistake":"Ayusin ang pagkakamali","Clear sales, expenses & orders (keep products)":"Burahin ang benta, gastos at order (iiwan ang produkto)","Reset everything":"I-reset ang lahat","Owner Withdrawal / Draw":"Pagkuha ng May-ari","Save Owner Draw":"I-save","Stock Adjustment / Return":"Pag-ayos ng Stock / Balik","Apply Adjustment":"Ilapat","Reason":"Dahilan","Edit":"I-edit","Delete":"Burahin","Void sale":"Bawiin ang benta","No sales recorded.":"Wala pang naitalang benta.","No expenses recorded.":"Wala pang naitalang gastos.","No customers yet.":"Wala pang customer.","No orders in this filter.":"Walang order sa filter na ito.","No audit entries yet.":"Wala pang talaan.","Deleted.":"Nabura.","Backup restored.":"Na-restore ang backup.","Invalid backup file.":"Hindi wastong backup file.","Product saved locally.":"Na-save ang produkto.","Expense saved locally.":"Na-save ang gastos.","Customer saved locally.":"Na-save ang customer.","Pending order created.":"Nagawa ang order.","Sale saved. Stock updated once.":"Na-save ang benta. Na-update ang stock.","Owner draw recorded.":"Na-record ang kinuha ng may-ari.","Quantity exceeds available stock.":"Lampas sa stock ang dami.","Order status updated.":"Na-update ang status ng order.","Records cleared.":"Nabura ang mga record.","Reset canceled.":"Kinansela ang reset.","Void this sale? Stock will be restored.":"Bawiin ang benta? Maibabalik ang stock.","Delete this record? This cannot be undone.":"Burahin ang record? Hindi na ito maibabalik.","Restoring replaces all data on this device. Continue?":"Papalitan ng restore ang lahat ng data sa device. Ituloy?","Type RESET to confirm":"I-type ang RESET para kumpirmahin","This will erase all VendorVibe data stored on this device. A backup will download first. Continue?":"Buburahin nito ang lahat ng data sa device na ito. Magda-download muna ng backup. Ituloy?","Clear all sales, expenses, orders and owner draws? Products, customers and settings are kept.":"Buburahin ang lahat ng benta, gastos, order at kinuha ng may-ari? Mananatili ang produkto, customer at settings."};
 const PR=[[/^Cost (.+)$/,'Puhunan $1'],[/^Sell (.+)$/,'Presyo $1'],[/^Margin (.+) each$/,'Tubo $1 bawat isa'],[/^(\d+) stock$/,'$1 sa stock'],[/^(\d+) purchases?$/,'$1 bili'],[/^COGS (.+)$/,'Puhunan $1'],[/^Gross profit (.+)$/,'Tubo $1'],[/^Score (\d+)\/100 .*$/,'Iskor $1/100 mula sa nakaraang 7 araw.']];
@@ -1144,6 +1180,25 @@ function a11y(){document.documentElement.lang=LANG==='fil'?'fil':'en-US';documen
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const m=[...document.querySelectorAll('.modal.show')].pop();if(m)closeModal(m.id)});
 setInterval(checkAlerts,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkAlerts()});setTimeout(checkAlerts,3000);setTimeout(handleShareTarget,700);
 </script>
+
+<script type="module" src="./coachEngine.js"></script>
+  <script type="module">
+    if (typeof GeminiGradeLocalCoach !== 'undefined') {
+      window.coachBrain = new GeminiGradeLocalCoach();
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW Registered:', reg))
+          .catch(err => console.error('SW Reg Error:', err));
+      });
+    }
+  </script>
+
+</div>
 </div>
 </body>
 </html>
