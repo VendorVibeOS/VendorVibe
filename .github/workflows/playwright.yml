@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -17,13 +17,14 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install dependencies
-      run: npm ci || npm install
+    - name: Install dependencies & Playwright
+      run: |
+        npm init -y
+        npm install -D @playwright/test http-server
+        npx playwright install --with-deps chromium
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-
-    - name: Start local server & run Playwright tests
+    - name: Run Playwright tests
       run: |
         npx http-server -p 8080 &
+        sleep 3
         npx playwright test
