@@ -12,18 +12,70 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="icon" href="./icon-192.png">
 <title>VendorVibe — Offline Vendor OS</title>
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PDQ7W8HPG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PDQ7W8HPG5');
+  </script>
+  <!-- Firebase Performance Monitoring -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getPerformance } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-performance.js';
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyDmM3NJAoREpsIRbB2Xxy5DbAqgZLiwGcE",
+    authDomain: "vendorvibe-96980.firebaseapp.com",
+    projectId: "vendorvibe-96980",
+    storageBucket: "vendorvibe-96980.firebasestorage.app",
+    messagingSenderId: "680407828740",
+    appId: "1:680407828740:web:b0e4f861f81bac2106851",
+    measurementId: "G-PDQ7W8HPG5"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const perf = getPerformance(app);
+  console.log('✅ Firebase Performance initialized');
+</script>
+
+<!-- GA4 Error Tracking -->
+<script>
+  window.addEventListener('error', function(event) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exception', {
+        description: event.message,
+        fatal: false,
+        error_source: event.filename,
+        error_line: event.lineno,
+      });
+    }
+  });
+  
+  window.addEventListener('unhandledrejection', function(event) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exception', {
+        description: String(event.reason),
+        fatal: false,
+        error_type: 'unhandled_promise',
+      });
+    }
+  });
+</script>
 <style>
 :root{--bg:#08111f;--panel:#101b2d;--panel2:#162338;--line:#26364d;--text:#eef4fb;--muted:#91a3ba;--green:#20c997;--amber:#f5b942;--red:#ff6b6b;--blue:#60a5fa;--purple:#a78bfa;--shadow:0 12px 30px rgba(0,0,0,.22)}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}body{min-height:100vh}
 button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.app{max-width:560px;margin:auto;min-height:100vh;padding-bottom:90px}
 header{position:sticky;top:0;z-index:20;background:rgba(8,17,31,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 14px}
 .head{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{display:flex;gap:10px;align-items:center}.logo{width:40px;height:40px;border-radius:13px;background:#0d3b32;display:grid;place-items:center;font-size:20px}.brand h1{font-size:14px;margin:0}.brand p{font-size:10px;color:var(--muted);margin:3px 0 0}.status{font-size:10px;color:var(--green);border:1px solid #165a4c;background:#0b2b26;padding:5px 8px;border-radius:999px}
-main{padding:14px}.screen{display:none}.screen.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:var(--shadow);margin-bottom:10px}.kpi small,.muted{color:var(--muted);font-size:10px}.kpi strong{display:block;font-size:19px;margin-top:4px}.green{color:var(--green)}.amber{color:var(--amber)}.red{color:var(--red)}.blue{color:var(--blue)}.purple{color:var(--purple)}
+main{padding:14px}.screen{display:none}.screen.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:10px}.grid4 .kpi{margin-bottom:0}.grid4 .kpi strong{font-size:19px}.grid4 .kpi .sub{font-size:12px;color:var(--muted)}.receipt{background:#fff;color:#121a17;border:1px dashed #9aa8a3;border-radius:12px;padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap}.receipt .rrow{display:flex;justify-content:space-between;gap:10px}.receipt hr{border:0;border-top:1px dashed #c3cfcb;margin:8px 0}.receipt .rbig{font-size:15px;font-weight:700}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:var(--shadow);margin-bottom:10px}.kpi small,.muted{color:var(--muted);font-size:10px}.kpi strong{display:block;font-size:19px;margin-top:4px}.green{color:var(--green)}.amber{color:var(--amber)}.red{color:var(--red)}.blue{color:var(--blue)}.purple{color:var(--purple)}
 h2{font-size:15px;margin:0 0 10px}h3{font-size:12px;margin:0 0 7px}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.stack>*+*{margin-top:8px}
 .btn{padding:10px 12px;border-radius:11px;font-weight:700;font-size:12px;background:#22314a;color:var(--text);border:1px solid #31445f}.btn.primary{background:#0e8f6f;border-color:#20c997}.btn.danger{background:#3a1820;border-color:#71303d;color:#ff9a9a}.btn.small{padding:7px 9px;font-size:11px}.btn:active{transform:scale(.98)}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.list{display:grid;gap:7px}.item{padding:10px;border:1px solid var(--line);background:#0c1728;border-radius:12px}.item .title{font-weight:700;font-size:12px}.item .meta{font-size:10px;color:var(--muted);margin-top:3px}.pill{font-size:9px;padding:4px 7px;border-radius:999px;border:1px solid var(--line);background:#17243a}.empty{padding:22px;text-align:center;color:var(--muted);font-size:12px}
 input,select,textarea{width:100%;background:#0b1627;color:var(--text);border:1px solid #31445f;border-radius:10px;padding:10px;outline:none;font-size:12px}textarea{min-height:72px;resize:vertical}label{display:block;color:#a9b8ca;font-size:10px;font-weight:700;margin-bottom:4px}.field{margin-bottom:9px}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);background:rgba(12,24,41,.98);border-top:1px solid var(--line);z-index:30}.navgrid{display:grid;grid-template-columns:repeat(5,1fr)}.nav button{background:transparent;color:var(--muted);padding:10px 2px;font-size:9px;font-weight:700}.nav button.active{color:var(--green)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);background:rgba(12,24,41,.98);border-top:1px solid var(--line);z-index:30}.navgrid{display:grid;grid-template-columns:repeat(4,1fr)}.nav button{background:transparent;color:var(--muted);padding:10px 2px;font-size:9px;font-weight:700}.nav button.active{color:var(--green)}
 .badge{font-size:9px;padding:4px 7px;border-radius:999px;font-weight:800}.b-green{background:#0b332c;color:var(--green)}.b-amber{background:#3a2a0b;color:var(--amber)}.b-red{background:#3a161b;color:var(--red)}.b-blue{background:#102b4a;color:var(--blue)}.b-purple{background:#241b43;color:var(--purple)}
 .progress{height:7px;background:#1d2b40;border-radius:999px;overflow:hidden}.progress>span{display:block;height:100%;background:var(--green)}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:60;display:none;align-items:flex-end;justify-content:center;padding:10px}.modal.show{display:flex}.sheet{width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px 18px 8px 8px;padding:15px}
@@ -133,6 +185,55 @@ label{font-size:13px}input,select,textarea{font-size:17px}
 @media(min-width:900px){#coachFab{left:256px;bottom:26px}}
 /* Copyright */
 .vv-copy{text-align:center;color:var(--muted);font-size:13px;line-height:1.6;margin:10px 0 0}
+/* ==== Upgrade v11.11: Floor/Vibe, collapsible cards, sparklines, rewards, coach ==== */
+h2,h3{color:#16232f}
+.app{padding-bottom:150px}
+@media(min-width:900px){.app{padding-bottom:110px}}
+.modebar{display:flex;align-items:center;gap:10px;margin:10px 0 6px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;cursor:pointer;min-height:40px}
+.seg button.on{background:#0f7a5f;color:#fff;box-shadow:0 3px 10px rgba(15,122,95,.28)}
+.modehint{font-size:12.5px;color:var(--muted);flex:1;min-width:150px}
+.floor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 4px}
+.floor-grid .btn{margin:0}
+.btn.big{font-size:18px;padding:20px 10px;border-radius:16px;min-height:64px;line-height:1.25}
+body.floor #rpgCard,body.floor #questBox,body.floor #habitsCard,body.floor #coachCardD{display:none!important}
+.colbtn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:10px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1}
+.rpg-card .rpg-top{align-items:flex-start}
+.rpg-card.col #rpgBody{display:none}
+#rpgCard.col .colbtn{transform:rotate(-90deg)}
+.rpg-stat{cursor:pointer;border-radius:12px;padding:8px;transition:background .15s}
+.rpg-stat:active{background:rgba(255,255,255,.10)}
+.rpg-delta{font-size:12.5px;color:#d9fff4;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:7px 10px;margin-top:8px;line-height:1.45}
+.spk{display:block;margin-top:4px}
+.rw-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.rw-chip{font-size:12px;font-weight:700;border-radius:999px;padding:5px 9px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);color:#eafff8}
+.rw-chip.off{opacity:.45;filter:grayscale(.7)}
+.qhead{display:flex;align-items:center;gap:8px}
+.qhead .quest-title{flex:1}
+.colbtn2{background:#f3e8ff;border:1px solid #e9d5ff;color:#6b21a8;border-radius:10px;width:34px;height:32px;font-size:14px;font-weight:700;cursor:pointer;line-height:1}
+.quest-box.col .quest-inner{display:none}
+#questBox.col .colbtn2{transform:rotate(-90deg)}
+.dchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.dchip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 8px}
+.dchip.up{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+.dchip.dn{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.ava{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#e9f7f3;border:1px solid #bfe6dc;font-size:17px;vertical-align:middle;margin-right:7px}
+.ctxnote{font-size:12.5px;color:var(--green);background:#eefaf7;border:1px dashed #b7e3d9;border-radius:10px;padding:7px 10px;margin-top:9px}
+.statbig{font-size:34px;font-weight:800;color:var(--deep);line-height:1.1}
+.sbar{height:12px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);overflow:hidden;margin:8px 0 4px}
+.sbar i{display:block;height:100%;background:linear-gradient(90deg,#0f7a5f,#20c997);border-radius:999px}
+.tpl{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:8px;background:var(--panel)}
+.tpl .ico{font-size:20px}
+.tpl .t{flex:1;font-size:14px;line-height:1.4}
+.tpl.lock{opacity:.55}
+.modal.show .sheet{animation:vvup .22s ease}
+@keyframes vvup{from{transform:translateY(26px);opacity:.4}to{transform:translateY(0);opacity:1}}
+#coachFab{transition:padding .18s ease,opacity .18s ease}
+body.scrolled #coachFab{padding:11px 14px}
+body.scrolled #coachFab .cf-txt{display:none}
+#storageBadge{cursor:pointer;white-space:nowrap}
+@media (max-width:520px){#storageBadge .sb2{display:none}}
 </style>
 </head>
 <body>
@@ -143,6 +244,7 @@ label{font-size:13px}input,select,textarea{font-size:17px}
     <div class="brand"><svg class="vv"><use href="#vv"/></svg><div><h1 class="wm"><span>Vendor</span><span>Vibe</span></h1><p><b id="brandName">My Store</b> · <span id="brandType">Offline Business OS</span></p></div></div>
     <div class="row">
       <span id="syncStatus" class="status">● Offline-ready</span>
+      <button id="storageBadge" class="btn small" onclick="showSyncInfo()" title="Local storage status">💾 Saved locally</button>
       <button id="installBtn" class="btn small install" onclick="installPWA()">📲 Install</button>
       <button class="btn small" onclick="startTour()" title="Tutorial">?</button>
       <button class="btn small" onclick="openModal('settingsModal')">⚙️</button>
@@ -155,11 +257,30 @@ label{font-size:13px}input,select,textarea{font-size:17px}
   <div class="notice warning" id="startTip" style="margin-bottom:10px">First steps: 1) add your products, 2) record each sale, 3) record expenses, 4) export a backup every week.</div>
   <div class="card" id="alertCard" style="display:none"></div>
   <div class="notice" id="offlineNotice">Your business records are stored on this device. Core features work offline.</div>
-  <div class="rpg-card" id="rpgCard">
-    <div class="rpg-top"><div><div class="rpg-eyebrow">Entrepreneur Character Sheet</div><div class="rpg-name" id="rpgOwner">Owner</div><div class="rpg-arch" id="rpgArch"></div></div><span class="rpg-badge" id="rpgTitle">Level 1</span></div>
-    <div class="rpg-grid" id="rpgStats"></div>
+  <div class="modebar">
+    <div class="seg" role="tablist" aria-label="Dashboard mode">
+      <button id="segFloor" role="tab" aria-pressed="false" onclick="setMode('floor')">🧱 Floor Mode</button>
+      <button id="segVibe" role="tab" aria-pressed="true" onclick="setMode('vibe')">✨ Vibe Mode</button>
+    </div>
+    <div class="modehint" id="modeHint"></div>
   </div>
-  <div class="quest-box" id="questBox"></div>
+  <div class="floor-grid" id="floorBar" style="display:none">
+    <button class="btn primary big" onclick="openSale()">🛒 New Sale</button>
+    <button class="btn big" onclick="openExpense()">💸 Expense</button>
+    <button class="btn big" onclick="openDraw()">💰 Owner Draw</button>
+    <button class="btn big" onclick="openOrder()">📦 Order</button>
+    <button class="btn big" onclick="openCash()">🧮 Count Cash</button>
+    <button class="btn big" onclick="openProduct()">＋ Add Product</button>
+  </div>
+  <div class="rpg-card" id="rpgCard">
+    <div class="rpg-top"><div><div class="rpg-eyebrow">Entrepreneur Character Sheet</div><div class="rpg-name" id="rpgOwner">Owner</div><div class="rpg-arch" id="rpgArch"></div></div><div class="row" style="gap:8px"><span class="rpg-badge" id="rpgTitle">Level 1</span><button class="colbtn" id="rpgColBtn" onclick="toggleCol('rpg')" aria-label="Collapse character sheet" title="Collapse / expand">▾</button></div></div>
+    <div id="rpgBody">
+      <div class="rpg-grid" id="rpgStats"></div>
+      <div class="rpg-delta" id="rpgDelta"></div>
+      <div class="rw-strip" id="rpgRewards"></div>
+    </div>
+  </div>
+  <div class="quest-box" id="questBox"><div class="qhead"><span class="quest-title">Daily Dilemma</span><button class="colbtn2" id="questColBtn" onclick="toggleCol('quest')" aria-label="Collapse daily dilemma" title="Collapse / expand">▾</button></div><div class="quest-inner" id="questInner"></div></div>
   <div class="card" id="loanCard" style="display:none"></div>
   <div class="card" id="todoCard">
     <div class="row"><h2 style="margin:0">Daily Cashflow Encoder To-Do</h2><span class="badge b-green" id="todoCount">0/6</span></div>
@@ -188,14 +309,16 @@ label{font-size:13px}input,select,textarea{font-size:17px}
       <button class="btn" onclick="openOrder()">＋ Order</button>
       <button class="btn" onclick="openDraw()">＋ Owner Draw</button>
       <button class="btn" onclick="openAdjustment()">↕ Stock / Return</button>
+      <button class="btn" id="qaOrders" onclick="switchScreen('orders')">☷ Orders</button>
+      <button class="btn" onclick="switchScreen('more')">⋯ More</button>
     </div>
   </div>
-  <div class="card">
+  <div class="card" id="coachCardD">
     <div class="row"><h2>AI Vendor Coach</h2><span class="badge b-purple" id="coachBadge">Offline coach</span></div>
     <p id="coachInsight" class="muted" style="line-height:1.5"></p>
     <button class="btn primary" onclick="switchScreen('coach')">Talk to Coach</button>
   </div>
-  <div class="card">
+  <div class="card" id="habitsCard">
     <div class="row"><h2>Business Habits Score</h2><span id="masteryLevel" class="badge b-amber">Starting</span></div>
     <div class="progress"><span id="masteryBar" style="width:0%"></span></div>
     <p class="muted" id="masteryText"></p>
@@ -242,7 +365,13 @@ label{font-size:13px}input,select,textarea{font-size:17px}
 </section>
 
 <section id="screen-reports" class="screen">
-  <div class="row"><h2>Reports & Business Intelligence</h2><select id="reportRange" aria-label="Report period" style="width:auto" onchange="renderReports()"><option value="all">All time</option><option value="today">Today</option><option value="week">Last 7 days</option><option value="month">This month</option></select></div>
+  <div class="row"><h2>Reports & Business Intelligence</h2><select id="reportRange" aria-label="Report period" style="width:auto" onchange="renderReports()"><option value="today">Daily (today)</option><option value="week">Weekly (7 days)</option><option value="d15">15 Days</option><option value="month">1 Month</option><option value="m3">3 Months</option><option value="m6">6 Months</option><option value="y1">1 Year</option><option value="y5">5 Years</option><option value="y10">10 Years</option><option value="all" selected>All time</option></select></div>
+  <div class="grid4" id="rMetrics">
+    <div class="card kpi"><small>Gross Revenue</small><strong class="green" id="rGrossRev">₱0</strong><div class="sub" id="rGrossRevSub">0 transactions</div></div>
+    <div class="card kpi"><small>Expenses &amp; COGS</small><strong class="red" id="rTotExp">₱0</strong><div class="sub">cost of goods + operating</div></div>
+    <div class="card kpi"><small>Net Profit</small><strong id="rNetCard">₱0</strong><div class="sub" id="rMargin">0% margin</div></div>
+    <div class="card kpi"><small>Transaction Volume</small><strong id="rTxns">0</strong><div class="sub">receipts in period</div></div>
+  </div>
   <div class="card">
     <div class="row"><span class="muted">Sales</span><strong id="rSales">₱0</strong></div>
     <div class="row"><span class="muted">COGS</span><strong id="rCogs">₱0</strong></div>
@@ -260,6 +389,9 @@ label{font-size:13px}input,select,textarea{font-size:17px}
     <button class="btn" onclick="exportData()">⬇️ Export Backup (JSON)</button>
     <button class="btn" onclick="exportCSV()">📄 Export Records (CSV)</button>
     <label class="btn" style="display:block;text-align:center">⬆️ Restore Backup<input type="file" id="restoreFile" accept=".json,application/json" style="display:none" onchange="restoreData(event)"></label>
+    <label class="btn" style="display:block;text-align:center">📥 Import from Phone (CSV / JSON)<input type="file" id="importFile" accept=".csv,.json,text/csv,application/json" style="display:none" onchange="importLocalFile(event)"></label>
+    <div class="muted" style="font-size:12.5px;line-height:1.5">Import past sales or expenses from a CSV file, or a VendorVibe JSON backup. Read on this device only — nothing is uploaded.</div>
+    <div id="tplBox"></div>
     <button class="btn danger" onclick="factoryReset()">Reset all local data</button>
   </div></div>
 </section>
@@ -274,9 +406,10 @@ label{font-size:13px}input,select,textarea{font-size:17px}
     </div>
   </div>
   <div class="card">
-    <h3>Your Coach Conversation</h3>
+    <h3><span class="ava">💁🏽‍♀️</span>Your Coach Conversation (Coach VeVi)</h3>
     <div id="chatBox" class="stack" style="max-height:310px;overflow:auto"></div>
-    <div class="field" style="margin-top:10px"><textarea id="coachInput" class="chat" placeholder="Halimbawa: Malaki ang benta pero parang walang natitira. Ano ang dapat kong tingnan?"></textarea></div>
+    <div class="ctxnote" id="ctxNote">📍 Coach sees: Dashboard.</div>
+    <div class="field" style="margin-top:10px"><textarea id="coachInput" class="chat" placeholder="Ask anything — or tap an attribute in the Character Sheet first."></textarea></div>
     <button class="btn primary" onclick="askCoach()">Ask Coach</button>
   </div>
   <div class="card"><h3>Coach profile</h3><button class="btn" onclick="openModal('personalityModal')">Update my business personality</button></div>
@@ -314,13 +447,22 @@ label{font-size:13px}input,select,textarea{font-size:17px}
 
 <nav class="nav"><div class="sbrand"><svg class="vv"><use href="#vv"/></svg><span class="wm"><span>Vendor</span><span>Vibe</span></span><small>CONNECT. GROW. THRIVE.</small></div><div class="navgrid">
 <button id="nav-dashboard" class="active" onclick="switchScreen('dashboard')">⌂<br>Home</button>
-<button id="nav-products" onclick="switchScreen('products')">▣<br>Products</button>
-<button id="nav-sales" onclick="switchScreen('sales')">₱<br>Sales</button>
-<button id="nav-orders" onclick="switchScreen('orders')">☷<br>Orders</button>
-<button id="nav-more" onclick="switchScreen('more')">⋯<br>More</button>
+<button id="nav-sales" onclick="switchScreen('sales')">🛒<br>POS</button>
+<button id="nav-products" onclick="switchScreen('products')">▣<br>Catalog</button>
+<button id="nav-reports" onclick="switchScreen('reports')">📊<br>Reports</button>
 </div></nav>
 
-<button id="coachFab" onclick="switchScreen('coach')" aria-label="Ask Coach" title="Ask Coach"><span class="cf-ico" aria-hidden="true">💬</span><span>Ask Coach</span></button>
+<button id="coachFab" onclick="switchScreen('coach')" aria-label="Ask Coach" title="Ask Coach"><span class="cf-ico" aria-hidden="true">💬</span><span class="cf-txt">Ask Coach</span></button>
+
+<div id="statModal" class="modal"><div class="sheet">
+<div class="row"><h2 id="statTitle">Attribute</h2><button class="btn small" onclick="closeModal('statModal')">✕</button></div>
+<div id="statBody"></div>
+</div></div>
+
+<div id="saleSheet" class="modal"><div class="sheet">
+<div class="row"><h2>Sale details</h2><button class="btn small" onclick="closeModal('saleSheet')">✕</button></div>
+<div id="saleSheetBody"></div>
+</div></div>
 
 <div id="employeeModal" class="modal"><div class="sheet"><div class="row"><h2>Employee</h2><button class="btn small" onclick="closeModal('employeeModal')">✕</button></div>
 <form onsubmit="saveEmployee(event)"><input type="hidden" id="eId"><div class="field"><label>Name</label><input id="eName" required></div><div class="field"><label>Role</label><input id="eRole"></div><div class="grid2"><div class="field"><label>Pay rate</label><input id="eRate" type="number" min="0" step=".01" required></div><div class="field"><label>Per</label><select id="ePer"><option value="day">day</option><option value="week">week</option><option value="month">month</option></select></div></div><button class="btn primary" style="width:100%">Save Employee</button></form></div></div>
@@ -367,14 +509,24 @@ label{font-size:13px}input,select,textarea{font-size:17px}
 <div id="saleModal" class="modal"><div class="sheet">
 <div class="row"><h2>Record Sale</h2><button class="btn small" onclick="closeModal('saleModal')">✕</button></div>
 <form onsubmit="saveSale(event)">
+<div class="field"><label>Search catalog</label><input id="saleSearch" type="search" placeholder="Type a product or service name…" autocomplete="off" oninput="filterSaleProducts()"><div class="muted" id="saleSearchHint" style="display:none;margin-top:4px">No match in your catalog.</div></div>
 <div class="field"><label>Product</label><select id="saleProduct" required onchange="updateSaleTotal()"></select></div>
 <div class="grid2"><div class="field"><label>Quantity</label><input id="saleQty" type="number" min="1" value="1" required oninput="updateSaleTotal()"></div><div class="field"><label>Customer (optional)</label><select id="saleCustomer"></select></div></div>
 <div class="muted" style="margin-bottom:4px">Tap to add fast:</div><div id="saleChips" class="chips"></div><button type="button" class="btn small" onclick="addCart()">＋ Add another item</button><div id="cartList" class="list" style="margin:8px 0"></div>
 <div class="field"><label>Payment</label><select id="salePayment" onchange="saleDueToggle()"><option>Cash</option><option>Utang</option><option>GCash</option><option>Maya</option><option>Bank</option><option>Other</option></select></div>
 <div id="saleDueRow" style="display:none"><div class="field"><label>📅 When will they pay? (collect on)</label><input id="saleDue" type="date"></div><div class="field"><label>Collection note (optional)</label><input id="saleDueNote" placeholder="Sahod day, Friday, after harvest..."></div></div>
 <div class="notice">Sale total: <strong id="saleTotal">₱0</strong></div>
+<div id="saleCashRow"><div class="grid2"><div class="field"><label>Cash received</label><input id="saleCash" type="number" min="0" step=".01" inputmode="decimal" placeholder="0.00" oninput="updateSaleTotal()"></div><div class="field"><label>Change due</label><div class="notice" id="saleChange" style="margin:0">₱0.00</div></div></div><div class="chips" id="saleQuickCash" style="margin:0 0 8px"></div></div>
 <button class="btn primary" style="width:100%;margin-top:10px">Save Sale</button>
 </form></div></div>
+
+<!-- RECEIPT MODAL -->
+<div id="receiptModal" class="modal"><div class="sheet">
+<div class="row"><h2>Digital Receipt</h2><button class="btn small" onclick="closeModal('receiptModal')">✕</button></div>
+<div id="receiptBody" class="receipt"></div>
+<div class="muted" style="margin-top:6px">Stored on this device — it syncs to the cloud only if you turn cloud on.</div>
+<div class="actions" style="margin-top:10px"><button class="btn" onclick="printReceipt()">🖨 Print</button><button class="btn" onclick="shareReceipt()">📤 Share</button><button class="btn" onclick="copyReceipt()">📋 Copy</button></div>
+</div></div>
 
 <!-- EXPENSE MODAL -->
 <div id="expenseModal" class="modal"><div class="sheet">
@@ -415,7 +567,7 @@ label{font-size:13px}input,select,textarea{font-size:17px}
 <div id="settingsModal" class="modal"><div class="sheet">
 <div class="row"><h2>Business Settings</h2><button class="btn small" onclick="closeModal('settingsModal')">✕</button></div>
 <form onsubmit="saveSettings(event)"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><svg class="vv"><use href="#vv"/></svg><div><div class="wm" style="font-size:24px"><span>Vendor</span><span>Vibe</span></div><div class="tag">CONNECT. GROW. THRIVE.</div></div></div>
-<div class="field"><label>Language / Wika</label><select id="setLang" onchange="setLang(this.value)"><option value="en">English</option><option value="fil">Filipino</option></select></div><div class="field"><label>Business name</label><input id="setBusinessName"></div><div class="field"><label>Type of business</label><select id="setBizType" onchange="bizPreview()"></select><div id="bizHint" class="muted" style="margin-top:4px"></div></div><div class="field"><label>What do you sell or do? (optional)</label><input id="setBusinessType" placeholder="e.g. Laundry shop, Tutoring, Bakery"></div><div class="field"><label>Owner name</label><input id="setOwner"></div><div class="field"><label>Entrepreneur archetype</label><select id="setArchetype"><option>The Disciplined Accountant</option><option>The Risk-Taking Hustler</option><option>The Community Builder</option><option>The Visionary Planner</option></select></div><div class="field"><label>Starting business capital</label><input id="setCapital" type="number" min="0" step=".01"></div>
+<div class="field"><label>Language / Wika</label><select id="setLang" onchange="setLang(this.value)"><option value="en">English</option><option value="fil">Filipino</option></select></div><div class="field"><label>Business name</label><input id="setBusinessName"></div><div class="field"><label>Type of business</label><select id="setBizType" onchange="bizPreview()"></select><div id="bizHint" class="muted" style="margin-top:4px"></div></div><div class="field"><label>What do you sell or do? (optional)</label><input id="setBusinessType" placeholder="e.g. Laundry shop, Tutoring, Bakery"></div><div class="field"><label>Owner name</label><input id="setOwner"></div><div class="field"><label>Entrepreneur archetype</label><select id="setArchetype"><option>The Disciplined Accountant</option><option>The Risk-Taking Hustler</option><option>The Community Builder</option><option>The Visionary Planner</option></select><div id="archNote" class="muted" style="margin-top:4px"></div></div><div class="field"><label>Starting business capital</label><input id="setCapital" type="number" min="0" step=".01"></div>
 <button class="btn primary" style="width:100%">Save Settings</button>
 </form>
 <div class="card" style="margin-top:12px"><h3>Fix a mistake</h3><div class="stack"><button class="btn" onclick="resetTx()">Clear sales, expenses & orders (keep products)</button><button class="btn danger" onclick="factoryReset()">Reset everything</button></div></div><div class="vv-copy" id="copyrightSettings"></div></div></div></div>
@@ -506,6 +658,8 @@ const defaultState={
   customers:[],sales:[],orders:[],expenses:[],draws:[],adjustments:[],audit:[],employees:[],advances:[],payroll:[],payments:[],
   personality:{risk:'balanced',money:'steady',decision:'practical',growth:'profit',goal:''},
   coachChat:[],
+  ui:{mode:'vibe',col:{},archLock:0},
+  rewards:[],
   cloud:{firebase:Object.assign({},FB_DEFAULT),aiGatewayUrl:'',aiModel:'gemini',localUpdatedAt:'',authEmail:''}
 };
 let state=loadState();
@@ -525,7 +679,7 @@ function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&l
 function uid(prefix){return prefix+'_'+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;document.getElementById('installBtn')?.classList.remove('install');document.getElementById('installBtnMore')?.classList.remove('install')});
 window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;document.getElementById('installBtn')?.classList.add('install');showToast('VendorVibe installed.')});
-function updateNetworkStatus(){const online=navigator.onLine;const el=document.getElementById('syncStatus');if(el){el.textContent=online?'● Online':'● Offline';el.style.color=online?'var(--green)':'var(--amber)'}const n=document.getElementById('offlineNotice');if(n)n.textContent=online?'Online. Local data remains primary; cloud sync is optional.':'Offline. VendorVibe is working from the device database.'}
+function updateNetworkStatus(){const online=navigator.onLine;const el=document.getElementById('syncStatus');if(el){el.textContent=online?'● Online':'● Offline';el.style.color=online?'var(--green)':'var(--amber)'}const n=document.getElementById('offlineNotice');if(n)n.textContent=online?'Online. Local data remains primary; cloud sync is optional.':'Offline. VendorVibe is working from the device database.';renderStorageBadge()}
 async function installPWA(){if(!deferredInstallPrompt){showToast('Install is available from your browser menu when supported.');return}deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null}
 
 function showToast(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
@@ -538,7 +692,7 @@ function switchScreen(name){
   const nav=document.getElementById('nav-'+name); if(nav)nav.classList.add('active');
   if(name==='dashboard')renderDashboard(); if(name==='products')renderProducts(); if(name==='sales')renderSales(); if(name==='orders')renderOrders(); if(name==='customers')renderCustomers(); if(name==='expenses')renderExpenses(); if(name==='reports')renderReports(); if(name==='coach')renderCoach(); if(name==='staff')renderStaff(); if(name==='utang')renderUtang();
 }
-function rangeStart(range){const d=new Date();if(range==='today')return today();if(range==='week'){d.setDate(d.getDate()-6);return ymd(d)}if(range==='month')return ymd(new Date(d.getFullYear(),d.getMonth(),1));return null}
+function rangeStart(range){const d=new Date(),back=(n,u)=>{if(u==='d')d.setDate(d.getDate()-n);else if(u==='m')d.setMonth(d.getMonth()-n);else d.setFullYear(d.getFullYear()-n);return ymd(d)};if(range==='today')return today();if(range==='week')return back(6,'d');if(range==='d15')return back(14,'d');if(range==='month')return ymd(new Date(d.getFullYear(),d.getMonth(),1));if(range==='m3')return back(3,'m');if(range==='m6')return back(6,'m');if(range==='y1')return back(1,'y');if(range==='y5')return back(5,'y');if(range==='y10')return back(10,'y');return null}
 function inRange(date,range){const start=rangeStart(range);return !start||String(date||'').slice(0,10)>=start}
 function totals(range='all'){
   const filteredSales=state.sales.filter(s=>inRange(s.date,range));
@@ -551,7 +705,7 @@ function totals(range='all'){
   const draw=filteredDraws.reduce((a,e)=>a+e.amount,0);
   const S=(a,f)=>a.reduce((x,y)=>x+f(y),0),ar=S(state.customers,c=>owed(c.id)),adv=S(state.employees,e=>advBal(e.id)),cash=state.settings.capital+S(state.sales,x=>x.total-x.cogs)-S(state.expenses,x=>x.amount)-S(state.draws,x=>x.amount)-S(state.payroll,x=>x.net)-S(state.advances,x=>x.amount)-ar;
   const inv=state.products.reduce((a,p)=>a+(tracks(p)?p.cost*p.stock:0),0);
-  const net=gross-exp,kept=net-draw;return {sales,cogs,gross,exp,draw,cash,inv,net,kept,ar,adv};
+  const net=gross-exp,kept=net-draw,txns=new Set(filteredSales.filter(s=>s.qty>0||s.total>0).map(s=>s.receipt||s.id)).size;return {sales,cogs,gross,exp,draw,cash,inv,net,kept,ar,adv,txns};
 }
 function discipline(){const t=totals(),w=rangeStart('week'),days=new Set(state.sales.filter(x=>x.total>0&&x.date>=w).map(x=>x.date)).size;let n=Math.min(40,days*10);if(state.expenses.some(e=>e.date>=w))n+=20;if(t.sales>0&&t.net>=0)n+=15;if(t.sales>0&&t.cash>=0)n+=10;if(state.products.length&&!state.products.some(lowItem))n+=15;return Math.min(100,n)}
 function profileName(){
@@ -592,15 +746,25 @@ function renderProducts(){
 function openProduct(id=''){document.getElementById('productId').value=id;document.getElementById('productModalTitle').textContent=id?'Edit Product':'Add Product';let p=state.products.find(x=>x.id===id);p=p||{name:'',cost:0,price:0,stock:0,low:3,category:'',track:biz().inv};['Name','Cost','Price','Stock','Low','Category'].forEach(k=>{let id2='product'+k;document.getElementById(id2).value=p[k.toLowerCase()]??''});document.getElementById('productTrack').value=(p.track===false?'no':'yes');toggleTrack();document.getElementById('productExpiry').value=p.expiry||'';document.getElementById('expiryRow').style.display=biz().inv?'':'none';openModal('productModal')}
 function editProduct(id){openProduct(id)}
 function saveProduct(e){e.preventDefault();const id=document.getElementById('productId').value;const p={id:id||uid('p'),name:document.getElementById('productName').value.trim(),cost:+document.getElementById('productCost').value,price:+document.getElementById('productPrice').value,stock:+document.getElementById('productStock').value,low:+document.getElementById('productLow').value,category:document.getElementById('productCategory').value.trim(),track:document.getElementById('productTrack').value!=='no'};if(!p.track){p.stock=0;p.low=0}if(p.price<p.cost&&!confirm('Selling price is below cost. Save anyway?'))return;const i=state.products.findIndex(x=>x.id===id);p.expiry=document.getElementById('productExpiry').value||'';if(i>=0){if(state.products[i].promo)p.promo=state.products[i].promo;state.products[i]=p}else state.products.push(p);recordAudit(id?'product.updated':'product.created',`${p.name} · stock ${p.stock}`);saveState();closeModal('productModal');renderAll();showToast('Product saved locally.')}
-function openSale(){CART=[];document.getElementById('cartList').innerHTML='';if(!state.products.length){emptyMenu('record a sale');return}const sel=document.getElementById('saleProduct');sel.innerHTML=state.products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${money(p.price)}${promoOf(p)?' 🏷 '+promoLabel(p):''} ${tracks(p)?'('+p.stock+' stock)':''}</option>`).join('');document.getElementById('saleCustomer').innerHTML='<option value="">Walk-in customer</option>'+state.customers.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');document.getElementById('saleDue').value='';document.getElementById('saleDueNote').value='';document.getElementById('salePayment').value='Cash';saleDueToggle();renderSaleChips();updateSaleTotal();openModal('saleModal')}
-function updateSaleTotal(){const p=state.products.find(x=>x.id===document.getElementById('saleProduct').value),q=+document.getElementById('saleQty').value||0;document.getElementById('saleTotal').textContent=money(CART.length?CART.reduce((a,c)=>a+c.total,0):(p?lineTotal(p,q):0))}
+function openSale(){CART=[];document.getElementById('cartList').innerHTML='';if(!state.products.length){emptyMenu('record a sale');return}document.getElementById('saleSearch').value='';document.getElementById('saleCash').value='';filterSaleProducts();document.getElementById('saleCustomer').innerHTML='<option value="">Walk-in customer</option>'+state.customers.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');document.getElementById('saleDue').value='';document.getElementById('saleDueNote').value='';document.getElementById('salePayment').value='Cash';saleDueToggle();renderSaleChips();updateSaleTotal();openModal('saleModal')}
+function updateSaleTotal(){const p=state.products.find(x=>x.id===document.getElementById('saleProduct').value),q=+document.getElementById('saleQty').value||0,tot=CART.length?CART.reduce((a,c)=>a+c.total,0):(p?lineTotal(p,q):0);document.getElementById('saleTotal').textContent=money(tot);const ci=document.getElementById('saleCash'),given=ci?+ci.value||0:0,ch=document.getElementById('saleChange');if(ch){const d=given-tot;ch.textContent=!given?'₱0':d>=0?money(d):'Need '+money(-d);ch.style.color=!given?'':d>=0?'var(--teal)':'#d64545'}const qc=document.getElementById('saleQuickCash');if(qc)qc.innerHTML=tot>0?[...new Set([tot,Math.ceil(tot/20)*20,Math.ceil(tot/50)*50,Math.ceil(tot/100)*100,Math.ceil(tot/500)*500,Math.ceil(tot/1000)*1000])].filter(v=>v>=tot).slice(0,5).map(v=>`<button type="button" class="chip" onclick="quickCash(${v})">${v===tot?'Exact '+money(v):money(v)}</button>`).join(''):''}
+function quickCash(v){const ci=document.getElementById('saleCash');if(!ci)return;ci.value=v;updateSaleTotal();hap(12)}
+function filterSaleProducts(){const sel=document.getElementById('saleProduct'),si=document.getElementById('saleSearch'),q=si?(si.value||'').trim().toLowerCase():'',list=q?state.products.filter(p=>String(p.name).toLowerCase().includes(q)):state.products;sel.innerHTML=list.map(p=>`<option value="${p.id}">${esc(p.name)} — ${money(p.price)}${promoOf(p)?' 🏷 '+promoLabel(p):''} ${tracks(p)?'('+p.stock+' stock)':''}</option>`).join('');const h=document.getElementById('saleSearchHint');if(h)h.style.display=list.length?'none':'block';updateSaleTotal()}
 function addCart(){const p=state.products.find(x=>x.id===document.getElementById('saleProduct').value),q=+document.getElementById('saleQty').value||0;if(!p||q<1)return;CART.push({id:p.id,name:p.name,qty:q,price:p.price,total:lineTotal(p,q)});document.getElementById('saleQty').value=1;cartRender()}
 function cartRender(){document.getElementById('cartList').innerHTML=CART.map((c,i)=>`<div class="row item"><span>${esc(c.name)} × ${c.qty}</span><span>${money(c.total)} <button type="button" class="btn small danger" onclick="CART.splice(${i},1);cartRender()">✕</button></span></div>`).join('');updateSaleTotal()}
-function saveSale(e){e.preventDefault();let lines=CART.slice();if(!lines.length){const p=state.products.find(x=>x.id===document.getElementById('saleProduct').value),q=+document.getElementById('saleQty').value||0;if(p&&q>0)lines=[{id:p.id,name:p.name,qty:q,price:p.price}]}if(!lines.length)return;const need={};lines.forEach(l=>need[l.id]=(need[l.id]||0)+l.qty);for(const id in need){const p=state.products.find(x=>x.id===id);if(!p||(tracks(p)&&need[id]>p.stock)){showToast('Quantity exceeds available stock.');return}}const pay=document.getElementById('salePayment').value,cust=document.getElementById('saleCustomer').value||null;if(pay==='Utang'&&!cust){showToast('Choose a customer for utang.');return}const due=document.getElementById('saleDue').value;if(pay==='Utang'){if(!due){showToast('Set the date you will collect.');return}const cc=state.customers.find(x=>x.id===cust);cc.collectOn=due;cc.collectNote=document.getElementById('saleDueNote').value}const rid=uid('r');let tot=0;lines.forEach(l=>{const p=state.products.find(x=>x.id===l.id);if(tracks(p))p.stock-=l.qty;const total=lineTotal(p,l.qty);tot+=total;state.sales.unshift({id:uid('s'),date:today(),productId:p.id,productName:p.name,qty:l.qty,unitPrice:p.price,total,cogs:p.cost*l.qty,payment:pay,customerId:cust,receipt:rid,promo:promoLabel(p)||undefined,dueDate:pay==='Utang'?due:undefined})});recordAudit('sale.created',`${lines.length} item(s) · ${money(tot)} · ${pay}`);CART=[];saveState();closeModal('saleModal');renderAll();showToast('Sale saved. Stock updated once.')}
-function renderSales(){const t=totals();document.getElementById('salesTotal').textContent=money(t.sales);document.getElementById('salesCogs').textContent=money(t.cogs);const el=document.getElementById('salesList');el.innerHTML=state.sales.length?state.sales.slice(0,200).map(s=>`<div class="item"><div class="row"><div><div class="title">${esc(s.productName)} × ${s.qty}</div><div class="meta">${s.date} · ${esc(s.payment)}${s.customerId?' · '+esc(state.customers.find(c=>c.id===s.customerId)?.name||''):''}</div></div><strong class="green">${money(s.total)}</strong></div><div class="meta">COGS ${money(s.cogs)} · Gross profit ${money(s.total-s.cogs)}</div>${s.qty>0&&!s.orderId&&!s.returnedQty?`<button class="btn small danger" style="margin-top:8px" onclick="delItem('sale','${s.id}')">Void sale</button>`:''}</div>`).join(''):'<div class="empty">No sales recorded.</div>'}
+function saveSale(e){e.preventDefault();let lines=CART.slice();if(!lines.length){const p=state.products.find(x=>x.id===document.getElementById('saleProduct').value),q=+document.getElementById('saleQty').value||0;if(p&&q>0)lines=[{id:p.id,name:p.name,qty:q,price:p.price}]}if(!lines.length)return;const need={};lines.forEach(l=>need[l.id]=(need[l.id]||0)+l.qty);for(const id in need){const p=state.products.find(x=>x.id===id);if(!p||(tracks(p)&&need[id]>p.stock)){showToast('Quantity exceeds available stock.');return}}const pay=document.getElementById('salePayment').value,cust=document.getElementById('saleCustomer').value||null;if(pay==='Utang'&&!cust){showToast('Choose a customer for utang.');return}const due=document.getElementById('saleDue').value;if(pay==='Utang'){if(!due){showToast('Set the date you will collect.');return}const cc=state.customers.find(x=>x.id===cust);cc.collectOn=due;cc.collectNote=document.getElementById('saleDueNote').value}const rid=uid('r'),cashEl=document.getElementById('saleCash'),given=cashEl&&pay!=='Utang'?+cashEl.value||0:0;let tot=0;lines.forEach(l=>{const p=state.products.find(x=>x.id===l.id);if(tracks(p))p.stock-=l.qty;const total=lineTotal(p,l.qty);tot+=total;state.sales.unshift({id:uid('s'),date:today(),productId:p.id,productName:p.name,qty:l.qty,unitPrice:p.price,total,cogs:p.cost*l.qty,payment:pay,customerId:cust,at:Date.now(),receipt:rid,promo:promoLabel(p)||undefined,dueDate:pay==='Utang'?due:undefined})});if(given)state.sales.forEach(s=>{if(s.receipt===rid){s.cash=given;s.change=Math.max(0,given-tot)}});recordAudit('sale.created',`${lines.length} item(s) · ${money(tot)} · ${pay}${given?' · cash '+money(given):''}`);CART=[];maybeAutoArchetype();saveState();closeModal('saleModal');renderAll();showReceipt(rid);showToast(given?'Sale saved · change '+money(Math.max(0,given-tot)):'Sale saved · receipt ready')}
+let LAST_RCPT='';
+function receiptLines(rid){return state.sales.filter(s=>s.receipt===rid)}
+function receiptText(rid){const ls=receiptLines(rid);if(!ls.length)return '';const f=ls[0],tot=ls.reduce((a,x)=>a+x.total,0),W=30,row=(a,b)=>{a=String(a);b=String(b);return a+' '.repeat(Math.max(1,W-a.length-b.length))+b},st=state.settings,no=String(rid||f.id).replace(/^r_/,'R-').toUpperCase();let o=(st.businessName||'VendorVibe').toUpperCase()+'\n';if(st.businessType&&st.businessType!=='Micro Business')o+=st.businessType+'\n';if(st.owner)o+='Owner: '+st.owner+'\n';o+='Receipt '+no+'\n'+f.date+(f.at?' '+new Date(f.at).toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit'}):'')+'\n'+'-'.repeat(W)+'\n';ls.forEach(x=>{o+=row(x.productName+' x'+x.qty+(x.promo?' ('+x.promo+')':''),money(x.total))+'\n'});o+='-'.repeat(W)+'\n'+row('GROSS TOTAL',money(tot))+'\n'+row('Payment',f.payment||'Cash');const c=f.customerId?state.customers.find(x=>x.id===f.customerId):null;if(c)o+='\n'+row('Customer',c.name);if(f.payment==='Utang'&&f.dueDate)o+='\n'+row('Collect on',f.dueDate);if(f.cash){o+='\n'+row('Cash',money(f.cash))+'\n'+row('CHANGE',money(f.change||0))}o+='\n'+'-'.repeat(W)+'\nSalamat po! Come again.\nPowered by VendorVibe';return o}
+function receiptHTML(rid){return '<pre style="margin:0;white-space:pre-wrap;font:inherit">'+esc(receiptText(rid))+'</pre>'}
+function showReceipt(rid){const b=document.getElementById('receiptBody');if(!b||!rid)return;LAST_RCPT=rid;b.innerHTML=receiptHTML(rid);openModal('receiptModal');hap([25,35,25])}
+function printReceipt(){const html=receiptHTML(LAST_RCPT);if(!html)return;const f=document.createElement('iframe');f.setAttribute('aria-hidden','true');f.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0';document.body.appendChild(f);const d=f.contentDocument;d.open();d.write('<!doctype html><meta charset="utf-8"><title>Receipt</title><style>body{margin:0;padding:12px;font:13px ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap}</style>'+html);d.close();f.contentWindow.focus();f.contentWindow.print();setTimeout(function(){f.remove()},2000)}
+async function copyReceipt(){const t=receiptText(LAST_RCPT);if(!t)return;try{await navigator.clipboard.writeText(t);showToast('Receipt copied.')}catch(e){showToast('Copy blocked by the browser.')}}
+async function shareReceipt(){const t=receiptText(LAST_RCPT);if(!t)return;if(navigator.share){try{await navigator.share({title:'VendorVibe receipt',text:t});return}catch(e){}}copyReceipt()}
+function renderSales(){const t=totals();document.getElementById('salesTotal').textContent=money(t.sales);document.getElementById('salesCogs').textContent=money(t.cogs);const el=document.getElementById('salesList');el.innerHTML=state.sales.length?state.sales.slice(0,200).map(s=>`<div class="item" data-sid="${s.id}"><div class="row"><div><div class="title">${esc(s.productName)} × ${s.qty}</div><div class="meta">${s.date} · ${esc(s.payment)}${s.customerId?' · '+esc(state.customers.find(c=>c.id===s.customerId)?.name||''):''}</div></div><div class="row" style="gap:6px;align-items:center"><strong class="green">${money(s.total)}</strong><button class="btn small" onclick="event.stopPropagation();openSaleSheet('${s.id}')" aria-label="Sale options" title="Options">⋯</button></div></div><div class="meta">COGS ${money(s.cogs)} · Gross profit ${money(s.total-s.cogs)}</div></div>`).join(''):'<div class="empty">No sales recorded.</div>'}
 function openExpense(){EDX=null;['expenseName','expenseAmount','expenseNotes'].forEach(i=>document.getElementById(i).value='');document.getElementById('expenseDate').value=today();openModal('expenseModal')}
 function editExpense(id){const e=state.expenses.find(x=>x.id===id);if(!e)return;openExpense();EDX=id;expenseName.value=e.name;expenseAmount.value=e.amount;expenseDate.value=e.date;expenseCategory.value=e.category;expenseNotes.value=e.notes||''}
-function saveExpense(e){e.preventDefault();const ex={id:uid('e'),name:document.getElementById('expenseName').value,amount:+document.getElementById('expenseAmount').value,date:document.getElementById('expenseDate').value,category:document.getElementById('expenseCategory').value,notes:document.getElementById('expenseNotes').value};if(EDX){const i=state.expenses.findIndex(x=>x.id===EDX);ex.id=EDX;state.expenses[i]=ex;EDX=null}else state.expenses.unshift(ex);recordAudit('expense.created',`${ex.name} · ${money(ex.amount)}`);saveState();closeModal('expenseModal');renderAll();showToast('Expense saved locally.')}
+function saveExpense(e){e.preventDefault();const ex={id:uid('e'),name:document.getElementById('expenseName').value,amount:+document.getElementById('expenseAmount').value,date:document.getElementById('expenseDate').value,category:document.getElementById('expenseCategory').value,notes:document.getElementById('expenseNotes').value};if(EDX){const i=state.expenses.findIndex(x=>x.id===EDX);ex.id=EDX;state.expenses[i]=ex;EDX=null}else state.expenses.unshift(ex);recordAudit('expense.created',`${ex.name} · ${money(ex.amount)}`);maybeAutoArchetype();saveState();closeModal('expenseModal');renderAll();showToast('Expense saved locally.')}
 function renderExpenses(){const t=totals();document.getElementById('expenseSummary').innerHTML=`<div class="row"><span class="muted">Total operating expenses</span><strong class="red">${money(t.exp)}</strong></div>`;document.getElementById('expenseList').innerHTML=state.expenses.length?state.expenses.slice(0,200).map(e=>`<div class="item"><div class="row"><div><div class="title">${esc(e.name)}</div><div class="meta">${e.date} · ${esc(e.category)}</div></div><strong class="red">-${money(e.amount)}</strong></div>${e.notes?`<div class="meta">${esc(e.notes)}</div>`:''}<button class="btn small danger" style="margin-top:8px" onclick="delItem('expense','${e.id}')">Delete</button> <button class="btn small" style="margin-top:8px" onclick="editExpense('${e.id}')">Edit</button></div>`).join(''):'<div class="empty">No expenses recorded.</div>'}
 function openCustomer(id=''){document.getElementById('customerId').value=id;let c=state.customers.find(x=>x.id===id)||{};document.getElementById('customerName').value=c.name||'';document.getElementById('customerMobile').value=c.mobile||'';document.getElementById('customerEmail').value=c.email||'';document.getElementById('customerAddress').value=c.address||'';document.getElementById('customerNotes').value=c.notes||'';openModal('customerModal')}
 function saveCustomer(e){e.preventDefault();const id=document.getElementById('customerId').value,c={id:id||uid('c'),name:document.getElementById('customerName').value.trim(),mobile:document.getElementById('customerMobile').value,email:document.getElementById('customerEmail').value,address:document.getElementById('customerAddress').value,notes:document.getElementById('customerNotes').value,dateAdded:today()};const i=state.customers.findIndex(x=>x.id===id);if(i>=0)state.customers[i]=Object.assign(state.customers[i],c);else state.customers.push(c);recordAudit(id?'customer.updated':'customer.created',c.name);saveState();closeModal('customerModal');renderAll();showToast('Customer saved locally.')}
@@ -609,7 +773,7 @@ function openOrder(){if(!state.products.length){emptyMenu('take an order');retur
 function updateOrderTotal(){const p=state.products.find(x=>x.id===document.getElementById('orderProduct').value),q=+document.getElementById('orderQty').value||0;document.getElementById('orderTotal').value=money(p?lineTotal(p,q):0)}
 function saveOrder(e){e.preventDefault();const p=state.products.find(x=>x.id===document.getElementById('orderProduct').value),q=+document.getElementById('orderQty').value||0;if(!p||q<1)return;state.orders.unshift({id:uid('o'),number:'ORD-'+Math.random().toString(36).slice(2,7).toUpperCase(),date:today(),customerId:document.getElementById('orderCustomer').value||null,productId:p.id,productName:p.name,qty:q,unitPrice:p.price,costPrice:p.cost,total:lineTotal(p,q),pickDate:document.getElementById('orderPickDate').value,pickTime:document.getElementById('orderPickTime').value,contact:document.getElementById('orderContact').value,deposit:+document.getElementById('orderDeposit').value||0,notes:document.getElementById('orderNotes').value,status:'Pending',completed:false});recordAudit('order.created',`${p.name} × ${q}`);saveState();closeModal('orderModal');renderAll();showToast('Pending order created.')}
 function renderOrders(){const f=document.getElementById('orderFilter')?.value||'All';const arr=state.orders.filter(o=>f==='All'||o.status===f);document.getElementById('ordersList').innerHTML=arr.length?arr.map(o=>`<div class="item"><div class="row"><div><div class="title">${o.number} · ${esc(o.productName)} × ${o.qty}</div><div class="meta">${o.pickDate?'📅 '+o.pickDate+' '+(o.pickTime||'')+' · ':''}${o.contact?'☎ '+esc(o.contact)+' · ':''}${o.deposit?'Deposit '+money(o.deposit)+' · ':''}${o.date} · ${esc(o.customerId?state.customers.find(c=>c.id===o.customerId)?.name||'Customer':'Walk-in')}</div></div><span class="badge ${o.status==='Completed'?'b-green':o.status==='Canceled'?'b-red':'b-amber'}">${o.status}</span></div><div class="row" style="margin-top:8px"><strong>${money(o.total)}</strong><select style="width:auto" onchange="changeOrderStatus('${o.id}',this.value)">${['Pending','Confirmed','Preparing','Ready','Completed','Canceled'].map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select>${o.completed?'':`<button class="btn small danger" onclick="delItem('order','${o.id}')">Delete</button>`}</div></div>`).join(''):'<div class="empty">No orders in this filter.</div>'}
-function changeOrderStatus(id,status){const o=state.orders.find(x=>x.id===id);if(!o)return;if(status==='Completed'&&!o.completed){const p=state.products.find(x=>x.id===o.productId);if(!p||(tracks(p)&&o.qty>p.stock)){showToast('Not enough stock to complete this order.');renderOrders();return}if(tracks(p))p.stock-=o.qty;o.costPrice=(o.costPrice??p.cost);state.sales.unshift({id:uid('s'),date:today(),productId:o.productId,productName:o.productName,qty:o.qty,unitPrice:o.unitPrice,total:o.total,cogs:o.costPrice*o.qty,payment:'Order',customerId:o.customerId||null,orderId:o.id});o.completed=true;o.completedAt=today();recordAudit('order.completed',`${o.number} · ${o.productName} × ${o.qty}`)}else if(o.completed&&status!=='Completed'){showToast('Completed orders cannot be rolled back automatically. Use Stock / Return for a controlled adjustment.');renderOrders();return}o.status=status;recordAudit('order.status',`${o.number} → ${status}`);saveState();renderAll();showToast('Order status updated.')}
+function changeOrderStatus(id,status){const o=state.orders.find(x=>x.id===id);if(!o)return;if(status==='Completed'&&!o.completed){const p=state.products.find(x=>x.id===o.productId);if(!p||(tracks(p)&&o.qty>p.stock)){showToast('Not enough stock to complete this order.');renderOrders();return}if(tracks(p))p.stock-=o.qty;o.costPrice=(o.costPrice??p.cost);state.sales.unshift({id:uid('s'),date:today(),productId:o.productId,productName:o.productName,qty:o.qty,unitPrice:o.unitPrice,total:o.total,cogs:o.costPrice*o.qty,payment:'Order',customerId:o.customerId||null,orderId:o.id});o.completed=true;o.completedAt=today();recordAudit('order.completed',`${o.number} · ${o.productName} × ${o.qty}`)}else if(o.completed&&status!=='Completed'){showToast('Completed orders cannot be rolled back automatically. Use Stock / Return for a controlled adjustment.');renderOrders();return}o.status=status;recordAudit('order.status',`${o.number} → ${status}`);maybeAutoArchetype();saveState();renderAll();showToast('Order status updated.')}
 function openDraw(){loadDrawForm();openModal('drawModal')}
 function loadDrawForm(){document.getElementById('drawDate').value=today();document.getElementById('drawAmount').value='';document.getElementById('drawNotes').value=''}
 function saveDraw(e){e.preventDefault();const d={id:uid('d'),amount:+document.getElementById('drawAmount').value,date:document.getElementById('drawDate').value,notes:document.getElementById('drawNotes').value};if(!d.amount||d.amount<=0)return;state.draws.unshift(d);recordAudit('owner.draw',`${money(d.amount)} · ${d.notes||'No note'}`);saveState();closeModal('drawModal');renderAll();showToast('Owner draw recorded.')}
@@ -639,12 +803,12 @@ async function signOutCloud(){try{clearInterval(VW);if(window.firebase&&firebase
 
 function downloadSyncBundle(){const c=cloudConfig();const blob=new Blob([JSON.stringify({app:'VendorVibe',version:3,cloud:{...c,firebase:{...c.firebase,apiKey:c.firebase.apiKey?'[configured]':''}},exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='vendorvibe-sync-bundle-'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 
-function renderReports(){const t=reportTotals();['rSales','rCogs','rGross','rExp','rDraw','rNet'].forEach((id,i)=>document.getElementById(id).textContent=money([t.sales,t.cogs,t.gross,t.exp,t.draw,t.net][i]));document.getElementById('healthDetails').innerHTML=`Report period: <strong>${esc(document.getElementById('reportRange')?.selectedOptions[0]?.text||'All time')}</strong><br>Business cash position: <strong>${money(t.cash)}</strong><br>Inventory at cost: <strong>${money(t.inv)}</strong><br>Products: <strong>${state.products.length}</strong> · Customers: <strong>${state.customers.length}</strong> · Orders: <strong>${state.orders.length}</strong>`;const map={};state.sales.filter(s=>inRange(s.date,document.getElementById('reportRange')?.value||'all')).forEach(s=>map[s.productName]=(map[s.productName]||0)+s.qty);document.getElementById('topProducts').innerHTML=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`<div class="item row"><span>${esc(x[0])}</span><strong>${x[1]} sold</strong></div>`).join('')||'<div class="empty">No sales in this period.</div>';renderAudit()}
-function loadSettingsForm(){document.getElementById('setLang').value=state.settings.lang||'en';document.querySelector('#settingsModal h2').textContent=state.settings.setup?'Business Settings':'Welcome! Set up your store';document.getElementById('setBusinessName').value=state.settings.businessName;fillBizSelect();document.getElementById('setBizType').value=state.settings.bizType||'';bizPreview();document.getElementById('setBusinessType').value=(state.settings.businessType==='Micro Business'?'':state.settings.businessType)||'';document.getElementById('setOwner').value=state.settings.owner;document.getElementById('setArchetype').value=state.settings.archetype||'The Disciplined Accountant';document.getElementById('setCapital').value=state.settings.capital}
-function saveSettings(e){e.preventDefault();const bt=document.getElementById('setBizType').value;if(!bt){showToast('Choose your type of business.');return}if(bt!==state.settings.bizType)delete state.feat;state.settings={bizType:bt,businessName:document.getElementById('setBusinessName').value||'VendorVibe',businessType:document.getElementById('setBusinessType').value.trim(),owner:document.getElementById('setOwner').value||'Owner',capital:+document.getElementById('setCapital').value||0,setup:true,tourDone:state.settings.tourDone,lang:state.settings.lang||'en',archetype:document.getElementById('setArchetype').value};recordAudit('settings.updated','Business settings updated');saveState();closeModal('settingsModal');renderAll();walk(document.body);showToast('Business settings saved.')}
+function renderReports(){const t=reportTotals();['rSales','rCogs','rGross','rExp','rDraw','rNet','rKept'].forEach((id,i)=>document.getElementById(id).textContent=money([t.sales,t.cogs,t.gross,t.exp,t.draw,t.net,t.kept][i]));const st=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};st('rGrossRev',money(t.sales));st('rGrossRevSub',t.txns+' transaction'+(t.txns===1?'':'s'));st('rTotExp',money(t.cogs+t.exp));st('rNetCard',money(t.net));st('rMargin',(t.sales>0?Math.round(t.net/t.sales*100):0)+'% net margin');st('rTxns',String(t.txns));const nc=document.getElementById('rNetCard');if(nc)nc.className=t.net>=0?'green':'red';document.getElementById('healthDetails').innerHTML=`Report period: <strong>${esc(document.getElementById('reportRange')?.selectedOptions[0]?.text||'All time')}</strong><br>Business cash position: <strong>${money(t.cash)}</strong><br>Inventory at cost: <strong>${money(t.inv)}</strong><br>Products: <strong>${state.products.length}</strong> · Customers: <strong>${state.customers.length}</strong> · Orders: <strong>${state.orders.length}</strong>`;const map={};state.sales.filter(s=>inRange(s.date,document.getElementById('reportRange')?.value||'all')).forEach(s=>map[s.productName]=(map[s.productName]||0)+s.qty);document.getElementById('topProducts').innerHTML=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`<div class="item row"><span>${esc(x[0])}</span><strong>${x[1]} sold</strong></div>`).join('')||'<div class="empty">No sales in this period.</div>';renderAudit()}
+function loadSettingsForm(){document.getElementById('setLang').value=state.settings.lang||'en';document.querySelector('#settingsModal h2').textContent=state.settings.setup?'Business Settings':'Welcome! Set up your store';document.getElementById('setBusinessName').value=state.settings.businessName;fillBizSelect();document.getElementById('setBizType').value=state.settings.bizType||'';bizPreview();document.getElementById('setBusinessType').value=(state.settings.businessType==='Micro Business'?'':state.settings.businessType)||'';document.getElementById('setOwner').value=state.settings.owner;document.getElementById('setArchetype').value=state.settings.archetype||'The Disciplined Accountant';document.getElementById('setCapital').value=state.settings.capital;updateArchNote()}
+function saveSettings(e){e.preventDefault();const bt=document.getElementById('setBizType').value;const prevArch=state.settings.archetype,newArch=document.getElementById('setArchetype').value;if(!bt){showToast('Choose your type of business.');return}if(bt!==state.settings.bizType)delete state.feat;state.settings={bizType:bt,businessName:document.getElementById('setBusinessName').value||'VendorVibe',businessType:document.getElementById('setBusinessType').value.trim(),owner:document.getElementById('setOwner').value||'Owner',capital:+document.getElementById('setCapital').value||0,setup:true,tourDone:state.settings.tourDone,lang:state.settings.lang||'en',archetype:newArch};state.ui=state.ui||{};if(prevArch&&prevArch!==newArch)state.ui.archLock=1;recordAudit('settings.updated','Business settings updated');saveState();closeModal('settingsModal');renderAll();walk(document.body);showToast('Business settings saved.')}
 function loadPersonalityForm(){const p=state.personality;document.getElementById('pRisk').value=p.risk;document.getElementById('pMoney').value=p.money;document.getElementById('pDecision').value=p.decision;document.getElementById('pGrowth').value=p.growth;document.getElementById('pGoal').value=p.goal||''}
 function savePersonality(e){e.preventDefault();state.personality={risk:pRisk.value,money:pMoney.value,decision:pDecision.value,growth:pGrowth.value,goal:pGoal.value};recordAudit('coach.profile','Business coaching profile updated');saveState();closeModal('personalityModal');renderAll();showToast('Coach profile updated.')}
-function renderCoach(){const s=discipline();document.getElementById('coachScore').textContent=s;document.getElementById('coachProfile').textContent=profileName();const box=document.getElementById('chatBox');if(!state.coachChat.length)state.coachChat=[{who:'ai',text:`Kumusta, ${state.settings.owner||'Owner'}. I’ll coach you like a business operator: protect working capital, know your margins, and make decisions from numbers. ${coachAdvice()}`}];box.innerHTML=state.coachChat.map(m=>`<div class="coachmsg ${m.who==='user'?'coach-user':'coach-ai'}">${esc(m.text)}</div>`).join('');box.scrollTop=box.scrollHeight}
+function renderCoach(){const s=discipline();document.getElementById('coachScore').textContent=s;document.getElementById('coachProfile').textContent=profileName();const box=document.getElementById('chatBox');if(!state.coachChat.length)state.coachChat=[{who:'ai',text:`Kumusta, ${state.settings.owner||'Owner'}. I’ll coach you like a business operator: protect working capital, know your margins, and make decisions from numbers. ${coachAdvice()}`}];box.innerHTML=state.coachChat.map(m=>`<div class="coachmsg ${m.who==='user'?'coach-user':'coach-ai'}">${m.who==='ai'?'<span class="ava">💁🏽‍♀️</span>':''}${mdLite(m.text)}</div>`).join('')+(TYPING?`<div class="coachmsg coach-ai"><span class="ava">💁🏽‍♀️</span>…</div>`:'');box.scrollTop=box.scrollHeight;updateCtxNote()}
 function coachIsFil(q){return LANG==='fil'||/\b(ang|ng|mga|bakit|kaya|benta|kita|gastos|pera|paano|ano|bang|ko|namin|natin|walang|natitira|malaki|mababa|puhunan|paninda|presyo|sweldo|tubo|kaha|dapat|gusto|pwede|puwede|lugi|lugi|ba)\b/i.test(q)}
 function expByCat(){const m={};state.expenses.forEach(e=>m[e.category]=(m[e.category]||0)+e.amount);const pay=state.payroll.reduce((a,p)=>a+p.gross,0);if(pay)m.Salaries=(m.Salaries||0)+pay;return Object.entries(m).sort((x,y)=>y[1]-x[1])}
 function diagnoseNet(F){const t=totals(),B=biz(),pc=n=>(n*100).toFixed(0)+'%';
@@ -658,54 +822,58 @@ if(t.draw>0&&t.draw>=t.net*0.8)out.push(F?`4) Ang kinuha ng may-ari (${money(t.d
 if(out.length===1)out.push(F?'Walang malinaw na butas sa numero ngayon. Itala ang bawat gastos at benta araw-araw para mas malinaw ang makita ko.':'No clear leak in the numbers right now. Keep recording every sale and expense so I can see more.');
 return out.join('\n')}
 function offlineCoach(q) {
-    const currentMetrics = typeof totals === 'function' ? totals() : {};
+    const t = totals(); // Kunin lahat ng business metrics
+    const lowerQ = q.toLowerCase();
+    let response = "📶 **Coach VeVi (Offline Mode)**\n\n";
     
-    // Siguraduhing naipapadala ang bizType para sa Tutor detection
-    currentMetrics.bizType = (state && (state.bizType || state.profileCategory)) ? (state.bizType || state.profileCategory) : 'Tutor';
-    currentMetrics.role = 'Tutor';
+    // Kunin yung mga numero sa tanong (halimbawa: 150, 2)
+    const numbers = q.match(/\d+/g);
 
-    if (window.coachBrain) {
-        const res = window.coachBrain.evaluate(q, currentMetrics);
-        return res.reply;
-    }
-    return "Naka-initialize ang offline coach. Mangyaring magtanong muli.";
-}
-async function askCoach() {
-    const input = document.getElementById("coachInput");
-    if (!input || !input.value.trim()) return;
-
-    const q = input.value.trim();
-    const metrics = typeof totals === 'function' ? totals() : {};
-    
-    if (window.coachBrain) {
-        const res = window.coachBrain.evaluate(q, metrics);
+    // --- 1. SURVIVAL / BUDGET CHECK (Math + Psychology) ---
+    if (lowerQ.includes('survive') || lowerQ.includes('kaya') || lowerQ.includes('last') || lowerQ.includes('budget') || lowerQ.includes('pera')) {
+        response += "Let's do the math based on your dashboard:\n";
+        response += `- Current Cash on Hand: ₱${t.cash}\n`;
         
-        const chatContainer = document.getElementById("coachReply") || 
-                              document.querySelector(".coach-response-area") || 
-                              document.querySelector("[data-coach-response]");
-
-        if (chatContainer) {
-            chatContainer.innerHTML = res.reply.replace(/\n/g, '<br>');
-        } else if (typeof appendCoachReply === 'function') {
-            appendCoachReply(res.reply);
-        } else {
-            const chatBox = document.querySelector(".Usapan-ninyo-ng-Coach") || document.querySelector("textarea")?.parentElement;
-            if (chatBox) {
-                let replyDiv = document.getElementById("dynamicCoachReply");
-                if (!replyDiv) {
-                    replyDiv = document.createElement("div");
-                    replyDiv.id = "dynamicCoachReply";
-                    replyDiv.style.cssText = "background:#f0f4f8; padding:15px; border-radius:8px; margin-top:10px; white-space:pre-line; color:#1a202c;";
-                    chatBox.appendChild(replyDiv);
-                }
-                replyDiv.innerHTML = res.reply;
+        if (numbers && numbers.length >= 2) {
+            const amount = parseInt(numbers[0]);
+            const days = parseInt(numbers[1]);
+            const dailyBudget = (amount / days).toFixed(2);
+            
+            response += `- Target: ₱${amount} over ${days} days.\n`;
+            response += `- Daily Budget needed: ₱${dailyBudget}/day.\n\n`;
+            
+            if (t.cash >= amount) {
+                response += `✅ **Yes, you can survive!** But surviving is just the start.\n`;
+                response += `💡 **Coach's Tip:** Don't just survive, thrive! With your ₱${t.cash} cash, make sure to set aside a portion for restocking your best-selling items. A survival mindset limits growth; an investment mindset grows it.`;
             } else {
-                alert(res.reply);
+                response += `⚠️ **It's going to be tight.** You need ₱${amount} but you only have ₱${t.cash}.\n`;
+                response += `💡 **Coach's Tip:** Don't panic. Let's look at your expenses. Are there non-essential costs we can cut this week? Can you run a quick promo to boost cash flow? Every peso counts right now. Focus on your highest-margin products.`;
             }
+        } else {
+            response += `You currently have ₱${t.cash} cash. Please specify the amount and days (e.g., "Can I survive 150 for 2 days?") so I can give you a precise breakdown and advice.`;
         }
+    } 
+    // --- 2. PROFIT / SALES QUESTIONS (Math + Business Strategy) ---
+    else if (lowerQ.includes('profit') || lowerQ.includes('tubo') || lowerQ.includes('sales') || lowerQ.includes('benta') || lowerQ.includes('kita')) {
+        response += `Let's review your numbers:\n`;
+        response += `- Gross Sales: ₱${t.sales}\n`;
+        response += `- Expenses: ₱${t.exp}\n`;
+        response += `- Net Profit: ₱${t.net}\n\n`;
+        response += `💡 **Coach's Tip:** Your gross profit is ₱${t.gross}. To increase your net profit, focus on two things: 1) Increase your average transaction value (upsell or bundle items), and 2) Reduce your top 3 expenses. Small consistent changes lead to big results.`;
+    } 
+    // --- 3. GENERAL BUSINESS QUESTIONS (Default Fallback) ---
+    else {
+        response += `I hear you! Based on your current business snapshot:\n`;
+        response += `- Cash: ₱${t.cash}\n`;
+        response += `- Net Profit: ₱${t.net}\n`;
+        response += `- Sales: ₱${t.sales}\n\n`;
+        response += `💡 **Coach's Tip:** As an offline coach, my advice is limited to your current data. To get deep, personalized strategies for your specific question, please turn on Online AI in More → Privacy. For now, keep recording your sales and expenses so I can give you better insights!`;
     }
+
+    return response;
 }
-let LANG='en';
+  async function askCoach(){const inputEl=document.getElementById('coachInput');if(!inputEl)return;const q=inputEl.value.trim();if(!q)return;inputEl.value='';await askCoachQ(q)}
+
 const FIL={"Home":"Home","Products":"Produkto","Sales":"Benta","Orders":"Mga Order","More":"Iba Pa","Healthy":"Maayos","Needs Attention":"Kailangan ng Pansin","Good business starts with discipline.":"Nagsisimula sa disiplina ang magandang negosyo.","Your business records are stored on this device. Core features work offline.":"Nasa device na ito ang mga record ng negosyo mo. Gumagana kahit offline ang mga pangunahing feature.","Online. Local data remains primary; cloud sync is optional.":"Online. Nasa device pa rin ang pangunahing data; opsyonal ang cloud sync.","Offline. VendorVibe is working from the device database.":"Offline. Gumagana ang VendorVibe gamit ang data sa device.","First steps: 1) add your products, 2) record each sale, 3) record expenses, 4) export a backup every week.":"Unang hakbang: 1) idagdag ang mga produkto, 2) i-record ang bawat benta, 3) i-record ang mga gastos, 4) mag-export ng backup bawat linggo.","● Offline-ready":"● Handa kahit offline","📲 Install":"📲 I-install","Estimated Business Cash":"Tantiyang Pera ng Negosyo","Gross Profit":"Gross Profit (Tubo)","Net Profit":"Net Profit (Tubo)","Inventory Value":"Halaga ng Stock","Pending Orders":"Order na Nakabinbin","Quick Actions":"Mabilisang Gawin","＋ Sale":"＋ Benta","＋ Product":"＋ Produkto","＋ Expense":"＋ Gastos","＋ Order":"＋ Order","＋ Owner Draw":"＋ Kinuha ng May-ari","↕ Stock / Return":"↕ Stock / Balik","Talk to Coach":"Kausapin ang Coach","Business Habits Score":"Iskor ng Gawi sa Negosyo","Just starting":"Nagsisimula pa lang","Getting started":"Nagsisimula na","Building habits":"Nabubuo na ang gawi","Strong habits":"Matibay na gawi","Products & Inventory":"Mga Produkto at Stock","＋ Add":"＋ Idagdag","Search products...":"Maghanap ng produkto...","Search customers...":"Maghanap ng customer...","＋ Record Sale":"＋ Mag-record ng Benta","Total Sales":"Kabuuang Benta","COGS":"Puhunan sa Paninda","＋ New Order":"＋ Bagong Order","All":"Lahat","Pending":"Nakabinbin","Confirmed":"Kumpirmado","Preparing":"Hinahanda","Ready":"Handa na","Completed":"Tapos na","Canceled":"Kinansela","Customers":"Mga Customer","Expenses":"Mga Gastos","Total operating expenses":"Kabuuang gastos sa operasyon","Reports & Business Intelligence":"Mga Ulat","All time":"Lahat ng panahon","Today":"Ngayon","Last 7 days":"Huling 7 araw","Owner Draw":"Kinuha ng May-ari","Net profit (after expenses)":"Net profit (pagkatapos ng gastos)","Left after owner draw":"Natira pagkatapos kumuha ang may-ari","Business Health":"Kalagayan ng Negosyo","Top Products":"Pinakamabentang Produkto","Audit / Transaction Safety":"Talaan ng mga Pagbabago","Data Safety":"Kaligtasan ng Data","⬇️ Export Backup (JSON)":"⬇️ I-export ang Backup (JSON)","📄 Export Records (CSV)":"📄 I-export ang mga Record (CSV)","⬆️ Restore Backup":"⬆️ I-restore ang Backup","Reset all local data":"I-reset ang lahat ng data","Business Discipline":"Disiplina sa Negosyo","Current Profile":"Kasalukuyang Profile","Your Coach Conversation":"Usapan ninyo ng Coach","Ask Coach":"Magtanong sa Coach","Coach profile":"Profile ng Coach","Offline rules + optional AI":"Offline rules + opsyonal na AI","👥 Customers":"👥 Mga Customer","💸 Expenses":"💸 Mga Gastos","📊 Reports":"📊 Mga Ulat","💰 Owner Draw":"💰 Kinuha ng May-ari","⚙️ Settings":"⚙️ Settings","PWA installation":"Pag-install ng App","Add Product":"Magdagdag ng Produkto","Edit Product":"I-edit ang Produkto","Product name":"Pangalan ng produkto","Cost price":"Puhunan (presyong bili)","Selling price":"Presyong benta","Low-stock threshold":"Babala kapag paubos na","Category":"Kategorya","Save Product":"I-save ang Produkto","Record Sale":"Mag-record ng Benta","Product":"Produkto","Quantity":"Dami","Customer (optional)":"Customer (opsyonal)","Walk-in customer":"Walk-in na customer","Payment":"Bayad","Save Sale":"I-save ang Benta","Sale total:":"Kabuuang benta:","Add Expense":"Magdagdag ng Gastos","Expense name":"Pangalan ng gastos","Amount":"Halaga","Date":"Petsa","Notes":"Tala","Save Expense":"I-save ang Gastos","Transportation":"Pamasahe","Electricity":"Kuryente","Water":"Tubig","Rent":"Upa","Packaging":"Balot","Supplies":"Gamit","Salaries":"Sweldo","Other":"Iba pa","Name":"Pangalan","Save Customer":"I-save ang Customer","New Order":"Bagong Order","Total":"Kabuuan","Customer":"Customer","Customer/order notes":"Tala sa customer/order","Business Settings":"Settings ng Negosyo","Welcome! Set up your store":"Maligayang pagdating! I-setup ang tindahan mo","Business name":"Pangalan ng negosyo","Owner name":"Pangalan ng may-ari","Starting business capital":"Panimulang puhunan","Save Settings":"I-save ang Settings","Fix a mistake":"Ayusin ang pagkakamali","Clear sales, expenses & orders (keep products)":"Burahin ang benta, gastos at order (iiwan ang produkto)","Reset everything":"I-reset ang lahat","Owner Withdrawal / Draw":"Pagkuha ng May-ari","Save Owner Draw":"I-save","Stock Adjustment / Return":"Pag-ayos ng Stock / Balik","Apply Adjustment":"Ilapat","Reason":"Dahilan","Edit":"I-edit","Delete":"Burahin","Void sale":"Bawiin ang benta","No sales recorded.":"Wala pang naitalang benta.","No expenses recorded.":"Wala pang naitalang gastos.","No customers yet.":"Wala pang customer.","No orders in this filter.":"Walang order sa filter na ito.","No audit entries yet.":"Wala pang talaan.","Deleted.":"Nabura.","Backup restored.":"Na-restore ang backup.","Invalid backup file.":"Hindi wastong backup file.","Product saved locally.":"Na-save ang produkto.","Expense saved locally.":"Na-save ang gastos.","Customer saved locally.":"Na-save ang customer.","Pending order created.":"Nagawa ang order.","Sale saved. Stock updated once.":"Na-save ang benta. Na-update ang stock.","Owner draw recorded.":"Na-record ang kinuha ng may-ari.","Quantity exceeds available stock.":"Lampas sa stock ang dami.","Order status updated.":"Na-update ang status ng order.","Records cleared.":"Nabura ang mga record.","Reset canceled.":"Kinansela ang reset.","Void this sale? Stock will be restored.":"Bawiin ang benta? Maibabalik ang stock.","Delete this record? This cannot be undone.":"Burahin ang record? Hindi na ito maibabalik.","Restoring replaces all data on this device. Continue?":"Papalitan ng restore ang lahat ng data sa device. Ituloy?","Type RESET to confirm":"I-type ang RESET para kumpirmahin","This will erase all VendorVibe data stored on this device. A backup will download first. Continue?":"Buburahin nito ang lahat ng data sa device na ito. Magda-download muna ng backup. Ituloy?","Clear all sales, expenses, orders and owner draws? Products, customers and settings are kept.":"Buburahin ang lahat ng benta, gastos, order at kinuha ng may-ari? Mananatili ang produkto, customer at settings."};
 const PR=[[/^Cost (.+)$/,'Puhunan $1'],[/^Sell (.+)$/,'Presyo $1'],[/^Margin (.+) each$/,'Tubo $1 bawat isa'],[/^(\d+) stock$/,'$1 sa stock'],[/^(\d+) purchases?$/,'$1 bili'],[/^COGS (.+)$/,'Puhunan $1'],[/^Gross profit (.+)$/,'Tubo $1'],[/^Score (\d+)\/100 .*$/,'Iskor $1/100 mula sa nakaraang 7 araw.']];
 function F(k){if(FIL[k])return FIL[k];for(const [a,b] of PR)if(a.test(k))return k.replace(a,b);return k.includes(' · ')?k.split(' · ').map(x=>F(x)||x).join(' · '):null}
@@ -798,8 +966,9 @@ function rpgStats(){const p=state.personality||{},b=(state.rpg&&state.rpg.bonus)
 return{cash:clamp(discipline()+(b.cash||0)),risk:clamp({cautious:35,balanced:55,bold:75}[p.risk]+(b.risk||0)),grit:clamp(30+days*5+(b.grit||0)),trust:clamp(50+Math.min(30,paid*5)-(state.customers.filter(c=>owed(c.id)>0).length*3)+(b.trust||0)),growth:clamp({stability:40,profit:60,growth:80}[p.growth]+Math.min(20,state.products.length*2)+(b.growth||0))}}
 function rpgLevel(){const xp=state.sales.length+state.expenses.length+state.products.length+state.customers.length+((state.rpg&&state.rpg.quests)||0)*5,lv=1+Math.floor(xp/25),T=['Starter Vendor','Rising Seller','Market Hustler','Store Boss','Business Tycoon'];return{lv,xp,title:T[Math.min(T.length-1,Math.floor((lv-1)/2))]}}
 function renderRpg(){const el=document.getElementById('rpgStats');if(!el)return;const st=rpgStats(),lv=rpgLevel(),N={cash:L('Cash Discipline','Disiplina sa Pera'),risk:L('Risk Tolerance','Lakas ng Loob'),grit:L('Grit & Resilience','Tiyaga'),trust:L('Customer Trust','Tiwala ng Customer'),growth:L('Growth Drive','Hangad Umunlad')};
-document.getElementById('rpgOwner').textContent=state.settings.owner||'Owner';document.getElementById('rpgArch').textContent=(state.settings.archetype||'The Disciplined Accountant');document.getElementById('rpgTitle').textContent='Lv '+lv.lv+' · '+lv.title;
-el.innerHTML=Object.keys(N).map(k=>`<div class="rpg-stat"><small>${esc(N[k])}</small><b>${st[k]}%</b><div class="rpg-bar"><i style="width:${st[k]}%"></i></div></div>`).join('')}
+document.getElementById('rpgOwner').textContent=state.settings.owner||'Owner';document.getElementById('rpgArch').textContent=archEmoji()+' '+(state.settings.archetype||'The Disciplined Accountant');document.getElementById('rpgTitle').textContent='Lv '+lv.lv+' · '+lv.title;
+el.innerHTML=Object.keys(N).map(k=>`<div class="rpg-stat" role="button" tabindex="0" onclick="openStat('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStat('${k}')}" title="${esc(L('Tap for details','Pindutin para sa detalye'))}">${STAT_ICON[k]} <small>${esc(N[k])}</small><b>${st[k]}%</b><div class="rpg-bar"><i style="width:${st[k]}%"></i></div>${spark(sparkSeries(k))}</div>`).join('');
+const dEl=document.getElementById('rpgDelta');if(dEl)dEl.textContent=whatChanged()}
 const QUESTS=[
 {q:'A loyal customer wants to buy on credit (utang) while your cash is tight. What is your move?',f:'May loyal na customer na gustong umutang pero kapos ang pera mo. Ano ang gagawin mo?',o:[['Politely decline and protect cash','Magalang na tumanggi at protektahan ang pera',{cash:3,grit:1},'Cash discipline up. Offer a small cash-and-carry option so you keep the relationship.'],['Grant credit to build trust','Pautangin para lumakas ang tiwala',{trust:3,cash:-2,risk:1},'Trust up, but write the utang down today and set a pay-by date.']]},
 {q:'Your supplier offers 20% off if you buy in bulk, but it would use most of your cash. Decision?',f:'May 20% discount ang supplier kapag bulk, pero halos maubos ang pera mo. Ano ang pipiliin?',o:[['Buy the full bulk order','Bilhin ang buong bulk',{growth:3,risk:2,cash:-2},'Bigger margin, but check that it sells before it ties up your cash.'],['Buy half and keep a cash buffer','Kalahati lang, may itabi na pera',{cash:2,growth:1},'Smart. You get part of the discount and keep working capital safe.']]},
@@ -810,9 +979,9 @@ const QUESTS=[
 const QNEED=['utang','inv',null,null,'payroll','inv'];
 function questPool(){const B=biz();return QUESTS.filter((q,i)=>!QNEED[i]||B[QNEED[i]]).concat(B.quests||[])}
 function questIdx(){const d=new Date(),n=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);return n%questPool().length}
-function renderQuest(){const el=document.getElementById('questBox');if(!el)return;state.rpg=state.rpg||{bonus:{},questDate:'',questChoice:-1,quests:0};const Q=questPool()[questIdx()],done=state.rpg.questDate===today();
-el.innerHTML=`<div class="quest-title">⚔️ ${esc(L('Daily Business Dilemma & Quest','Pang-araw-araw na Hamon'))}</div><div class="quest-desc">${esc(L(Q.q,Q.f))}</div>`+(done?`<div class="quest-result">${esc(Q.o[state.rpg.questChoice]?Q.o[state.rpg.questChoice][3]:'')}<br><b>${esc(L('Come back tomorrow for a new quest.','Bumalik bukas para sa bagong hamon.'))}</b></div>`:`<div class="quest-opts">${Q.o.map((o,i)=>`<button class="quest-opt" onclick="resolveQuest(${i})">${esc(L(o[0],o[1]))}</button>`).join('')}</div>`)}
-function resolveQuest(i){state.rpg=state.rpg||{bonus:{},questDate:'',questChoice:-1,quests:0};if(state.rpg.questDate===today())return;const o=questPool()[questIdx()].o[i];if(!o)return;state.rpg.bonus=state.rpg.bonus||{};for(const k in o[2])state.rpg.bonus[k]=Math.max(-30,Math.min(30,(state.rpg.bonus[k]||0)+o[2][k]));state.rpg.questDate=today();state.rpg.questChoice=i;state.rpg.quests=(state.rpg.quests||0)+1;recordAudit('quest.resolved',o[0]);saveState();renderQuest();renderRpg();showToast('Quest complete.')}
+function renderQuest(){const el=document.getElementById('questBox');if(!el)return;state.rpg=state.rpg||{bonus:{},questDate:'',questChoice:-1,quests:0};const Q=questPool()[questIdx()],done=state.rpg.questDate===today();const inner=document.getElementById('questInner');if(!inner)return;
+inner.innerHTML=`<div class="quest-title">⚔️ ${esc(L('Daily Business Dilemma & Quest','Pang-araw-araw na Hamon'))}</div><div class="quest-desc">${esc(L(Q.q,Q.f))}</div>`+(done?`<div class="quest-result">${esc(Q.o[state.rpg.questChoice]?Q.o[state.rpg.questChoice][3]:'')}<div class="dchips">${state.rpg.lastDelta?Object.keys(state.rpg.lastDelta).map(k=>`<span class="dchip ${state.rpg.lastDelta[k]>0?'up':'dn'}">${STAT_ICON[k]} ${statName(k)} ${state.rpg.lastDelta[k]>0?'+':''}${state.rpg.lastDelta[k]}</span>`).join(''):''}</div><br><b>${esc(L('Come back tomorrow for a new quest.','Bumalik bukas para sa bagong hamon.'))}</b></div>`:`<div class="quest-opts">${Q.o.map((o,i)=>`<button class="quest-opt" onclick="resolveQuest(${i})"><span>${esc(L(o[0],o[1]))}</span><span class="dchips">${Object.keys(o[2]).map(k=>`<span class="dchip ${o[2][k]>0?'up':'dn'}">${STAT_ICON[k]} ${statName(k)} ${o[2][k]>0?'+':''}${o[2][k]}</span>`).join('')}</span></button>`).join('')}</div>`)}
+function resolveQuest(i){state.rpg=state.rpg||{bonus:{},questDate:'',questChoice:-1,quests:0};if(state.rpg.questDate===today())return;const o=questPool()[questIdx()].o[i];if(!o)return;state.rpg.bonus=state.rpg.bonus||{};for(const k in o[2])state.rpg.bonus[k]=Math.max(-30,Math.min(30,(state.rpg.bonus[k]||0)+o[2][k]));state.rpg.questDate=today();state.rpg.questChoice=i;state.rpg.lastDelta=o[2];state.rpg.quests=(state.rpg.quests||0)+1;recordAudit('quest.resolved',o[0]);saveState();hap([14,40,14,40,28]);renderQuest();renderRpg();checkRewards(true);showToast('Quest complete. '+Object.keys(o[2]).map(k=>statName(k)+' '+(o[2][k]>0?'+':'')+o[2][k]).join(', '))}
 
 /* ===== In-game Business Expansion Loan reward (game mechanic only — no real lender) =====
    Sizes an exact loanable amount from the vendor's own on-device numbers using a
@@ -887,7 +1056,7 @@ function toggleTrack(){const no=document.getElementById('productTrack').value===
 function fillBizSelect(){const el=document.getElementById('setBizType');if(!el||el.options.length)return;el.innerHTML='<option value="">Select your type of business…</option>'+Object.keys(BIZ).map(k=>`<option value="${k}">${BIZ[k].ico} ${BIZ[k].en}</option>`).join('')}
 function bizPreview(){const k=document.getElementById('setBizType').value,B=BIZ[k],el=document.getElementById('bizHint');if(!el)return;if(!B){el.textContent='The app will show only the features that fit your business.';return}const f=[B.inv?'stock counting':null,B.orders?(k==='trade'?'jobs':k==='service'||k==='rental'?'bookings':'orders'):null,B.utang?'utang':null,B.payroll?'payroll':null].filter(Boolean);el.textContent='Includes: sales, expenses, reports, coach'+(f.length?', '+f.join(', '):'')+'.'}
 function applyBiz(){const B=biz(),sh=(sel,on)=>document.querySelectorAll(sel).forEach(e=>e.style.display=on?'':'none'),card=id=>{const e=document.getElementById(id);return e&&e.closest('.card')};
-sh('#nav-orders',B.orders);sh('#screen-dashboard .actions button[onclick="openOrder()"]',B.orders);
+sh('#nav-orders,#qaOrders',B.orders);sh('#screen-dashboard .actions button[onclick="openOrder()"]',B.orders);
 [['kpiPending',B.orders],['kpiInv',B.inv],['kpiAr',B.utang],['kpiAdv',B.payroll]].forEach(([id,on])=>{const c=card(id);if(c)c.style.display=on?'':'none'});
 sh('#screen-more .actions button[onclick*="staff"]',B.payroll);sh('#screen-more .actions button[onclick*="\'utang\'"]',B.utang);
 document.querySelectorAll('#salePayment option').forEach(o=>{if(o.value==='Utang'){o.hidden=!B.utang;o.disabled=!B.utang}});const sp=document.getElementById('salePayment');if(sp&&!B.utang&&sp.value==='Utang')sp.value='Cash';
@@ -904,7 +1073,7 @@ function lineTotal(p,q){const r=promoOf(p);if(!r)return p.price*q;if(r.type==='b
 
 function renderSaleChips(){const el=document.getElementById('saleChips');if(!el)return;el.innerHTML=state.products.filter(p=>!tracks(p)||p.stock>0).slice(0,16).map(p=>`<button type="button" class="chip ${promoOf(p)?'promo':''}" onclick="chipAdd('${p.id}')">${esc(p.name)} ${money(p.price)}${promoOf(p)?' 🏷':''}</button>`).join('')}
 function chipAdd(id){const p=state.products.find(x=>x.id===id),r=promoOf(p),sel=document.getElementById('saleProduct');sel.value=id;document.getElementById('saleQty').value=r&&r.type==='b1t1'?2:1;addCart();showToast(r&&r.type==='b1t1'?'Added 2 (Buy 1 Take 1)':'Added')}
-function saleDueToggle(){const u=document.getElementById('salePayment').value==='Utang';document.getElementById('saleDueRow').style.display=u?'block':'none';const d=document.getElementById('saleDue');if(u&&!d.value){const x=new Date();x.setDate(x.getDate()+7);d.value=ymd(x)}}
+function saleDueToggle(){const pay=document.getElementById('salePayment').value,u=pay==='Utang';document.getElementById('saleDueRow').style.display=u?'block':'none';const cr=document.getElementById('saleCashRow');if(cr)cr.style.display=u?'none':'block';const d=document.getElementById('saleDue');if(u&&!d.value){const x=new Date();x.setDate(x.getDate()+7);d.value=ymd(x)}updateSaleTotal()}
 function dueStatus(c,age){if(c.collectOn){const t=today();return c.collectOn<t?['Overdue','b-red']:c.collectOn===t?['Collect today','b-amber']:['Due '+c.collectOn,'b-blue']}return age>14?['Overdue','b-red']:age>7?['Due soon','b-amber']:['Open','b-blue']}
 function openDue(id){const c=state.customers.find(x=>x.id===id);dueCust.value=id;dueInfo.textContent=c.name+' · owes '+money(owed(id));const x=new Date();x.setDate(x.getDate()+7);dueDate.value=c.collectOn||ymd(x);dueNote.value=c.collectNote||'';openModal('dueModal')}
 function saveDue(e){e.preventDefault();const c=state.customers.find(x=>x.id===dueCust.value);c.collectOn=dueDate.value;c.collectNote=dueNote.value;recordAudit('utang.collectdate',c.name+' → '+dueDate.value);saveState();closeModal('dueModal');renderAll();showToast('Collection date saved.')}
@@ -928,7 +1097,8 @@ async function toggleAlerts(){const a=AL();a.on=!a.on;if(a.on){try{if('Notificat
 function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)();[0,.3,.6].forEach(d=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.25,c.currentTime+d);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d+.25);o.start(c.currentTime+d);o.stop(c.currentTime+d+.25)})}catch(e){}}
 
 function testAlarm(){notify('Test alarm','This is how your alerts will feel.')}
-function checkAlerts(){renderAlertCard();pushSchedule();if(!AL().on)return;const a=AL(),t=today();a.log=a.log||{};Object.keys(a.log).forEach(k=>{if(!k.startsWith(t))delete a.log[k]});let n=0;getAlerts().filter(x=>x.lvl==='red'||x.id==='promo').forEach(x=>{const k=t+x.id;if(!a.log[k]){a.log[k]=1;n++;notify(x.title,x.txt.replace(/<[^>]+>/g,''),x.opt)}});if(n)saveState()}
+function habitSlot(){const a=AL(),d=today(),h=new Date().getHours(),slot=h>=19?19:h>=13?13:h>=8?8:0;if(!slot)return null;a.log=a.log||{};const k=d+'habit'+slot;if(a.log[k])return null;if(todoDone().length>=TODO.length)return null;const txt={8:'Morning: count stock, log opening cash, review utang due today.',13:'Midday: record sales and expenses so far, restock low items.',19:'Night: reconcile the cash drawer, log expenses and owner draw.'}[slot];return {k:k,t:'Business habit check',txt:txt+' ('+todoDone().length+'/'+TODO.length+' done)',slot:slot}}
+function checkAlerts(){renderAlertCard();pushSchedule();if(!AL().on)return;const a=AL(),t=today();a.log=a.log||{};Object.keys(a.log).forEach(k=>{if(!k.startsWith(t))delete a.log[k]});let n=0;getAlerts().filter(x=>x.lvl==='red'||x.id==='promo').forEach(x=>{const k=t+x.id;if(!a.log[k]){a.log[k]=1;n++;notify(x.title,x.txt.replace(/<[^>]+>/g,''),x.opt)}});const hs=habitSlot();if(hs){a.log[hs.k]=1;n++;notify(hs.t,hs.txt,{btns:[{t:'Open checklist',f:()=>switchScreen('dashboard')},{t:'Later'}]})}if(n)saveState()}
 
 /* ===== Per-business-type promo + wording (overrides earlier versions) ===== */
 const PM={food:{m:'leftover',b:1,reuse:1},retail:{m:'slow',b:1},general:{m:'slow',b:1},online:{m:'slow'},maker:{m:'slow'},service:{m:'slowday'},rental:{m:'slowday'}};
@@ -1031,12 +1201,62 @@ const HADSW=!!(navigator.serviceWorker&&navigator.serviceWorker.controller);
 function autoUpdate(){if(window.__au)return;if(document.querySelector('.modal.show')){showToast('Update ready. It will apply when you finish.');setTimeout(autoUpdate,2e4)}else{window.__au=1;showToast('Updating VendorVibe…');setTimeout(()=>location.reload(),900)}}
 if(navigator.serviceWorker){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(HADSW)autoUpdate()});navigator.serviceWorker.ready.then(r=>{const u=()=>r.update().catch(()=>{});setInterval(u,18e5);addEventListener('online',u);document.addEventListener('visibilitychange',()=>{if(!document.hidden)u()})})}
 /* Online Gemini via Firebase AI Logic (free tier on Spark) or your own gateway */
-const AI_VER='11.10.0',AI_MODEL='gemini-2.5-flash',AI_SITEKEY='6LfSaOItAAAAABJeQQNGwdY4wvYgN9ilThwBzeDL',AI_DAILY=15;let AIM=null;
+const AI_VER='11.10.0',AI_MODEL='gemini-2.5-flash',AI_SITEKEY='6LfSaOItAAAAABJeQQNGwdY4wvYgN9ilThwBzeDL',AI_DAILY=15,AI_GATEWAY_DEFAULT='https://vendorvibe-ai.vercel.app/api/ask';let AIM=null;
+function aiUseGet(){return state.aiUse=(state.aiUse&&state.aiUse.d===today())?state.aiUse:{d:today(),n:0}}
+function aiUseOK(){if(aiUseGet().n>=AI_DAILY){showToast('Daily AI limit reached ('+AI_DAILY+'/day). Using the offline coach.');return false}return true}
+function aiUseBump(){const u=aiUseGet();u.n++;saveState()}
+function coachMetrics(){const t=totals(),p=state.personality||{},st=state.settings,r=rpgStats();return ['Business: '+(st.businessName||'VendorVibe')+' ('+bizLabel()+')','owner: '+(st.owner||'Owner'),'gross revenue: '+money(t.sales),'COGS: '+money(t.cogs),'operating expenses: '+money(t.exp),'net profit: '+money(t.net)+' ('+(t.sales>0?Math.round(t.net/t.sales*100):0)+'% margin)','business cash: '+money(t.cash),'inventory at cost: '+money(t.inv),'transactions: '+t.txns,'utang to collect: '+money(t.ar),'low stock: '+(state.products.filter(lowItem).map(x=>x.name).slice(0,5).join(', ')||'none'),'streak: '+streakDays()+' day(s)','archetype: '+(st.archetype||profileName()),'persona: risk='+(p.risk||'balanced')+', money='+(p.money||'practical')+', decisions='+(p.decision||'practical')+', growth='+(p.growth||'steady')+(p.goal?', goal='+p.goal:''),'rpg stats: cash '+r.cash+'% / risk '+r.risk+'% / grit '+r.grit+'% / trust '+r.trust+'% / growth '+r.growth+'%','language: '+(LANG==='fil'?'Taglish':'English'),'tone: direct, practical, no fluff, answer only what is asked'].join('; ')}
 async function initAC(app){try{if(location.hostname==='localhost')self.FIREBASE_APPCHECK_DEBUG_TOKEN=true;const AC=await import(`https://www.gstatic.com/firebasejs/${AI_VER}/firebase-app-check.js`);AC.initializeAppCheck(app,{provider:new AC.ReCaptchaEnterpriseProvider(AI_SITEKEY),isTokenAutoRefreshEnabled:true})}catch(e){console.warn('AppCheck',e)}}
-async function askOnlineCoach(q){if(!navigator.onLine||!consentOK('ai'))return null;const t=totals(),data={sales:t.sales,grossProfit:t.gross,expenses:t.exp,netProfit:t.net,cash:t.cash,lowStock:state.products.filter(lowItem).map(x=>x.name),businessType:state.settings.bizType,size:(state.profile||{}).size,yearsInBusiness:(state.profile||{}).years,hours:state.hours},url=cloudConfig().aiGatewayUrl;try{if(url){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'VendorVibe',question:q,business:data,profile:state.personality})});if(!r.ok)throw 0;const d=await r.json();return d.answer||d.output||d.text||null}
-if(!AIM){const c=cloudConfig().firebase;if(!c||!c.apiKey)return null;const A=await import(`https://www.gstatic.com/firebasejs/${AI_VER}/firebase-app.js`),I=await import(`https://www.gstatic.com/firebasejs/${AI_VER}/firebase-ai.js`),app=A.getApps().find(x=>x.name==='vvai')||A.initializeApp(c,'vvai');await initAC(app);AIM=I.getGenerativeModel(I.getAI(app,{backend:new I.GoogleAIBackend()}),{model:AI_MODEL})}
-const u=state.aiUse=(state.aiUse&&state.aiUse.d===today())?state.aiUse:{d:today(),n:0};if(u.n>=AI_DAILY){showToast('Daily AI limit reached. Using the offline coach.');return null}u.n++;saveState();const r=await AIM.generateContent(`You are VendorVibe, a friendly coach for a small Filipino business (${data.businessType}). Answer in max 6 sentences, in the same language as the question, with practical steps.\nBusiness data (PHP): ${JSON.stringify(data)}\nQuestion: ${q}`);return r.response.text()||null}catch(e){return null}}
+async function askOnlineCoach(q) {
+    if (!navigator.onLine) return null;
+    
+    // (Naka-comment out muna para makapasok tayo sa fetch para ma-test)
+    // if (!consentOK('ai')) return null;
+    // if (!aiUseOK()) return null;
 
+    const t = totals(), 
+          data = {
+              sales: t.sales, grossProfit: t.gross, expenses: t.exp, netProfit: t.net, cash: t.cash,
+              lowStock: state.products.filter(lowItem).map(x => x.name),
+              businessType: state.settings.bizType, size: (state.profile || {}).size,
+              yearsInBusiness: (state.profile || {}).years, hours: state.hours
+          },
+          url = (cloudConfig().aiGatewayUrl || '').trim() || AI_GATEWAY_DEFAULT;
+
+    try {
+        const r = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                query: q,
+                businessType: bizLabel(),
+                metrics: coachMetrics(),
+                persona: state.settings.archetype || profileName(),
+                lang: LANG,
+                app: 'VendorVibe'
+            })
+        });
+
+        if (!r.ok) {
+            console.error('🚨 AI Gateway Error:', r.status, r.statusText);
+            return `⚠️ Server Error: ${r.status}. Check the console.`;
+        }
+
+        const d = await r.json();
+        const out = (d && (d.reply || d.answer || d.output || d.text)) || null;
+
+        if (out && !/^⚠️/.test(out)) {
+            aiUseBump();
+            return out;
+        } else {
+            console.warn('⚠️ AI returned an invalid reply:', d);
+            return `⚠️ AI Warning: ${out || "Empty reply"}`;
+        }
+    } catch (e) {
+        console.error('🚨 Coach gateway unreachable:', e);
+        return `⚠️ Network Error: ${e.message}`;
+    }
+}
 /* ===== Landing / qualification quiz: picks features for all 9 business types ===== */
 const FILN={general:'Iba pang negosyo',retail:'Tindahan / Sari-sari / Grocery',food:'Pagkain at inumin (karinderya, café, bakery)',online:'Online seller / Reseller',maker:'Gumagawa / Magsasaka',service:'Serbisyo (salon, laundry, repair, klinika)',professional:'Freelancer / Tutor / Ahensya',trade:'Kontratista / Construction',rental:'Transport / Paupahan / Delivery'};
 const WQ=[['inv','Do you count stock or items you sell?','Binibilang mo ba ang stock o paninda mo?'],['orders','Do customers book or pre-order ahead?','May nagpapa-book o pa-order ba nang maaga?'],['utang','Do some customers pay later (utang)?','May nagbabayad ba nang later (utang)?'],['payroll','Do you pay employees or helpers?','May sinasahuran ka bang empleyado o kasama?'],['promo','Want promo and slow-sales alerts?','Gusto mo ba ng promo at alerto sa mabagal na benta?']];
@@ -1063,7 +1283,7 @@ function closeH(){const o=toH(state.hours&&state.hours.open),c=toH(state.hours&&
 function promoH(){return (state.hours&&state.hours.close)?closeH()-(AL().lead||2):AL().hour}
 function fmtTime(h){h=((h%24)+24)%24;const H=Math.floor(h),m=Math.round((h-H)*60);return(H%12||12)+':'+String(m).padStart(2,'0')+' '+(H<12?'AM':'PM')}
 function setHours(k,v){state.hours=state.hours||{};state.hours[k]=v;saveState();renderAll()}
-function renderAlertSettings(){const el=document.getElementById('alertSettings');if(!el)return;const a=AL(),M=pm(),H=state.hours||{};el.innerHTML=`<h3>🔔 Alarm &amp; vibrate</h3><p class="muted" style="line-height:1.5">Get a sound, vibration and phone notification for the things that matter to your business. Vibration works on Android; keep the app open or installed.</p>${M?`<div class="grid2"><div class="field"><label>🕘 Opening time</label><input type="time" value="${H.open||''}" onchange="setHours('open',this.value)"></div><div class="field"><label>🕔 Closing time</label><input type="time" value="${H.close||''}" onchange="setHours('close',this.value)"></div></div><div class="field"><label>Start promo alert before closing</label><select onchange="AL().lead=+this.value;saveState();renderAll()">${[1,2,3,4].map(n=>`<option value="${n}" ${n===(a.lead||2)?'selected':''}>${n} hour${n>1?'s':''} before closing</option>`).join('')}</select></div>${H.close?`<div class="notice">Promo alert starts at <b>${fmtTime(promoH())}</b>.</div>`:'<div class="notice warning">Set your opening and closing time so the promo alert is timed to your day.</div>'}`:''}<div class="actions"><button class="btn ${a.on?'':'primary'}" onclick="toggleAlerts()">${a.on?'🔕 Turn off':'🔔 Turn on alerts'}</button><button class="btn" onclick="testAlarm()">▶ Test alarm</button></div>${pushCard()}`}
+function renderAlertSettings(){const el=document.getElementById('alertSettings');if(!el)return;const a=AL(),M=pm(),H=state.hours||{};el.innerHTML=`<h3>🔔 Alarm &amp; vibrate</h3><p class="muted" style="line-height:1.5">Get a sound, vibration and phone notification for the things that matter to your business. Vibration works on Android; keep the app open or installed.</p><div class="notice">📅 Habit checklist reminders fire at <b>8:00 AM</b>, <b>1:00 PM</b> and <b>7:00 PM</b> while alerts are on.</div>${M?`<div class="grid2"><div class="field"><label>🕘 Opening time</label><input type="time" value="${H.open||''}" onchange="setHours('open',this.value)"></div><div class="field"><label>🕔 Closing time</label><input type="time" value="${H.close||''}" onchange="setHours('close',this.value)"></div></div><div class="field"><label>Start promo alert before closing</label><select onchange="AL().lead=+this.value;saveState();renderAll()">${[1,2,3,4].map(n=>`<option value="${n}" ${n===(a.lead||2)?'selected':''}>${n} hour${n>1?'s':''} before closing</option>`).join('')}</select></div>${H.close?`<div class="notice">Promo alert starts at <b>${fmtTime(promoH())}</b>.</div>`:'<div class="notice warning">Set your opening and closing time so the promo alert is timed to your day.</div>'}`:''}<div class="actions"><button class="btn ${a.on?'':'primary'}" onclick="toggleAlerts()">${a.on?'🔕 Turn off':'🔔 Turn on alerts'}</button><button class="btn" onclick="testAlarm()">▶ Test alarm</button></div>${pushCard()}`}
 /* quiz: size, years, hours */
 function wzSteps(){return[{k:'size'},{k:'years'},...WQ.filter(q=>q[0]!=='promo'||PM[W.t]).map(q=>({k:q[0],q})),...(PM[W.t]?[{k:'hours'}]:[])]}
 function wzType(k){const B=BIZ[k],d=HRS[k]||['08:00','18:00'];W.t=k;W.f={inv:!!B.inv,orders:!!B.orders,utang:!!B.utang,payroll:!!B.payroll,promo:!!PM[k]};W.h={open:d[0],close:d[1]};W.p={};W.s=1;wz()}
@@ -1169,6 +1389,7 @@ function atLocal(ymdStr,h,m){const[y,mo,d]=ymdStr.split('-').map(Number);return 
 function pushItems(){const out=[],now=Date.now(),days=[];for(let i=0;i<14;i++){const x=new Date();x.setDate(x.getDate()+i);days.push(ymd(x))}
 const add=(ms,k,t,x)=>{if(ms>now+6e4&&out.length<48)out.push({b:bucketOf(ms),k,t,x})};
 if(AL().on&&promoOK()&&state.hours&&state.hours.close){const ph=Math.max(0,Math.min(23,Math.floor(promoH())));days.slice(0,3).forEach(d=>add(atLocal(d,ph,0),'promo','Promo time','Check unsold stock and run a promo before closing.'))}
+if(AL().on){const HH=[8,13,19],HM=['Morning habit check: count stock, log opening cash, review utang due today.','Midday habit check: record sales and expenses so far, restock low items.','Night habit check: reconcile the cash drawer, log expenses and owner draw, review your habit score.'];days.slice(0,3).forEach(d=>HH.forEach((h,j)=>add(atLocal(d,h,0),'habit'+h,'Business habit check',HM[j])))}
 days.forEach((d,i)=>{const due=state.customers.filter(c=>c.collectOn&&owed(c.id)>.005&&(i===0?c.collectOn<=d:c.collectOn===d)).length;if(due)add(atLocal(d,8,0),'due','Collect payments',`${due} customer${due>1?'s':''} to collect from today.`);const ex=state.products.filter(p=>tracks(p)&&p.stock>0&&p.expiry&&(i===0?p.expiry<=d:p.expiry===d)).length;if(ex)add(atLocal(d,8,0),'exp','Expiring stock',`${ex} item${ex>1?'s':''} expiring. Put them on promo.`)});
 return out}
 async function pushSchedule(force){const P=state.push;if(!P||!P.on||!P.token||!consentOK('push')||!navigator.onLine)return;if(!force&&Date.now()-(P.last||0)<6e5)return;P.last=Date.now();try{const db=await firebaseReady(),u=firebase.auth().currentUser;if(!u||!u.emailVerified)return;const items=pushItems(),h=hsh(JSON.stringify([items,P.token]));if(!force&&state.cloud.pushHash===h)return;await db.collection('push').doc(u.uid).set({v:1,tokens:[P.token],items,slots:[...new Set(items.map(i=>i.b))],tz:-new Date().getTimezoneOffset(),t:firebase.firestore.FieldValue.serverTimestamp()});state.cloud.pushHash=h;saveState()}catch(e){console.warn('push schedule',e)}}
@@ -1179,14 +1400,168 @@ function pushCard(){const P=state.push||{},on=P.on&&consentOK('push');return `<h
 function a11y(){document.documentElement.lang=LANG==='fil'?'fil':'en-US';document.querySelectorAll('.modal').forEach(m=>{m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');const h=m.querySelector('h2');if(h){h.id=h.id||m.id+'T';m.setAttribute('aria-labelledby',h.id)}});const IC={'✕':'Close','?':'Help and tutorial','⚙️':'Settings','＋':'Add'};document.querySelectorAll('button').forEach(b=>{const t=b.textContent.trim();if(!b.getAttribute('aria-label')&&IC[t])b.setAttribute('aria-label',IC[t]);if(!t&&!b.getAttribute('aria-label')&&b.title)b.setAttribute('aria-label',b.title)});document.querySelectorAll('input,select,textarea').forEach(i=>{if(i.type==='hidden'||i.getAttribute('aria-label')||i.getAttribute('aria-labelledby'))return;const f=i.closest('.field'),l=f&&f.querySelector('label');if(l&&i.id&&!l.htmlFor){l.htmlFor=i.id;return}if(i.labels&&i.labels.length)return;const n=i.getAttribute('placeholder')||i.getAttribute('title')||(l&&l.textContent.trim());if(n)i.setAttribute('aria-label',n)});document.querySelectorAll('.nav').forEach(n=>{n.setAttribute('role','navigation');n.setAttribute('aria-label','Main')});const nb=document.querySelector('.nav button.active');document.querySelectorAll('.nav button').forEach(b=>b.setAttribute('aria-current',b===nb?'page':'false'));const t=document.getElementById('toast');if(t){t.setAttribute('role','status');t.setAttribute('aria-live','polite')}}
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const m=[...document.querySelectorAll('.modal.show')].pop();if(m)closeModal(m.id)});
 setInterval(checkAlerts,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkAlerts()});setTimeout(checkAlerts,3000);setTimeout(handleShareTarget,700);
+
+/* ===================== v11.11 upgrade block =====================
+   Zero-expense behavior engine (CSV/JSON import, auto archetype), Floor/Vibe
+   modes, collapsible cards, sparklines, rewards, stat pop-ups and the
+   context-aware coach. Everything runs locally; nothing new is uploaded. */
+const CTX={screen:'dashboard',prev:'dashboard',stat:null};let TYPING=false,LASTHAP=0,SHEET_SALE=null;
+function uiC(){state.ui=state.ui||{};state.ui.col=state.ui.col||{};state.rewards=state.rewards||[];return state.ui}
+function hap(p){try{const n=Date.now();if(!navigator.vibrate||n-LASTHAP<80)return;LASTHAP=n;navigator.vibrate(p)}catch(e){}}
+function relT(t){if(!t)return'';const m=Math.floor((Date.now()-t)/6e4);if(m<1)return L('just now','ngayon lang');if(m<60)return m+L(' min ago',' min ang nakalipas');const h=Math.floor(m/60);if(h<24)return h+L(' hr ago',' oras ang nakalipas');return Math.floor(h/24)+L(' d ago',' araw ang nakalipas')}
+function cloudReady(){const c=cloudConfig();return !!(c&&c.firebase&&c.firebase.projectId&&c.firebase.appId&&c.firebase.apiKey)}
+
+/* ---------- storage transparency badge ---------- */
+function renderStorageBadge(){const b=document.getElementById('storageBadge');if(!b)return;const on=cloudReady()&&consentOK('cloud'),last=state.cloud&&state.cloud.lastT;const sub=!navigator.onLine?L('Offline mode active','Offline mode'):(on&&last?L('Synced ','Na-sync ')+relT(last):L('Cloud off','Cloud off'));b.innerHTML='<span>'+esc(L('💾 Saved locally','💾 Nakatabi sa device'))+'</span><span class="sb2"> • '+esc(sub)+'</span>'}
+function showSyncInfo(){const on=cloudReady()&&consentOK('cloud'),last=state.cloud&&state.cloud.lastT,u=cloudUsage();alert(L('Where your data lives','Saan nakatira ang data mo')+'\n\n• '+L('On this phone: IndexedDB + local mirror — works offline.','Sa teleponong ito: IndexedDB + local mirror — gumagana offline.')+'\n• '+L('Offline mode: ','Offline mode: ')+(navigator.onLine?L('online now, still zero server cost','online ngayon, libre pa rin'):L('active','aktibo'))+'\n• '+L('Cloud copy: ','Cloud copy: ')+(on?(L('ON','ON')+' — '+u.n+L(' docs, about ',' dokumento, mga ')+u.kb+' KB'+(last?' · '+L('last synced ','huling sync ')+relT(last):'')):L('OFF (zero-cost mode — nothing leaves your phone)','OFF (zero-cost mode — walang lumalabas sa telepono mo)'))+'\n\n'+L('Tip: Data Safety has Import for past CSV or JSON files.','Tip: may Import sa Data Safety para sa lumang CSV o JSON.'))}
+
+/* ---------- Floor / Vibe modes + collapsible cards ---------- */
+function setMode(m){const u=uiC();u.mode=m;saveState();hap(10);applyUi()}
+function applyUi(){const u=uiC(),f=u.mode==='floor';document.body.classList.toggle('floor',f);const sf=document.getElementById('segFloor'),sv=document.getElementById('segVibe'),fb=document.getElementById('floorBar'),h=document.getElementById('modeHint');if(sf){sf.classList.toggle('on',f);sf.setAttribute('aria-pressed',f?'true':'false')}if(sv){sv.classList.toggle('on',!f);sv.setAttribute('aria-pressed',f?'false':'true')}if(fb)fb.style.display=f?'grid':'none';if(h)h.textContent=f?L('Floor Mode: big buttons for busy hours. Tap Vibe for the game view.','Floor Mode: malalaking button para sa abala. Pindutin ang Vibe para sa laro.'):L('Vibe Mode: your character, quests and tips. Tap Floor for fast selling.','Vibe Mode: character, hamon at tips. Pindutin ang Floor para sa mabilis na benta.')}
+function applyCollapse(){const u=uiC(),a=document.getElementById('rpgCard'),b=document.getElementById('questBox');if(a)a.classList.toggle('col',!!u.col.rpg);if(b)b.classList.toggle('col',!!u.col.quest)}
+function toggleCol(k){const u=uiC();u.col[k]=!u.col[k];hap(10);saveState();applyCollapse()}
+
+/* ---------- 7-day sparklines + "what changed" ---------- */
+function last7(){const a=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);a.push(ymd(d))}return a}
+function sparkSeries(k){return last7().map(d=>{const S=state.sales.filter(s=>s.date===d),E=state.expenses.filter(e=>e.date===d);if(k==='cash')return E.length+((state.cashlog&&state.cashlog[d])?1:0);if(k==='risk')return state.orders.filter(o=>String(o.date||'').slice(0,10)===d).length+((state.rpg&&state.rpg.questDate===d)?1:0);if(k==='grit')return S.length;if(k==='trust')return state.payments.filter(x=>String(x.date||x.at||'').slice(0,10)===d).length+state.customers.filter(c=>(c.dateAdded||c.date||'')===d).length;return Math.round(S.reduce((x,s)=>x+(+s.total||0),0))})}
+function spark(a){const m=Math.max(1,...a),n=a.length,pts=a.map((v,i)=>Math.round(i*(64/(n-1)))+','+Math.round(16-(v/m)*14)).join(' '),ly=Math.round(16-(a[n-1]/m)*14);return '<svg class="spk" viewBox="0 0 66 18" width="66" height="18" aria-hidden="true"><polyline points="'+pts+'" fill="none" stroke="#8ff0d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="64" cy="'+ly+'" r="2.6" fill="#ffd166"/></svg>'}
+function hasActivity(d){return state.sales.some(x=>x.date===d)||state.expenses.some(x=>x.date===d)||!!(state.cashlog&&state.cashlog[d])||(state.draws||[]).some(x=>x.date===d)}
+function streakDays(){let n=0,d=new Date();if(!hasActivity(ymd(d)))d.setDate(d.getDate()-1);for(;n<400;n++){if(!hasActivity(ymd(d)))break;d.setDate(d.getDate()-1)}return n}
+function whatChanged(){const a=ymd(new Date(Date.now()-6*864e5)),b=ymd(new Date(Date.now()-13*864e5)),cnt=(arr,d0,d1)=>arr.filter(x=>{const s=String(x.date||'').slice(0,10);return s>=d0&&s<d1}).length;const s=state.sales.filter(x=>String(x.date||'')>=a).length,e=state.expenses.filter(x=>String(x.date||'')>=a).length,sP=cnt(state.sales,b,a),eP=cnt(state.expenses,b,a),st=streakDays();return '📈 '+L('This week: ','Ngayong linggo: ')+s+L(' sales, ',' benta, ')+e+L(' expenses logged',' gastos ang naitala')+(sP||eP?L(' (last week ',' (nakaraang linggo ')+sP+'/'+eP+')':L(' (your first week!)',' (unang linggo mo!)'))+(st>1?' · 🔥 '+st+L('-day streak','-araw na tuloy-tuloy'):'')}
+/* ---------- stat pop-ups + micro-lessons ---------- */
+const STAT_ICON={cash:'💵',risk:'🎲',grit:'💪',trust:'🤝',growth:'📈'};
+function statName(k){const N={cash:['Cash Discipline','Disiplina sa Pera'],risk:['Risk Tolerance','Lakas ng Loob'],grit:['Grit & Resilience','Tiyaga'],trust:['Customer Trust','Tiwala ng Customer'],growth:['Growth Drive','Hangad Umunlad']};const n=N[k]||[k,k];return L(n[0],n[1])}
+const STAT_INFO={
+ cash:{how:['Scored from counted cash vs expected, expense records, and owner draws vs sales. Unrecorded cash lowers this score.','Iskor mula sa bilang ng kaha laban sa expected, mga gastos, at owner draws laban sa benta. Ang hindi naitatalang cash ay nagpapababa nito.'],fix:['Count the drawer at open and close, even on busy days (30 seconds each), and record every owner draw.','Bilangin ang kaha sa bukas at sara, kahit abala (30 segundo lang), at i-record ang bawat owner draw.'],btn:['🧮 Count cash now','🧮 Bilangin ang kaha'],go:function(){openCash()}},
+ risk:{how:['Based on your coach profile (cautious, balanced or bold) plus orders and daily dilemmas you take on.','Batay sa iyong coach profile (maingat, balanse o matapang) at sa mga order at hamon na tinatanggap mo.'],fix:['Try one small, calculated experiment this week: a new product line, a bundle promo, or a new supplier. Small bets teach fast.','Subukan ang isang maliit ngunit pinag-isipang eksperimento ngayong linggo: bagong produkto, bundle promo, o bagong supplier. Mabilis matuto sa maliliit na taya.'],btn:['＋ Add product','＋ Magdagdag ng produkto'],go:function(){openProduct()}},
+ grit:{how:['Grows with daily logging: how many days in the last 2 weeks had recorded sales, plus dilemmas finished.','Lumalaki sa araw-araw na pagtatala: kung ilang araw sa nakalipas na 2 linggo ang may benta, kasama ang mga hamon na natapos.'],fix:['Log at least one sale every day, even on a slow day. Five minutes of logging beats a perfect memory.','Magtala ng kahit isang benta araw-araw, kahit mabagal. Limang minuto ng pagtatala ay mas mabuti kaysa sa pag-asa sa alaala.'],btn:['＋ Record sale','＋ Mag-record ng benta'],go:function(){openSale()}},
+ trust:{how:['Built from utang payments collected, and lowered by customers with unpaid balances.','Buo mula sa mga bayad na nakolekta sa utang, at nababawasan ng mga customer na may hindi pa bayad.'],fix:['Set a collect-on date for every utang and message the customer one day before. A quick reminder keeps trust and cash.','Magtakda ng petsa ng singil sa bawat utang at i-message ang customer isang araw bago. Ang mabilis na paalala ay nagpapanatili ng tiwala at pera.'],btn:['📒 Open Utang Ledger','📒 Buksan ang Talaan ng Utang'],go:function(){switchScreen('utang')}},
+ growth:{how:['From your growth profile, the number of products you sell, and how continuously you record.','Mula sa growth profile mo, dami ng produktong binebenta, at gaano katuloy-tuloy ang pagtatala.'],fix:['Add or improve one product this week and record its first sale. Growth compounds from small additions.','Magdagdag o magpaganda ng isang produkto ngayong linggo at itala ang unang benta nito. Lumalaki ang kita sa maliliit na dagdag.'],btn:['＋ Add product','＋ Magdagdag ng produkto'],go:function(){openProduct()}}
+};
+function statFix(k,F){const i=STAT_INFO[k];return i?(F?i.fix[1]:i.fix[0]):''}
+function openStat(k){const i=STAT_INFO[k];if(!i)return;CTX.stat=k;const st=rpgStats(),F=LANG==='fil',el=document.getElementById('statTitle'),b=document.getElementById('statBody');if(el)el.innerHTML='<span class="ava">'+STAT_ICON[k]+'</span> '+esc(statName(k));
+if(b){b.innerHTML='<div class="statbig"><b>'+st[k]+'%</b><div class="sbar"><i style="width:'+st[k]+'%"></i></div></div><div style="margin:10px 0 2px">'+spark(sparkSeries(k))+' <small class="muted">'+L('Last 7 days','Huling 7 araw')+'</small></div><h3 style="margin:14px 0 4px">🔍 '+L('How this is measured','Paano ito sinusukat')+'</h3><p class="muted" style="line-height:1.55">'+esc(F?i.how[1]:i.how[0])+'</p><h3 style="margin:12px 0 4px">🛠 '+L('Your practical fix','Praktikal na solusyon')+'</h3><p style="line-height:1.55">'+esc(F?i.fix[1]:i.fix[0])+'</p><div class="actions" style="margin-top:12px"><button class="btn primary" id="statGo"></button><button class="btn" id="statAsk"></button></div>';
+const g=document.getElementById('statGo'),aA=document.getElementById('statAsk');if(g){g.textContent=F?i.btn[1]:i.btn[0];g.onclick=function(){closeModal('statModal');try{i.go()}catch(e){}}}if(aA){aA.textContent=L('💬 Ask Coach VeVi about this','💬 Tanungin si Coach VeVi tungkol dito');aA.onclick=askAboutStat}}
+openModal('statModal');updateCtxNote();hap(8)}
+function askAboutStat(){const k=CTX.stat;if(!k)return;closeModal('statModal');switchScreen('coach');askCoachQ(L('My "','Ang "')+statName(k)+L('" score is ','" score ay ')+rpgStats()[k]+'%. '+L('What exactly should I do this week to improve it? Give me 3 concrete steps for my business.','Ano ang eksaktong gagawin ko ngayong linggo para paunlarin ito? Bigyan mo ako ng 3 konkretong hakbang para sa negosyo ko.'))}
+
+/* ---------- reward badges (streaks unlock tools later) ---------- */
+const REWARDS=[
+{id:'streak3',ico:'🔥',n:['3-day logging streak','3 araw na tuloy-tuloy na pagtatala'],c:function(){return streakDays()>=3}},
+{id:'streak5',ico:'⚡',n:['5-day logging streak','5 araw na tuloy-tuloy na pagtatala'],c:function(){return streakDays()>=5}},
+{id:'streak7',ico:'🏆',n:['7-day streak — Streak Master','7 araw na tuloy-tuloy — Streak Master'],c:function(){return streakDays()>=7}},
+{id:'sales10',ico:'🛒',n:['10 sales recorded','10 benta na naitala'],c:function(){return state.sales.length>=10}},
+{id:'tally7',ico:'🧮',n:['7 cash tallies done','7 pagbilang ng kaha'],c:function(){return Object.keys(state.cashlog||{}).length>=7}},
+{id:'debtfree',ico:'🤝',n:['All utang collected','Nakolekta lahat ng utang'],c:function(){return state.customers.length>0&&state.customers.every(function(c){return owed(c.id)<=0.005})}},
+{id:'quest5',ico:'⚔️',n:['5 dilemmas resolved','5 hamon na natapos'],c:function(){return ((state.rpg&&state.rpg.quests)||0)>=5}}];
+function checkRewards(silent){const have=new Set(state.rewards=state.rewards||[]);const got=REWARDS.filter(function(r){return !have.has(r.id)&&r.c()});if(!got.length)return;got.forEach(function(r){have.add(r.id)});state.rewards=[...have];saveState();if(!silent)got.forEach(function(r,i){setTimeout(function(){hap([12,30,12]);showToast('🎉 '+L('Badge unlocked: ','Na-unlock ang badge: ')+L(r.n[0],r.n[1]))},i*900)});renderRewardStrip()}
+function renderRewardStrip(){const el=document.getElementById('rpgRewards');if(!el)return;const have=new Set(state.rewards||[]);el.innerHTML=REWARDS.map(function(r){return '<span class="rw-chip'+(have.has(r.id)?'':' off')+'" title="'+esc(L(r.n[0],r.n[1]))+'">'+(have.has(r.id)?r.ico:'🔒')+' '+esc(L(r.n[0],r.n[1]))+'</span>'}).join('')}
+
+/* ---------- behavior-seeded archetype engine (replaces the arbitrary quiz) ---------- */
+function archEmoji(){const a=state.settings.archetype||'';if(/Accountant/i.test(a))return'🧮';if(/Hustler/i.test(a))return'🚀';if(/Community/i.test(a))return'🤝';if(/Visionary/i.test(a))return'🔭';return'🧮'}
+function archetypeFromBehavior(){const T=totals(),days=new Set(state.sales.filter(function(s){return s.total>0}).map(function(s){return s.date})).size;
+const acc=Object.keys(state.cashlog||{}).length*3+new Set(state.expenses.map(function(e){return e.category})).size*2+((state.draws||[]).length<=2?2:0);
+const hust=state.orders.length*3+state.sales.filter(function(s){return s.promo}).length*3+((state.rpg&&state.rpg.quests)||0)*2+(T.sales>0&&T.gross/Math.max(1,T.sales)>.3?4:0);
+const comm=state.customers.length*2+state.payments.length*3+state.customers.filter(function(c){return c.collectOn}).length*2;
+const vis=state.products.length*2+days*3+state.orders.filter(function(o){return o.dueDate}).length*2;
+return [['The Disciplined Accountant',acc],['The Risk-Taking Hustler',hust],['The Community Builder',comm],['The Visionary Planner',vis]].sort(function(a,b){return b[1]-a[1]})[0][0]}
+function maybeAutoArchetype(silent){const u=uiC();if(u.archLock)return;if(state.sales.length<5&&state.expenses.length<10)return;const a=archetypeFromBehavior();if(a===state.settings.archetype){u.archSeed=1;return}state.settings.archetype=a;u.archSeed=1;recordAudit('archetype.auto',a);saveState();if(!silent){showToast('🧬 '+L('Behavior detected: ','Napansin sa gawi mo: ')+a);hap([10,30,10])}updateArchNote()}
+function updateArchNote(){const el=document.getElementById('archNote');if(!el)return;const u=state.ui||{};el.textContent=u.archLock?L('🔒 Set manually. Automatic detection is off.','🔒 Manu-manong itinakda. Naka-off ang automatic detection.'):u.archSeed?L('🧬 Detected automatically from your records. Change it here anytime.','🧬 Awtomatikong napansin mula sa mga rekord mo. Pwede mo itong palitan dito.'):L('Unlocks automatic detection after 5 sales or 10 expenses.','Magbubukas ang automatic detection pagkatapos ng 5 benta o 10 gastos.')}
+
+/* ---------- context-aware coach (Coach VeVi) ---------- */
+function mdLite(t){return esc(t).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>')}
+function scrName(s){const M={dashboard:['Dashboard','Dashboard'],products:['Products','Produkto'],sales:['Sales','Benta'],orders:['Orders','Mga Order'],customers:['Customers','Mga Customer'],expenses:['Expenses','Mga Gastos'],staff:['Employees','Mga Empleyado'],reports:['Reports','Mga Ulat'],coach:['Coach','Coach'],utang:['Utang Ledger','Talaan ng Utang'],more:['More','Iba Pa']};const m=M[s]||M.dashboard;return L(m[0],m[1])}
+function ctxSummary(){const s=CTX.screen==='coach'?CTX.prev:CTX.screen;return scrName(s)+(CTX.stat?' · '+STAT_ICON[CTX.stat]+' '+statName(CTX.stat)+' '+rpgStats()[CTX.stat]+'%':'')}
+function updateCtxNote(){const el=document.getElementById('ctxNote');if(el)el.textContent='📍 '+L('Coach sees: ','Nakikita ng coach: ')+ctxSummary()}
+function pushChat(who,text){state.coachChat=state.coachChat||[];state.coachChat.push({who:who,text:text});if(state.coachChat.length>80)state.coachChat=state.coachChat.slice(-80);saveState();renderCoach()}
+async function askCoachQ(q){if(!q)return;updateCtxNote();pushChat('user',q);TYPING=true;renderCoach();hap(8);
+const t=totals(),low=state.products.filter(lowItem).map(function(x){return x.name}).slice(0,3),view=CTX.screen==='coach'?CTX.prev:CTX.screen;
+const ctx='[Context — screen: '+scrName(view)+(CTX.stat?'; viewing attribute: '+statName(CTX.stat)+' at '+rpgStats()[CTX.stat]+'%':'')+'; sales: '+money(t.sales)+'; net: '+money(t.net)+'; low stock: '+(low.join(', ')||'none')+']';
+let reply=null;
+if(navigator.onLine&&consentOK('ai')&&aiUseOK()){if(window.coachBrain&&window.coachBrain.evaluate){try{const r=await window.coachBrain.evaluate(q,bizLabel(),coachMetrics()+' | '+ctx);if(r&&r.reply&&!/^⚠️/.test(r.reply)){aiUseBump();reply=r.reply}}catch(e){}}
+if(!reply){try{const r2=await askOnlineCoach(q+'\n'+ctx);if(r2&&!/^⚠️/.test(r2))reply=r2}catch(e){}}}
+if(!reply)reply=offlineCoach(q)+'\n\n'+L('📶 Online AI is off or unreachable, so this is your offline coach. Turn on AI in More → Privacy for deeper answers.','📶 Off o hindi maabot ang online AI, kaya offline coach ang sumagot. Buksan ang AI sa More → Privacy para sa mas malalim na sagot.');
+TYPING=false;pushChat('ai',reply)}
+/* ---------- unlockable CSV templates (zero-cost reward layer) ---------- */
+const TPLS={
+ sales7:{ico:'🧾',name:['7-Day Sales Log','7-Araw na Sales Log'],need:function(){return streakDays()>=3},unlock:['Log activity 3 days in a row','Mag-log ng 3 araw nang sunod-sunod']},
+ expense:{ico:'💸',name:['Expense Tracker Sheet','Expense Tracker Sheet'],need:function(){return streakDays()>=5},unlock:['Log activity 5 days in a row','Mag-log ng 5 araw nang sunod-sunod']},
+ inventory:{ico:'📦',name:['Inventory Count Sheet','Inventory Count Sheet'],need:function(){return state.sales.length>=10},unlock:['Record 10 sales','Makapagtala ng 10 benta']}};
+function renderTplBox(){const box=document.getElementById('tplBox');if(!box)return;const ks=Object.keys(TPLS),ok=ks.filter(function(k){return TPLS[k].need()}).length;box.innerHTML='<h3>'+L('Practical templates','Mga praktikal na template')+' — '+ok+'/'+ks.length+' '+L('unlocked','naka-unlock')+'</h3>'+ks.map(function(k){const t=TPLS[k],u=t.need();return '<div class="row" style="align-items:center;gap:8px;margin:6px 0"><span style="font-size:20px">'+(u?t.ico:'🔒')+'</span><div style="flex:1"><div style="font-weight:600">'+t.name[LANG==='fil'?1:0]+'</div><div class="muted" style="font-size:12px">'+(u?L('Ready to download — CSV opens in Excel/Sheets.','Pwede nang i-download — bubukas ang CSV sa Excel/Sheets.'):L('Unlocks: ','Ma-u-unlock: ')+t.unlock[LANG==='fil'?1:0])+'</div></div>'+(u?'<button type="button" class="btn small primary" onclick="dlTpl(&quot;'+k+'&quot;)">⬇️ CSV</button>':'')+'</div>'}).join('')}
+function csCell(v){v=String(v==null?'':v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+function dlTpl(k){const t=TPLS[k];if(!t||!t.need())return;let head,rows=[],fn=t.name[0].replace(/[^A-Za-z0-9]+/g,'-').toLowerCase(),csv='';
+ if(k==='sales7'){head=['Date','Product','Qty','Price','Total','Payment','Customer'];const src=state.sales.slice(0,80).slice().reverse();rows=src.length?src.map(function(s){return [s.date,s.productName,s.qty,s.unitPrice,s.total,s.payment||'',(state.customers.find(function(c){return c.id===s.customerId})||{}).name||'']}):last7().map(function(d){return [d,'','','','','','']})}
+ else if(k==='expense'){head=['Date','Expense','Amount','Category','Notes'];const src=state.expenses.slice(0,80).slice().reverse();rows=src.length?src.map(function(e){return [e.date,e.name,e.amount,e.category||'',e.notes||'']}):last7().map(function(d){return [d,'','','','']})}
+ else{head=['Product','Category','Cost','Price','Stock','Low stock alert'];rows=state.products.map(function(p){return [p.name,p.category||'',p.cost,p.price,tracks(p)?p.stock:'',tracks(p)?(p.low||0):'']})}
+ csv='\ufeff'+[head].concat(rows).map(function(r){return r.map(csCell).join(',')}).join('\r\n')+'\r\n';
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='vendorvibe-'+fn+'-'+today()+'.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},400);hap(12);showToast('⬇️ '+t.name[LANG==='fil'?1:0]+' '+L('downloaded','na-download'))}
+
+/* ---------- local file import: CSV logs + JSON backups (FileReader, no server) ---------- */
+function csvSep(line){const c=(line.match(/,/g)||[]).length,s=(line.match(/;/g)||[]).length,t=(line.match(/\t/g)||[]).length;return c>=s&&c>=t?',':(s>=t?';':'\t')}
+function csvParse(txt){const first=txt.split(/\r?\n/)[0]||'',sep=csvSep(first),out=[];let row=[],cell='',q=false;for(let i=0;i<txt.length;i++){const ch=txt[i];if(q){if(ch==='"'){if(txt[i+1]==='"'){cell+='"';i++}else q=false}else cell+=ch}else if(ch==='"')q=true;else if(ch===sep){row.push(cell);cell=''}else if(ch==='\n'){row.push(cell);cell='';out.push(row);row=[]}else if(ch!=='\r')cell+=ch}if(cell!==''||row.length){row.push(cell);out.push(row)}return out}
+function numFrom(s){const n=parseFloat(String(s==null?'':s).replace(/[^0-9.\-]/g,''));return isFinite(n)?n:0}
+function normDate(v){v=String(v==null?'':v).trim();if(!v)return today();let m=v.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+'-'+m[2]+'-'+m[3];m=v.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})/);if(m){let mo=+m[1],da=+m[2],y=+m[3];if(y<100)y+=2000;if(mo>12){const t=mo;mo=da;da=t}return y+'-'+String(mo).padStart(2,'0')+'-'+String(da).padStart(2,'0')}const d=new Date(v);return isNaN(d)?today():ymd(d)}
+function sortFeeds(){['sales','expenses','orders','draws','payments'].forEach(function(k){state[k]=(state[k]||[]).slice().sort(function(a,b){return String(b.date||b.at||'').localeCompare(String(a.date||a.at||''))})})}
+function importLocalFile(ev){const f=ev.target.files&&ev.target.files[0];ev.target.value='';if(!f)return;if(f.size>4*1024*1024){showToast(L('File is larger than 4MB.','Mas malaki sa 4MB ang file.'));return}const rd=new FileReader();rd.onload=function(){const txt=String(rd.result||'');try{if(/^\s*[\{\[]/.test(txt))importJSONMerge(txt);else importCSV(txt)}catch(err){showToast(L('Could not read that file. Use a CSV or a VendorVibe JSON backup.','Hindi mabasa ang file. Gumamit ng CSV o VendorVibe JSON backup.'))}};rd.onerror=function(){showToast(L('Could not open that file.','Hindi mabuksan ang file.'))};rd.readAsText(f)}
+function importJSONMerge(txt){const data=JSON.parse(txt),src=data&&data.state?data.state:data;if(!src||typeof src!=='object')throw new Error('bad');
+ const AR={sales:'s',expenses:'e',orders:'o',draws:'d',payments:'u',products:'p',customers:'c',employees:'emp',payroll:'pay',advances:'ca',adjustments:'adj',oldUtang:'ou',audit:'a'};
+ const pend={},names=[];Object.keys(AR).forEach(function(k){const arr=Array.isArray(src[k])?src[k]:[];if(!arr.length)return;const have=new Set((state[k]||[]).map(function(x){return x&&x.id}));const add=arr.filter(function(x){return x&&typeof x==='object'&&!have.has(x.id)});if(add.length){pend[k]=add;names.push(add.length+' '+k)}});
+ const first=!state.settings.setup;
+ if(!names.length&&!first){showToast(L('Nothing new to import — duplicates are skipped by id.','Walang bagong mai-import — nilalaktawan ang doble ayon sa id.'));return}
+ if(!confirm(L('Import '+(names.join(', ')||'settings only')+' from this file?\nDuplicates are skipped by id. Nothing is uploaded.','I-import ang '+(names.join(', ')||'settings lang')+' mula sa file?\nNilalaktawan ang doble ayon sa id. Walang ia-upload.')))return;
+ let total=0;Object.keys(pend).forEach(function(k){pend[k].forEach(function(x){state[k]=state[k]||[];state[k].push(Object.assign({},x,{id:x.id||uid(AR[k])}));total++})});
+ if(first&&src.settings){['businessName','businessType','owner','capital','lang','archetype'].forEach(function(k){if(src.settings[k]!==undefined)state.settings[k]=src.settings[k]});state.settings.setup=true}
+ if(first&&src.personality&&src.personality.risk)state.personality=Object.assign({},state.personality,src.personality);
+ if(src.cashlog){state.cashlog=state.cashlog||{};Object.keys(src.cashlog).forEach(function(d){if(state.cashlog[d]===undefined)state.cashlog[d]=src.cashlog[d]})}
+ sortFeeds();recordAudit('import.json','+'+total+' records');maybeAutoArchetype(true);saveState();renderAll();showToast('⬆️ '+L('Imported ','Na-import ang ')+(total?total+' '+L('record(s)','record'):L('settings','settings'))+L('. All local.','. Lokal lang lahat.'))}
+function importCSV(txt){const rows=csvParse(String(txt).replace(/^\ufeff/,'')).filter(function(r){return r.some(function(c){return String(c).trim()!==''})});if(rows.length<2){showToast(L('That CSV looks empty.','Mukhang walang laman ang CSV.'));return}
+ const H=rows[0].map(function(h){return String(h).trim().toLowerCase()}),find=function(re){return H.findIndex(function(h){return re.test(h)})};
+ const iProd=find(/product|item|paninda|description/),iName=find(/name|particular|expense|gastos|desc/),iQty=find(/qty|quantity|dami/),iAmt=find(/amount|total|price|halaga|presyo/),iDate=find(/date|petsa|araw/),iCat=find(/categ|type|uri/),iNotes=find(/note|remar|detalye/),iPay=find(/payment|bayad|mode|paraan/),iCust=find(/customer|client|suki/);
+ const isExp=/expense|gastos/i.test(rows[0].join(' '))||(iCat>=0&&iAmt>=0&&iProd<0&&iQty<0);
+ const g=function(R,i){return i>=0?String(R[i]==null?'':R[i]).trim():''},normPay=function(v){const x=String(v||'').toLowerCase();if(/gcash/.test(x))return'GCash';if(/maya/.test(x))return'Maya';if(/bank|transfer/.test(x))return'Bank';if(/utang|credit|loan/.test(x))return'Utang';return'Cash'};
+ const sales=[],exps=[],newP=[],newC=[];
+ const findP=function(name){let p=state.products.find(function(x){return String(x.name).toLowerCase()===name.toLowerCase()});if(!p){p={id:uid('p'),name:name,cost:0,price:0,stock:0,low:0,category:'Imported',track:false};state.products.push(p);newP.push(name)}return p};
+ const findC=function(name){let c=state.customers.find(function(x){return String(x.name).toLowerCase()===name.toLowerCase()});if(!c){c={id:uid('c'),name:name,mobile:'',email:'',address:'',notes:'',dateAdded:today()};state.customers.push(c);newC.push(name)}return c};
+ for(let r=1;r<rows.length;r++){const R=rows[r],pname=g(R,iProd)||g(R,iName),amt=numFrom(g(R,iAmt)),d=normDate(g(R,iDate));
+  if(isExp){if(!amt)continue;exps.push({id:uid('e'),name:pname||g(R,iNotes)||'Imported expense',amount:amt,date:d,category:g(R,iCat)||'Imported',notes:g(R,iNotes)})}
+  else{if(!pname||!amt)continue;const qty=Math.max(1,Math.round(numFrom(g(R,iQty))||1)),p=findP(pname);p.price=amt;const cust=g(R,iCust),c=cust?findC(cust):null;
+   sales.push({id:uid('s'),date:d,productId:p.id,productName:p.name,qty:qty,unitPrice:amt,total:amt*qty,cogs:0,payment:normPay(g(R,iPay)),customerId:c?c.id:null,receipt:''})}}
+ if(isExp){if(!exps.length){showToast(L('No usable rows found.','Walang mababasang row.'));return}if(!confirm(L('Import '+exps.length+' expense(s) from this file?\nNothing is uploaded — data stays on this phone.','I-import ang '+exps.length+' gastos mula sa file?\nWalang ia-upload — sa telepono lang ang data.')))return;state.expenses=state.expenses.concat(exps)}
+ else{if(!sales.length){showToast(L('No usable rows found.','Walang mababasang row.'));return}if(!confirm(L('Import '+sales.length+' sale(s) from this file?\nNothing is uploaded — data stays on this phone.','I-import ang '+sales.length+' benta mula sa file?\nWalang ia-upload — sa telepono lang ang data.')))return;state.sales=state.sales.concat(sales)}
+ recordAudit('import.csv','+'+sales.length+' sales, +'+exps.length+' expenses, +'+newP.length+' products, +'+newC.length+' customers');sortFeeds();maybeAutoArchetype(true);saveState();renderAll();showToast('✓ '+L('Import done. Tap Sales to review.','Tapos ang import. Pindutin ang Sales para tingnan.'))}
+/* ---------- sale options sheet + long-press (void moved off the feed) ---------- */
+function openSaleSheet(id){const s=state.sales.find(function(x){return x.id===id});if(!s)return;SHEET_SALE=id;const c=state.customers.find(function(x){return x.id===s.customerId}),el=document.getElementById('saleSheetBody');if(!el)return;
+ const canVoid=(+s.qty>0)&&!s.orderId&&!state.sales.some(function(x){return x.returnOf===s.id});
+ el.innerHTML='<div class="item"><div class="row"><div><div class="title">'+esc(s.productName)+' × '+s.qty+'</div><div class="meta">'+esc(s.date)+' · '+esc(s.payment||'')+(c?' · '+esc(c.name):'')+(s.promo?' · 🏷 '+esc(s.promo):'')+(s.dueDate?' · ⏰ '+esc(s.dueDate):'')+'</div></div><strong class="green">'+money(s.total)+'</strong></div><div class="meta">'+L('COGS ','Puhunan ')+money(s.cogs)+' · '+L('Gross profit ','Tubo ')+money(s.total-s.cogs)+'</div></div>'
+ +(canVoid?'<button class="btn danger" id="saleVoidBtn" style="width:100%;margin-top:10px">🗑 '+L('Void sale (restores stock)','Bawiin ang benta (ibabalik ang stock)')+'</button>':'<div class="notice warning" style="margin-top:10px">'+L('This sale is linked to an order or already returned. Void it from Orders or the Stock / Return screen to keep records consistent.','Naka-link ang bentang ito sa order o naibalik na. Bawiin ito sa Orders o Stock / Return para tuloy-tuloy ang records.')+'</div>')
+ +(s.receipt?'<button class="btn" style="width:100%;margin-top:8px" onclick="closeModal(\'saleSheet\');showReceipt(\''+esc(s.receipt)+'\')">🧾 '+L('View receipt','Tingnan ang resibo')+'</button>':'')
+ +'<div class="muted" style="margin-top:8px;font-size:12px">'+L('Tip: hold a sale row to open this sheet.','Tip: pindutin nang matagal ang row para buksan ito.')+'</div>';
+ const vb=document.getElementById('saleVoidBtn');if(vb)vb.onclick=function(){closeModal('saleSheet');delItem('sale',SHEET_SALE)};
+ openModal('saleSheet');hap(8)}
+(function(){const el=document.getElementById('salesList');if(!el)return;let t=null,sx=0,sy=0;const cancel=function(){if(t){clearTimeout(t);t=null}};
+ el.addEventListener('touchstart',function(e){const row=e.target.closest('[data-sid]');if(!row||e.target.closest('button'))return;sx=e.touches[0].clientX;sy=e.touches[0].clientY;t=setTimeout(function(){t=null;hap(18);openSaleSheet(row.getAttribute('data-sid'))},520)},{passive:true});
+ el.addEventListener('touchmove',function(e){if(!t)return;if(Math.abs(e.touches[0].clientX-sx)>10||Math.abs(e.touches[0].clientY-sy)>10)cancel()},{passive:true});
+ el.addEventListener('touchend',cancel,{passive:true});el.addEventListener('touchcancel',cancel,{passive:true});
+ let mt=null;el.addEventListener('mousedown',function(e){if(e.button!==0)return;const row=e.target.closest('[data-sid]');if(!row||e.target.closest('button'))return;sx=e.clientX;sy=e.clientY;mt=setTimeout(function(){mt=null;hap(18);openSaleSheet(row.getAttribute('data-sid'))},520)});
+ el.addEventListener('mousemove',function(e){if(mt&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){clearTimeout(mt);mt=null}});
+ el.addEventListener('mouseup',function(){if(mt){clearTimeout(mt);mt=null}});el.addEventListener('mouseleave',function(){if(mt){clearTimeout(mt);mt=null}});
+ el.addEventListener('contextmenu',function(e){const row=e.target.closest('[data-sid]');if(row&&!e.target.closest('button')){e.preventDefault();openSaleSheet(row.getAttribute('data-sid'))}})})();
+/* ---------- extras hook + wrappers ---------- */
+let FIRST_EXTRAS=true;
+function renderExtras(){const u=uiC();if(!u.colSeed&&rpgLevel().lv>=3){u.colSeed=1;u.col.rpg=1;u.col.quest=1;saveState()}
+ applyUi();applyCollapse();renderStorageBadge();renderTplBox();renderRewardStrip();updateCtxNote();checkRewards(FIRST_EXTRAS);FIRST_EXTRAS=false}
+const _renderAll=renderAll,_switchScreen=switchScreen,_syncNow=syncNow;
+renderAll=function(){_renderAll.apply(null,arguments);renderExtras()};
+switchScreen=function(n){if(n!=='coach'){CTX.prev=n;CTX.screen=n}_switchScreen.apply(null,arguments);updateCtxNote()};
+syncNow=async function(){const r=await _syncNow.apply(null,arguments);renderStorageBadge();return r};
+document.addEventListener('click',function(e){if(e.target.closest('.btn,.chip,.nav button,.seg button,.colbtn,.colbtn2,.rw-chip,.rpg-stat'))hap(10)},{passive:true});
+window.addEventListener('scroll',function(){document.body.classList.toggle('scrolled',window.scrollY>260)},{passive:true});
+(function(){const i=document.getElementById('coachInput');if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();askCoach()}})})();
+Object.assign(FIL,{"🧱 Floor Mode":"🧱 Floor Mode","✨ Vibe Mode":"✨ Vibe Mode","🛒 New Sale":"🛒 Bagong Benta","💸 Expense":"💸 Gastos","📦 Order":"📦 Order","🧮 Count Cash":"🧮 Bilangin ang Kaha","＋ Add Product":"＋ Magdagdag ng Produkto","📥 Import from Phone (CSV / JSON)":"📥 Mag-import mula sa Telepono (CSV / JSON)","Your Coach Conversation (Coach VeVi)":"Usapan Ninyo ng Coach (Coach VeVi)","Sale details":"Detalye ng Benta","Daily Dilemma":"Pang-araw-araw na Hamon","Attribute":"Katangian"});
 </script>
 
-<script type="module" src="./coachEngine.js"></script>
-  <script type="module">
-    if (typeof GeminiGradeLocalCoach !== 'undefined') {
-      window.coachBrain = new GeminiGradeLocalCoach();
-    }
-  </script>
+<script src="./coachEngine.js"></script>
+  
 
   <script>
     if ('serviceWorker' in navigator) {

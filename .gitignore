@@ -67,3 +67,17 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Sensitive files (API keys, tokens)
+Gorq*
+gsk_*
+*.key
+*.secret
+
+# Environment variables
+.env
+.env.*
+
+# Playwright reports
+playwright-report/
+test-results/

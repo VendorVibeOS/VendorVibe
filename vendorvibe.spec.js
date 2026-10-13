@@ -13,11 +13,19 @@ test.describe('VendorVibe OS - Production & PWA Audit Suite', () => {
       await page.getByRole('button', { name: /Proceed|Continue|Agree/i }).click();
     }
 
-    const categoryBtn = page.getByRole('button', { name: /Food|Retail|Service/i });
-    if (await categoryBtn.count() > 0) {
-      await categoryBtn.first().click();
+    const wiz = page.locator('#wizOv');
+    await expect(wiz).toBeVisible({ timeout: 10000 });
+
+    const langBtn = wiz.getByRole('button', { name: /English/i });
+    if (await langBtn.count() > 0) {
+      await langBtn.first().click();
     }
 
+    const categoryBtn = wiz.getByRole('button', { name: /Food|Retail|Service/i });
+    await expect(categoryBtn.first()).toBeVisible();
+    await categoryBtn.first().click();
+
+    await expect(wiz).toContainText('How big is your business?');
     await expect(page.locator('body')).toBeVisible();
   });
 

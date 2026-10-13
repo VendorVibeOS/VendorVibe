@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "vendorvibe-96980"
-  }
+  },
+  "targets": {
+    "vendorvibe-96980": {
+      "hosting": {
+        "vendorbiveos": [
+          "vendorbiveos"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
