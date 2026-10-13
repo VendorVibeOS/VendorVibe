@@ -1,4 +1,4 @@
-name: Deploy & Rollback
+name: Deploy to Firebase
 
 on:
   push:
@@ -9,22 +9,28 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Create Service Account Key
+        run: |
+          echo '${{ secrets.FIREBASE_TOKEN }}' | base64 -d > /tmp/firebase-key.json
+          echo "Key file created: $(wc -c < /tmp/firebase-key.json) bytes"
+
       - name: Deploy to Firebase
         run: |
-          firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-key.json
+          firebase deploy --only hosting --project vendorvibe-96980
+
+      - name: Cleanup
+        if: always()
+        run: rm -f /tmp/firebase-key.json
 
       - name: Health Check
         run: |
@@ -37,6 +43,4 @@ jobs:
 
       - name: Notify Failure
         if: failure()
-        run: |
-          echo "🚨 Deployment failed!"
-          echo "Check logs: https://github.com/VendorVibeOS/VendorVibe/actions"
+        run: echo "🚨 Deployment failed! Check logs."
