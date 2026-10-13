@@ -31,14 +31,12 @@ jobs:
           sleep 10
           curl -f https://vendorvibeos.web.app/ || exit 1
 
-      - name: Rollback on Failure
-        if: failure()
-        run: |
-          echo "🚨 Health check failed! Rolling back..."
-          firebase hosting:rollback --token ${{ secrets.FIREBASE_TOKEN }} --force
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
       - name: Notify Success
         if: success()
-        run: echo "✅ Deploy successful!"
+        run: echo "✅ Deploy successful! Site: https://vendorvibeos.web.app"
+
+      - name: Notify Failure
+        if: failure()
+        run: |
+          echo "🚨 Deployment failed!"
+          echo "Check logs: https://github.com/VendorVibeOS/VendorVibe/actions"
