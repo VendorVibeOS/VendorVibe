@@ -21,7 +21,6 @@ jobs:
       - name: Create Service Account Key
         run: |
           echo '${{ secrets.FIREBASE_TOKEN }}' | base64 -d > /tmp/firebase-key.json
-          echo "Key file created: $(wc -c < /tmp/firebase-key.json) bytes"
 
       - name: Deploy to Firebase
         run: |
@@ -36,11 +35,3 @@ jobs:
         run: |
           sleep 10
           curl -f https://vendorvibeos.web.app/ || exit 1
-
-      - name: Notify Success
-        if: success()
-        run: echo "✅ Deploy successful! Site: https://vendorvibeos.web.app"
-
-      - name: Notify Failure
-        if: failure()
-        run: echo "🚨 Deployment failed! Check logs."
