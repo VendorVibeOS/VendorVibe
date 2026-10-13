@@ -21,24 +21,38 @@
 
     gtag('config', 'G-PDQ7W8HPG5');
   </script>
-  <!-- Firebase Performance Monitoring -->
-<script type="module">
+ <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getPerformance } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-performance.js';
   
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmM3NJAoREpsIRbB2Xxy5DbAqgZLiwGcE",
-    authDomain: "vendorvibe-96980.firebaseapp.com",
-    projectId: "vendorvibe-96980",
-    storageBucket: "vendorvibe-96980.firebasestorage.app",
-    messagingSenderId: "680407828740",
-    appId: "1:680407828740:web:b0e4f861f81bac2106851",
-    measurementId: "G-PDQ7W8HPG5"
-  };
+  // Only initialize Firebase Performance in production (not in tests/CI)
+  const isProduction = window.location.hostname === 'vendorvibeos.web.app' || 
+                       window.location.hostname === 'vendorvibeos.firebaseapp.com';
   
-  const app = initializeApp(firebaseConfig);
-  const perf = getPerformance(app);
-  console.log('✅ Firebase Performance initialized');
+  if (isProduction) {
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmM3NJAoREpsIRbB2Xxy5DbAqgZLiwGcE",
+      authDomain: "vendorvibe-96980.firebaseapp.com",
+      projectId: "vendorvibe-96980",
+      storageBucket: "vendorvibe-96980.firebasestorage.app",
+      messagingSenderId: "680407828740",
+      appId: "1:680407828740:web:b0e4f861f81bac2106851",
+      measurementId: "G-PDQ7W8HPG5"
+    };
+    
+    const app = initializeApp(firebaseConfig);
+    const perf = getPerformance(app);
+    console.log('✅ Firebase Performance initialized');
+  } else {
+    console.log('⏭️ Firebase Performance skipped (non-production)');
+  }
+</script>
+    const app = initializeApp(firebaseConfig);
+    const perf = getPerformance(app);
+    console.log('✅ Firebase Performance initialized');
+  } else {
+    console.log('⏭️ Firebase Performance skipped (non-production)');
+  }
 </script>
 
 <!-- GA4 Error Tracking -->
