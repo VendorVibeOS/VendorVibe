@@ -1,24 +1,30 @@
 import { defineConfig, devices } from '@playwright/test';
-import 'dotenv/config';
 
 export default defineConfig({
-  testDir: '.',
-  timeout: 30000,
-  expect: { timeout: 5000 },
+  testDir: './',
+  testMatch: '**/*.spec.ts', 
+  timeout: 60 * 1000,
   fullyParallel: true,
-  workers: 4,
-  retries: 0,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 1 : 0, 
+  workers: process.env.CI ? 2 : undefined,
+  reporter: [['html', { open: 'never' }], ['list']],
   use: {
-    baseURL: 'https://vendorvibeos.web.app',
-    trace: 'retain-on-failure',
+    baseURL: 'http://127.0.0.1:8080',
+    trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'chromium-desktop', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox-desktop', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit-desktop', use: { ...devices['Desktop Safari'] } },
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
     { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
     { name: 'mobile-safari', use: { ...devices['iPhone 12'] } },
   ],
+  webServer: {
+    command: 'npx http-server . -p 8080 -a 127.0.0.1 -c-1',
+    url: 'http://127.0.0.1:8080',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000,
+  },
 });
