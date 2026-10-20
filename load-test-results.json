@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-12T18:05:02.106Z",
+  "totalRequests": 6440,
+  "failedRequests": 1610,
+  "avgResponseTime": 13,
+  "p95ResponseTime": 39,
+  "maxResponseTime": 428,
+  "requestsPerSecond": 30.09
+}
