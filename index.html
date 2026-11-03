@@ -21,40 +21,42 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  
+  /* BAGONG BACKGROUND NA MAY GRID AT GLOW */
   body {
     background-color: var(--bg);
-    /* ITO YUNG BAGONG BACKGROUND */
     background-image: 
-      radial-gradient(circle at 15% 50%, rgba(63, 185, 80, 0.08), transparent 25%),
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      radial-gradient(circle at 15% 50%, rgba(63, 185, 80, 0.15), transparent 40%),
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
     background-size: 100% 100%, 40px 40px, 40px 40px;
     color: var(--text);
     font-family: var(--sans);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
+
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: var(--accent-soft); text-decoration: underline; }
   .container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
   .label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
   h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.2; }
   
-  .hero { padding: 8rem 0 5rem; border-bottom: 1px solid var(--border); position: relative; }
-  .hero .badge { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--muted); border: 1px solid var(--border); padding: 5px 12px; display: inline-block; margin-bottom: 2rem; background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(4px); }
+  .hero { padding: 8rem 0 5rem; border-bottom: 1px solid var(--border); }
+  .hero .badge { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--muted); border: 1px solid var(--border); padding: 5px 12px; display: inline-block; margin-bottom: 2rem; background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); }
   .hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); margin-bottom: 1.5rem; max-width: 800px; }
   .hero h1 em { color: var(--accent); font-style: normal; }
   .hero p { color: var(--muted); font-size: 1.05rem; max-width: 620px; margin-bottom: 2rem; }
   .hero .meta { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1.5rem; }
   .hero .meta strong { color: var(--text); }
   
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-bottom: 1px solid var(--border); background: var(--bg); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-bottom: 1px solid var(--border); }
   .stat { padding: 2rem 1rem; border-right: 1px solid var(--border); }
   .stat:last-child { border-right: none; }
   .stat strong { display: block; font-family: var(--serif); font-size: 2rem; color: var(--accent); font-weight: 400; }
   .stat span { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
   
-  section { padding: 5rem 0; border-bottom: 1px solid var(--border); position: relative; }
+  section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
   section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 2rem; }
   
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
@@ -86,7 +88,7 @@
   .contact p { color: var(--muted); max-width: 560px; margin-bottom: 2rem; }
   .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; font-family: var(--mono); font-size: 0.9rem; }
   
-  footer { padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); background: var(--bg); }
+  footer { padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
   footer .pwa { display: inline-block; margin-top: 0.75rem; border: 1px solid var(--border); padding: 4px 10px; color: var(--accent); }
   
   @media (max-width: 600px) { .hero { padding: 5rem 0 3rem; } .stat { border-right: none; border-bottom: 1px solid var(--border); } .project { grid-template-columns: 1fr; gap: 0.5rem; } }
