@@ -1,40 +1,20 @@
-const CACHE_NAME = 'vendorvibe-v1';
-const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './coachEngine.js'
-];
+const CACHE = 'portfolio-v1';
+const ASSETS = ['/', '/index.html', '/manifest.json', '/vendorvibe/', '/vendorvibe/index.html'];
 
-// Install Event
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(CACHE).then((c) => c.addAll(ASSETS).catch(() => {}))
   );
+  self.skipWaiting();
 });
 
-// Activate Event
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
+self.addEventListener('activate', (e) => e.waitUntil(clients.claim()));
 
-// Fetch Event
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then((r) => r || fetch(e.request).then((res) => {
+      return caches.open(CACHE).then((c) => { c.put(e.request, res.clone()); return res; });
+    }).catch(() => caches.match('/index.html')))
   );
 });
